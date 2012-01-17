@@ -1,21 +1,17 @@
 SpreeWarehouse
 ==============
 
-Introduction goes here.
-
+Warehouse is an extension for Spree that will extend Spree into a full warehouse system, including an Android (and possibly iOS) client for inter-warehouse management using QR codes and bar-codes.
+Please see the design document (still a work in progress) here: https://docs.google.com/document/d/1K-C33WjH5GooNKW-GsW7-Ol_K4-7PbwVxPk3Vs2MmO0/edit
 
 Example
 =======
 
-Example goes here.
+None yet
 
 Testing
 -------
 
-Be sure to bundle your dependencies and then create a dummy test app for the specs to run against.
+None yet
 
-    $ bundle
-    $ bundle exec rake test app
-    $ bundle exec rspec spec
-
-Copyright (c) 2012 [name of extension creator], released under the New BSD License
+Copyright (c) 2012 Genshin Souzou Kabushiki Kaisha, released under the GNU GPL version 3
