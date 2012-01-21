@@ -1,6 +1,6 @@
 =begin
 SpreeWarehouse::Engine.routes.draw do
-  
+  mount Spree::Core::Engine, :at => '/'
   namespace :admin do 
     resources :warehouses
   end
@@ -12,3 +12,5 @@ Spree::Core::Engine.routes.prepend do
     resources :warehouses
   end
 end
+
+
