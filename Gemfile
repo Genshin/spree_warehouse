@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'devise'
+gem 'devise' , '1.4.8'
 gem 'rails' , '3.1.3'
 gem 'spree', :git => 'git://github.com/spree/spree.git'
 group :test do
@@ -7,7 +7,6 @@ group :test do
   gem 'guard-rspec', '~> 0.5.0'
   gem 'rspec-rails', '~> 2.8.0'
   gem 'factory_girl_rails', '~> 1.5.0'
-  gem 'rcov'
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara'
