@@ -2,8 +2,8 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_warehouse'
-  s.version     = '1.0.0'
-  s.summary     = 'TODO: Add gem summary here'
+  s.version     = '0.0.1'
+  s.summary     = 'Warehouse management system based on Spree'
   s.description = 'TODO: Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
 
