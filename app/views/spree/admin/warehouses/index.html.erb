@@ -1,0 +1,35 @@
+<h1>Warehouses</h1>
+<table class="index">
+  <tr>
+    <th>Name</th>
+    <th>Code</th>
+    <th>Location</th>
+    <th>Details</th>
+  </tr>
+
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+    <li id="new_warehouse_link">
+      <%= button_link_to t("new_warehouse"), new_admin_warehouse_path, {:remote => true, :icon => 'add', :id => 'admin_new_warehouse'} %>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+
+<% @warehouses.each do |wh| %>
+  <tr>
+    <td><%= wh.name %></td>
+    <td><%= wh.code %></td>
+    <td><%= wh.location %></td>
+    <td><%= wh.details %></td>
+    <td class="actions">
+      <%= link_to_with_icon 'edit', "Edit", edit_admin_warehouse_path(wh) %>
+      <%= link_to_with_icon 'delete', "Delete", admin_warehouse_path(wh), :method => :delete, :confirm => "Are you sure ?" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+<%= link_to icon('add') + ' New Warehouse ', new_admin_warehouse_path, :id => "new_image_link" %>

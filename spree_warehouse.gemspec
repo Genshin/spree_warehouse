@@ -2,14 +2,14 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_warehouse'
-  s.version     = '1.0.0'
-  s.summary     = 'TODO: Add gem summary here'
+  s.version     = '0.0.1'
+  s.summary     = 'Warehouse management system for Spree'
   s.description = 'TODO: Add (optional) gem description here'
   s.required_ruby_version = '>= 1.8.7'
 
-  # s.author            = 'You'
-  # s.email             = 'you@example.com'
-  # s.homepage          = 'http://www.spreecommerce.com'
+  # s.author            = 'Genshin Souzou K.K.'
+  # s.email             = 'info@genshin.org'
+  # s.homepage          = 'http://genshin.org'
 
   #s.files         = `git ls-files`.split("\n")
   #s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
