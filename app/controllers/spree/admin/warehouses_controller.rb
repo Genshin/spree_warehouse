@@ -22,7 +22,7 @@ module Spree
             format.html { redirect_to [:admin , @warehouse], :notice => 'Warehouse was successfully created.' }
             format.json { render :json => @warehouse, :status => 'created', :location => @warehouse }
           else
-            format.html { render action: "new" }
+            format.html { render :action => 'new' }
             format.json { render :json => @warehouse.errors, :status => 'unprocessable_entity' }
           end
         end
