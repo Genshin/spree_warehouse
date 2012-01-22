@@ -1,7 +1,7 @@
 module Spree
   module Admin
     class WarehousesController < BaseController
-      #respond_to :html, :json , :xml
+      respond_to :html, :json , :xml
       def index
         @warehouses = Warehouse.all
         respond_to do |format|
@@ -14,14 +14,19 @@ module Spree
       def new
         @warehouse = Warehouse.new
         flash[:notice] = "Running New"
-        respond_with(@warehouse)
       end
     
       def create
         @warehouse = Warehouse.new(params[:warehouse])
-        flash[:notice] = "Warehouse was successfully created." if @warehouse.save
-        redirect_to admin_warehouse_path(@warehouses)
-
+        respond_to do |format|
+          if @warehouse.save
+            format.html { redirect_to [:admin,@warehouse], notice: 'Warehouse was successfully created.' }
+            format.json { render json: @warehouse, status: :created, location: @warehouse }
+          else
+            format.html { render action: "new" }
+            format.json { render json: @warehouse.errors, status: :unprocessable_entity }
+          end
+        end
       end
 
       def show

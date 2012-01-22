@@ -1,12 +1,8 @@
-<script>
-  alert("loaded");
-</script>
-
 <div data-hook="admin_warehouse_new_form_header">
-  <h1><%= t("warehouse") %></h1>
+  <h1><%= t("new_warehouse") %></h1>
 </div>
 
-<div data-hook="admin_warehouse_new_form" >
+<div data-hook="admin_warehouse_new_form" id="admin_warehouse_new_form" >
   <%= form_for([:admin,@warehouse]) do |f| %>
     <%= render :partial => "form", :locals => { :f => f } %>
 
