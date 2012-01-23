@@ -7,13 +7,20 @@ require 'spree/core/testing_support/common_rake'
 
 RSpec::Core::RakeTask.new
 
-task :default => [:spec]
+task :all_tests do
+  sh "bundle exec cucumber"
+  sh "bundle exec rake spec"
+end
+
+
+task :default => [:all_tests]
 
 spec = eval(File.read('spree_warehouse.gemspec'))
 
 Gem::PackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
+
 
 desc "Release to gemcutter"
 task :release => :package do
