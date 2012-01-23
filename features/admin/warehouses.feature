@@ -3,8 +3,10 @@ Feature: Managing Warehouses
   As an admin
   I want to be able to create, update and delete warehouses
 
-  Scenario: Creating a warehouse
+  Background:
     Given I am admin
+
+  Scenario: Creating a warehouse
     When I start creating a warehouse
     And I submit the following warehouse:
       | Name    | Huge Warehouse   |
@@ -12,5 +14,8 @@ Feature: Managing Warehouses
     Then we should have the following warehouse:
       | Name    | Huge Warehouse   |
       | Details | We are ... |
+
+  Scenario: Listing warehouses
+    Given there are 30 warehouses
 
 

@@ -11,6 +11,7 @@ require 'spree/url_helpers'
 include Spree::UrlHelpers
 
 require "factory_girl/step_definitions"
+Dir.glob(File.join(File.dirname(__FILE__), '../../spec/factories/*.rb')).each {|f| require f }
 require 'spree/core/testing_support/factories'
 
 require 'cucumber/rails'
