@@ -6,5 +6,6 @@
 .project
 tmp
 nbproject
+spec/dummy
 *.swp
 Gemfile.lock
