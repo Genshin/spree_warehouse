@@ -36,6 +36,17 @@ module Spree
       def edit
         @warehouse = Warehouse.find(params[:id])
       end
+
+
+      def destroy
+        @warehouse = Warehouse.find(params[:id])
+        @warehouse.destroy
+
+        respond_to do |format|
+          format.html { redirect_to admin_warehouses_path, :notice => 'Warehouse was successfully deleted.' }
+          format.json { head :ok }
+        end
+      end
      
     end  
   end
