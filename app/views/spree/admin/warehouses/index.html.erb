@@ -1,4 +1,7 @@
+
 <h1>Warehouses</h1>
+
+<br />
 <table id="warehouses" class="index">
   <tr>
     <th>Name</th>
@@ -10,7 +13,7 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li id="new_warehouse_link">
-      <%= button_link_to t("new_warehouse"), new_admin_warehouse_path, {:remote => true, :icon => 'add', :id => 'admin_new_warehouse'} %>
+      <%= button_link_to t(:new_warehouse), new_admin_warehouse_path, :icon => 'add', :id => 'admin_new_warehouse' %>
     </li>
   </ul>
   <br class="clear" />
@@ -31,5 +34,4 @@
 <% end %>
 </table>
 
-<br />
-<%= button_link_to t(:new_warehouse), new_admin_warehouse_path, :icon => 'add', :id => 'new_warehouse' %>
+
