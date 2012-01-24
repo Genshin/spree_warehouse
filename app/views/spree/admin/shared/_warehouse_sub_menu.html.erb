@@ -1,0 +1,6 @@
+<% content_for :sub_menu do %>
+  <ul id="sub_nav" data-hook="admin_warehouse_sub_tabs">
+    <%= tab :warehouses, :match_path => '/warehouses' %>
+    <%= tab :visual_code_types, :match_path => '/visual_code_types', :css_class => 'last' %>
+  </ul>
+<% end %>
