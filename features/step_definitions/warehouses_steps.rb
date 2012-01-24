@@ -44,7 +44,7 @@ When 'I delete the "$name" warehouse' do |name|
   visit spree.admin_warehouses_path
   click_link "Delete"
 
-  page.should have_content('Warehouse was successfully deleted.')
+  page.should have_content('Warehouse $name has been successfully removed!.')
 end
 
 

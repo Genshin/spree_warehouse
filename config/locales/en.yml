@@ -4,3 +4,5 @@
 en:
   warehouse: "Warehouse"
   new_warehouse: "New Warehouse"
+  edit_warehouse: "Editing Warehouse"
+  list_warehouses: "Warehouses"
