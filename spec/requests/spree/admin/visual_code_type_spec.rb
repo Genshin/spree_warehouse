@@ -5,7 +5,8 @@ describe Spree::VisualCodeType do
     sign_in_as!(Factory(:admin_user))
     Spree::Ability.register_ability(AbilityDecorator)
 
-    @visual_code_type1 = Factory(:visual_code_type, :name => "QR Code")
+    @visual_code_type_qr = Factory(:visual_code_type, :name => "QR Code")
+    @visual_code_type_bar = Factory(:visual_code_type, :name => "BarCode")
     
     #visit spree.admin_path
     visit "admin/visual_code_types"
@@ -16,6 +17,7 @@ describe Spree::VisualCodeType do
     it "should list visual code types" do
       within("table#visual_code_types") do
         page.should have_content("QR Code")
+        page.should have_content("BarCode")
       end
     end
   end
