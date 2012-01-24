@@ -1,5 +1,6 @@
-
-<h1>Warehouses</h1>
+<div data-hook="admin_warehouses_index">
+  <h1><%= t(:list_warehouses) %></h1>
+</div>
 
 <br />
 <table id="warehouses" class="index">
@@ -8,6 +9,7 @@
     <th>Code</th>
     <th>Location</th>
     <th>Details</th>
+    <th></th>
   </tr>
 
 <div class="toolbar" data-hook="toolbar">
@@ -27,8 +29,8 @@
     <td><%= wh.location %></td>
     <td><%= wh.details %></td>
     <td class="actions">
-      <%= link_to_with_icon 'edit',"Edit", edit_admin_warehouse_path(wh) %>
-      <%= link_to_with_icon 'delete' ,"Delete", admin_warehouse_path(wh), :method => :delete, :confirm => "Are you sure ?" %>
+      <%= link_to_edit wh %>
+      <%= link_to_delete wh %>
     </td>
   </tr>
 <% end %>
