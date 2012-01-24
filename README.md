@@ -8,15 +8,17 @@ Installation
 =======
 
 After including `spree_warehouse` in your Gemfile and bundling run:
-``rake spree_warehouse:install:migrations
-rake db:migrate
-``
+	rake spree_warehouse:install:migrations
+	rake db:migrate
+
 
 Testing
 -------
 
 Run `rake test_app` to generate the test_app.
 Then run rake to run the features and spec tests.
+
+If you have problems try prefixing things with 'bundle exec '.
 
 
 
