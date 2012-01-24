@@ -6,7 +6,7 @@
 
 <%= render 'spree/shared/error_messages', :target => @warehouse %>
 
-<div data-hook="admin_warehouse_new_form" id="admin_warehouse_new_form" >
+<div data-hook="admin_warehouse_edit_form" id="admin_warehouse_edit_form" >
   <%= form_for(:warehouse, :url => object_url, :html => { :method => :put }) do |f| %>
     <%= render :partial => "form", :locals => { :f => f } %>
     <%= render :partial => "spree/admin/shared/edit_resource_links" %>
