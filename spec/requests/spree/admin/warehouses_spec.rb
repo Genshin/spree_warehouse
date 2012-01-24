@@ -28,10 +28,11 @@ describe 'Warehouses' do
     end 
 
     it "you should be redirected to warehouses/new view when you hit new warehouse button" do
+      fake = Faker::Name.name
       page.should have_css('div#admin_warehouse_new_form')
-      fill_in "warehouse_name", :with => Faker::Name.name
+      fill_in "warehouse_name", :with => fake
       click_button "Create"
-      page.should have_content("Warehouse was successfully created.")
+      page.should have_content("has been successfully created!")
     end
 
     it "should give an error if name is not unique" do

@@ -8,4 +8,6 @@ tmp
 nbproject
 spec/dummy
 *.swp
+*.orig
 Gemfile.lock
+Guardfile

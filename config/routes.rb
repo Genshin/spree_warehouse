@@ -5,12 +5,19 @@ SpreeWarehouse::Engine.routes.draw do
     resources :warehouses
   end
 end
-=end
 
-Spree::Core::Engine.routes.prepend do
+Rails.application.routes.draw do
   namespace :admin do
     resources :warehouses
   end
 end
 
+=end
+
+Spree::Core::Engine.routes.prepend do
+  namespace :admin do
+    resources :warehouses
+    resources :visual_code_types
+  end
+end
 
