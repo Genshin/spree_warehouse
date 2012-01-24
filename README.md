@@ -7,8 +7,8 @@ Please see the design document (still a work in progress) [here](https://docs.go
 Installation
 =======
 
-After including `spree_warehouse` in your Gemfile and bundling run:
-`rake spree_warehouse:install:migrations`
+After including `spree_warehouse` in your Gemfile and bundling run:  
+`rake spree_warehouse:install:migrations`  
 `rake db:migrate`
 
 
