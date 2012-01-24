@@ -6,3 +6,4 @@ ja:
   visual_code:
     types: "ビジュアルコードの種類"
     new_type: "新規VC類"
+    edit_type: "VC類を編集"
