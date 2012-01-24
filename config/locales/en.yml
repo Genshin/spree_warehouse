@@ -6,5 +6,6 @@ en:
   new_warehouse: "New Warehouse"
   edit_warehouse: "Editing Warehouse"
   list_warehouses: "Warehouses"
-
-  visual_code_types: "Visual Code Types"
+  visual_code:
+    types: "Visual Code Types"
+    new_type: "New VC Type"

@@ -1,4 +1,8 @@
 ja:
   warehouse: "倉庫"
   new_warehouse: "倉庫を登録"
-  visual_code_types: "ビジュアルコードの種類"
+  edit_warehouse: "倉庫を編集"
+  list_warehouses: "全ての倉庫"
+  visual_code:
+    types: "ビジュアルコードの種類"
+    new_type: "新規VC類"

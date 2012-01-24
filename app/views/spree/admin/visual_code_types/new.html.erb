@@ -1,0 +1,14 @@
+<div data-hook="admin_visual_code_types_new_form_header">
+  <h1><%= t("visual_code.new_type") %></h1>
+</div>
+
+<%= render 'spree/shared/error_messages', :target => @visual_code_type %>
+
+<div data-hook="admin_visual_code_type_new_form" id="admin_visual_code_type_edit_form" >
+  <%= form_for(:visual_code_type, :url => admin_visual_code_types_url(params[:visual_code_type])) do |f| %>
+    <%= render :partial => "form", :locals => { :f => f } %>
+    <div data-hook="admin_visual_code_type_new_form_buttons">
+      <%= render :partial => "spree/admin/shared/new_resource_links" %>
+    </div>
+  <% end %>
+</div>
