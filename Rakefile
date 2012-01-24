@@ -7,10 +7,17 @@ require 'spree/core/testing_support/common_rake'
 
 RSpec::Core::RakeTask.new
 
+
 task :all_tests do
-  sh "bundle exec cucumber"
-  sh "bundle exec rake spec"
+  ["rake spec", "cucumber" ].each do |cmd|
+    puts "Starting to run #{cmd}..."
+    #system("export DISPLAY=:99.0 && bundle exec #{cmd}")
+    system("bundle exec #{cmd}")
+    raise "#{cmd} failed!" unless $?.exitstatus == 0
+  end
 end
+
+
 
 
 task :default => [:all_tests]
