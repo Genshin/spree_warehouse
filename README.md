@@ -7,15 +7,15 @@ Please see the design document (still a work in progress) [here](https://docs.go
 Installation
 =======
 
-After including <spree_warehouse> in your Gemfile and bundling run:
-<rake spree_warehouse:install:migrations>
-<rake db:migrate>
-
+After including `spree_warehouse` in your Gemfile and bundling run:
+```rake spree_warehouse:install:migrations
+rake db:migrate
+```
 
 Testing
 -------
 
-Be sure to run <bundle exec rake test_app> to generate the spec/dummy directory.
+Be sure to run `bundle exec rake test_app` to generate the spec/dummy directory.
 
 
 Copyright (c) 2012 Genshin Souzou Kabushiki Kaisha, released under the GNU GPL version 3
