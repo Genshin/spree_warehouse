@@ -18,7 +18,6 @@ Include in your Gemfile:
 
     gem 'spree', :git => 'https://github.com/spree/spree.git'
     gem 'spree_warehouse' , :git => 'git@github.com:Genshin/spree_warehouse.git'
-    gem 'spree_blue_theme', :git => 'git://github.com/spree/spree_blue_theme.git'
 
 And run: 
 
