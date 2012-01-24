@@ -8,8 +8,8 @@ Installation
 =======
 
 After including `spree_warehouse` in your Gemfile and bundling run:
-```rake spree_warehouse:install:migrations
-rake db:migrate```
+`rake spree_warehouse:install:migrations`
+`rake db:migrate`
 
 
 Testing
