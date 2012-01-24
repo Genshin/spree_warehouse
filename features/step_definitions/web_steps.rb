@@ -10,6 +10,49 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
+
+
+
+=begin
+
+
+When /^(?:|I )follow "([^"]*)" and I confirm the next alert$/ do |link|
+  page.evaluate_script('window.confirm = function() { return true; }')
+  page.driver.browser.switch_to.alert.accept
+  When "I follow \"#{link}\""
+end
+
+
+When /^"([^\"]*)" should have a confirmation saying "([^\"]*)"$/ do |locator, message|
+  el = find_button(locator) || find_link(locator)
+  el['data-confirm'].should eql(message.gsub("\\n", "\n"))
+end
+
+
+
+When /^I click OK$/ do
+  begin
+    main, popup = page.driver.browser.window_handles
+    within_window(popup) do
+      click_on("OK")
+    end
+  rescue
+  end
+end
+
+
+When /^I confirm popup$/ do
+  page.driver.browser.switch_to.alert.accept    
+end
+
+When /^I dismiss popup$/ do
+  page.driver.browser.switch_to.alert.dismiss
+end
+
+
+=end
+
+
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
   with_scope(parent) { When step }

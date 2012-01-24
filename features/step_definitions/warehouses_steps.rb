@@ -8,10 +8,16 @@ end
 
 Given 'a warehouse "$name" exists' do |name|
   @warehouse = Factory(:warehouse, :name => name)
+  puts "Count : #{Spree::Warehouse.count}"
+  
 end
 
 Given 'I am admin' do
   sign_in_as!(Factory(:admin_user))
+end
+
+Given 'I am at warehouses path' do
+  visit spree.admin_warehouses_path
 end
 
 When 'I start creating a warehouse' do
@@ -42,8 +48,13 @@ end
 
 When 'I delete the "$name" warehouse' do |name|
   visit spree.admin_warehouses_path
+  
   click_link "Delete"
+  click_button "OK"
+end
 
+Then 'we should have flash message' do 
+  puts page.body
   page.should have_content('Warehouse $name has been successfully removed!.')
 end
 

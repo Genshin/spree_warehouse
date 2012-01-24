@@ -5,6 +5,7 @@ Feature: Managing Warehouses
 
   Background:
     Given I am admin
+    Given I am at warehouses path
  
   Scenario: Listing warehouses
     Given there are 30 warehouses
@@ -20,9 +21,10 @@ Feature: Managing Warehouses
       | Name    | Huge Warehouse   |
       | Details | We are ... |
 
+  @javascript
   Scenario: Deleting a warehouse
     Given a warehouse "Huge Warehouse" exists
     When I delete the "Huge Warehouse" warehouse
-    Then we should have 0 warehouses
+    Then we should have flash message
 
 

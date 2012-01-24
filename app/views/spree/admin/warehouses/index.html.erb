@@ -29,8 +29,8 @@
     <td><%= wh.location %></td>
     <td><%= wh.details %></td>
     <td class="actions">
-      <%= link_to_with_icon 'edit',"Edit", edit_admin_warehouse_path(wh) %>
-      <%= link_to_with_icon 'delete' ,"Delete", admin_warehouse_path(wh), :method => :delete, :confirm => "Are you sure ?" %>
+      <%= link_to_edit wh %>
+      <%= link_to_delete wh %>
     </td>
   </tr>
 <% end %>
