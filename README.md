@@ -6,17 +6,34 @@ Please see the design document (still a work in progress) [here](https://docs.go
 
 Installation
 =======
+We support only Spree 1.0.0.rc2 and above !
 
-After including `spree_warehouse` in your Gemfile and bundling run:  
-`rake spree_warehouse:install:migrations`  
-`rake db:migrate`
+Make a new app using the latest Rails: 
+
+    $ gem install rails
+    $ rails new app_name
+    $ cd app_name
+
+Include in your Gemfile: 
+
+    gem 'spree', :git => 'https://github.com/spree/spree.git'
+    gem 'spree_warehouse' , :git => 'git@github.com:Genshin/spree_warehouse.git'
+    gem 'spree_blue_theme', :git => 'git://github.com/spree/spree_blue_theme.git'
+
+And run: 
+
+    $ bundle
+    $ rails g spree:install
+    $ rake spree_warehouse:install:migrations 
+    $ rake db:migrate
+    $ rails s 
 
 
 Testing
--------
+=======
 
 Run `rake test_app` to generate the test_app.
-Then run rake to run the features and spec tests.
+Then run`rake` for the features and spec tests.
 
 If you have problems try prefixing things with 'bundle exec '.
 
