@@ -1,13 +1,3 @@
-<div data-hook="admin_visual_code_types_index">
-  <h1><%= t("visual_code.types") %></h1>
-</div>
-
-<br />
-<table id="visual_code_types" class="index">
-  <tr>
-    <th>Name</th>
-    <th>Handler</th>
-  </tr>
 
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
@@ -18,12 +8,22 @@
   <br class="clear" />
 </div>
 
+<h1><%= t("visual_code.types") %></h1>
+
+<table id="visual_code_types" class="index">
+  <tr>
+    <th>Name</th>
+    <th>Handler</th>
+    <th></th>
+  </tr>
 
 <% @visual_code_types.each do |vct| %>
   <tr>
     <td><%= vct.name %></td>
     <td><%= vct.handler %></td>
     <td class="actions">
+      <%= link_to_edit vct %>
+      <%= link_to_delete vct %>
     </td>
   </tr>
 <% end %>

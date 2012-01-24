@@ -9,3 +9,4 @@ en:
   visual_code:
     types: "Visual Code Types"
     new_type: "New VC Type"
+    edit_type: "Edit VC Type"
