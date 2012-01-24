@@ -1,4 +1,4 @@
-class CreateWarehousesTable < ActiveRecord::Migration
+class CreateSpreeWarehousesTable < ActiveRecord::Migration
  def change
     create_table :spree_warehouses do |t|
       t.string :name , :null => false
