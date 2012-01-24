@@ -13,6 +13,7 @@ module Spree
       
       def new
         @warehouse = Warehouse.new
+        flash[:notice] = "Running New"
       end
     
       def create
