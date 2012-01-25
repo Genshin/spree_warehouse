@@ -7,10 +7,13 @@ en:
   edit_warehouse: "Editing Warehouse"
   list_warehouses: "Warehouses"
   visual_code:
+    system: "Visual Code System"
+    data: "Visual Code Data"
     types: "Visual Code Types"
     type: "Visual Code Type"
     codes: "Visual Codes"
     singular: "Visual Code"
     new: "Register Code"
+    edit: "Edit Visual Code"
     new_type: "New VC Type"
     edit_type: "Edit VC Type"

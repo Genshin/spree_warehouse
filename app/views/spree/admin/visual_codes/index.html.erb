@@ -1,10 +1,12 @@
 
 <%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
 
+<%= render :partial => 'spree/admin/shared/visual_code_side_menu', :locals => { :current => 'Visual Codes' } %>
+
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li id="new_visual_code_link">
-      <%= button_link_to t("visual_code.new"), new_admin_visual_code_type_path, :icon => 'add', :id => 'admin_new_visual_code' %>
+      <%= button_link_to t("visual_code.new"), new_admin_visual_code_path, :icon => 'add', :id => 'admin_new_visual_code' %>
     </li>
   </ul>
   <br class="clear" />
