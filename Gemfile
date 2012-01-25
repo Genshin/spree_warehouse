@@ -17,11 +17,21 @@ group :test do
   gem 'selenium-webdriver', '2.16.0'
   gem 'database_cleaner', '0.7.1'
   gem 'launchy'
+
+  platform :ruby_18 do
+    gem 'rcov'
+  end
+  platform :ruby_19 do
+    gem 'simplecov'
+  end
+
 end
 
-if RUBY_VERSION < "1.9"
+platform :ruby_18 do
   gem "ruby-debug"
-else
+end
+
+platform :ruby_19 do
   gem "ruby-debug19"
 end
 
