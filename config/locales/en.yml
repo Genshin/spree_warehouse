@@ -8,5 +8,9 @@ en:
   list_warehouses: "Warehouses"
   visual_code:
     types: "Visual Code Types"
+    type: "Visaul Code Type"
+    codes: "Visual Codes"
+    singular: "Visual Code"
+    new_code: "Register Code"
     new_type: "New VC Type"
     edit_type: "Edit VC Type"
