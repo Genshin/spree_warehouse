@@ -8,11 +8,11 @@ describe Spree::VisualCodeType do
     @visual_code_type_qr = Factory(:visual_code_type, :name => "QR Code")
     @visual_code_type_bar = Factory(:visual_code_type, :name => "BarCode")
     
-    #visit spree.admin_path
-    #click_link "Warehouses"
-    #click_link "Visual Codes"
-    #click_link "Visual Code Types"
-    visit "admin/visual_code_types"
+    visit spree.admin_path
+    click_link "Warehouses"
+    click_link "Visual Codes"
+    click_link "Visual Code Types"
+    #visit "admin/visual_code_types"
   end
 
   #TODO turn this into admin/visual_codes/types ?

@@ -6,6 +6,11 @@ FactoryGirl.define do
     details 'Warehouse Details'
   end
 
+  factory :visual_code, :class => Spree::VisualCode do
+    code { Factory.next(:unique_name) }
+    type Spree::VisualCodeType.where(:name => 'QR Code')
+  end
+
   factory :visual_code_type, :class => Spree::VisualCodeType do
     name { Factory.next(:unique_name) }
     handler 'barcode'
