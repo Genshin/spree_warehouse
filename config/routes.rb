@@ -1,5 +1,7 @@
 =begin
 SpreeWarehouse::Engine.routes.draw do
+  resources :visual_codes
+
   mount Spree::Core::Engine, :at => '/'
   namespace :admin do 
     resources :warehouses
@@ -16,7 +18,8 @@ end
 
 Spree::Core::Engine.routes.prepend do
   namespace :admin do
-    resources :warehouses 
+    resources :warehouses
+    resources :visual_codes
     resources :visual_code_types
   end
 end
