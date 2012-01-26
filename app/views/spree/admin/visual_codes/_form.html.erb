@@ -1,0 +1,15 @@
+<div>
+  <%= f.field_container :name do %>
+    <%= f.label :code, t("visual_code.data") %><br />
+    <%= f.text_field :code %>
+    <%= error_message_on :visual_code, :code %>
+  <% end %>
+
+  <%= f.field_container :type do %>
+    <%= f.label :type, t("visual_code.type") %><br />
+    <%= f.text_field :type %>
+    <%= error_message_on :visual_code, :type %>
+  <% end %>
+</div>
+
+
