@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'spree_warehouse'
   s.version     = '0.0.1'
   s.summary     = 'Warehouse management system based on Spree'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.description = 'Warehouse management system based on Spree'
   s.required_ruby_version = '>= 1.8.7'
 
   s.author            = 'Rei Kagetsuki'
