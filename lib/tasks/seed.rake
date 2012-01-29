@@ -1,7 +1,8 @@
 
+
 namespace :spree_warehouse do 
   namespace :db do 
-
+    
     user_roles = ['stocker','packager','shipper']
     visual_code_types = [ {:name => "Barcode", :handler => "barcode"}, {:name => "QR Code", :handler => "qrcode"} ]
 
@@ -27,7 +28,7 @@ namespace :spree_warehouse do
          puts "\n"
         
          Rake::Task[task].execute
-         raise "#{task} failed!" unless $?.exitstatus == 0
+         raise "#{task} failed!".background(:red) unless $?.exitstatus == 0
       end
     end
 
@@ -39,17 +40,17 @@ namespace :spree_warehouse do
       visual_code_types.each do |vct| 
         found_vct = Spree::VisualCodeType.find_by_name(vct[:name]) 
         if found_vct 
-          puts "'#{found_vct.name}' already exists , skipping ..."
+          puts "'#{found_vct.name}' already exists , skipping ...".foreground(:yellow)
         else 
           created_vcts += 1
           created_vct = Spree::VisualCodeType.create(vct)
-          puts "'#{vct[:name]}' created" if created_vct
+          puts "'#{vct[:name]}' created".foreground(:green) if created_vct
         end
       end 
       if created_vcts != 0 
-        puts "Created #{created_vcts} visual code types!"
+        puts "Created #{created_vcts} visual code types!".background(:green)
       else
-        puts "No visual code types created, they already exist!"
+        puts "No visual code types created, they already exist!".background(:red)
       end
     end 
 
@@ -62,16 +63,16 @@ namespace :spree_warehouse do
         found_vct = Spree::VisualCodeType.find_by_name(vct[:name])
         if found_vct
           found_vcts += 1
-          puts "Removing '#{found_vct.name}'" 
+          puts "Removing '#{found_vct.name}'".foreground(:green) 
           found_vct.destroy
         else 
-          puts "'#{vct[:name]}' not found"
+          puts "'#{vct[:name]}' not found".foreground(:yellow)
         end
       end 
       if found_vcts != 0 
-        puts "Removed #{found_vcts} visual code types!"
+        puts "Removed #{found_vcts} visual code types!".background(:green)
       else
-        puts "No visual code types removed!"
+        puts "No visual code types removed!".background(:red)
       end
     end 
 
@@ -83,17 +84,17 @@ namespace :spree_warehouse do
       user_roles.each do |role| 
         found_role = Spree::Role.find_by_name(role) 
         if found_role 
-          puts "'#{found_role.name}' role already exists , skipping ..."
+          puts "'#{found_role.name}' role already exists , skipping ...".foreground(:yellow)
         else 
           created_roles += 1
           created_role = Spree::Role.create(:name => role)
-          puts "'#{role}' role created" if created_role
+          puts "'#{role}' role created".foreground(:green) if created_role
         end
       end 
       if created_roles != 0 
-        puts "Created #{created_roles} roles!"
+        puts "Created #{created_roles} roles!".background(:green)
       else
-        puts "No roles created, they already exist!"
+        puts "No roles created, they already exist!".background(:red)
       end
     end 
     
@@ -106,16 +107,16 @@ namespace :spree_warehouse do
         found_role = Spree::Role.find_by_name(role)
         if found_role
           found_roles += 1
-          puts "Removing '#{found_role.name}' role" 
+          puts "Removing '#{found_role.name}' role".foreground(:green) 
           found_role.destroy
         else 
-          puts "'#{role}' role not found"
+          puts "'#{role}' role not found".foreground(:yellow)
         end
       end 
       if found_roles != 0 
-        puts "Removed #{found_roles} roles!"
+        puts "Removed #{found_roles} roles!".background(:green)
       else
-        puts "No roles removed!"
+        puts "No roles removed!".background(:red)
       end
     end 
 

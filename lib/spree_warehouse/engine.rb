@@ -2,6 +2,11 @@ module SpreeWarehouse
   class Engine < Rails::Engine
     engine_name 'spree_warehouse'
 
+    config.after_initialize do
+      require 'rainbow'
+      Sickill::Rainbow.enabled = true
+    end
+
     config.autoload_paths += %W(#{config.root}/lib)
 
     # use rspec for tests
