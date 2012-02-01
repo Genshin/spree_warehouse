@@ -1,11 +1,8 @@
-
-
 namespace :spree_warehouse do 
   namespace :db do 
     
     user_roles = ['stocker','packager','shipper']
     visual_code_types = [ {:name => "Barcode", :handler => "barcode"}, {:name => "QR Code", :handler => "qrcode"} ]
-
 
     desc "Seeds all spree_warehouse data into the DB"
     task :seed => :environment do
@@ -13,9 +10,7 @@ namespace :spree_warehouse do
       [ "db:seed_roles", "db:seed_visual_code_types" ].each do |task|
          task = "spree_warehouse:" + task
          puts "\n"
-         
          Rake::Task[task].execute
-         raise "#{task} failed!" unless $?.exitstatus == 0
       end
     end
 
@@ -26,9 +21,7 @@ namespace :spree_warehouse do
       [ "db:remove_roles", "db:remove_visual_code_types" ].each do |task|
          task = "spree_warehouse:" + task
          puts "\n"
-        
          Rake::Task[task].execute
-         raise "#{task} failed!".background(:red) unless $?.exitstatus == 0
       end
     end
 
