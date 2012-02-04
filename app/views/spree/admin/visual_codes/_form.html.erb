@@ -7,7 +7,7 @@
 
   <%= f.field_container :type do %>
     <%= f.label :type, t("visual_code.type") %><br />
-    <%= f.text_field :type %>
+	<%= f.select :type, Spree::VisualCodeType.all.collect { |vc| [vc.name, vc.id] } %>
     <%= error_message_on :visual_code, :type %>
   <% end %>
 </div>
