@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'devise' , '1.4.8'
 gem 'rails' , '3.1.3'
-#gem 'spree', :git => 'git://github.com/spree/spree.git'
-gem 'spree', '~> 1.0.0.rc3'
+gem 'spree', "~> 1.0.0.rc4" 
+#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => "1-0-stable"
 gem 'sqlite3'
 
 group :test do

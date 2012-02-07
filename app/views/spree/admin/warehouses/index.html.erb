@@ -1,19 +1,5 @@
 <%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
 
-<div data-hook="admin_warehouses_index">
-  <h1><%= t(:list_warehouses) %></h1>
-</div>
-
-<br />
-<table id="warehouses" class="index">
-  <tr>
-    <th>Name</th>
-    <th>Code</th>
-    <th>Location</th>
-    <th>Details</th>
-    <th></th>
-  </tr>
-
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li id="new_warehouse_link">
@@ -23,6 +9,18 @@
   <br class="clear" />
 </div>
 
+<div data-hook="admin_warehouses_index">
+  <h1><%= t(:list_warehouses) %></h1>
+</div>
+
+<table id="warehouses" class="index">
+  <tr>
+	  <th><%= t 'warehouse.name' %></th>
+	  <th><%= t 'warehouse.code' %></th>
+	  <th><%= t 'warehouse.location' %></th>
+	  <th><%= t 'warehouse.details' %></th>
+    <th></th>
+  </tr>
 
 <% @warehouses.each do |wh| %>
   <tr>
