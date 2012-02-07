@@ -6,7 +6,7 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li id="new_visual_code_type_link">
-      <%= button_link_to t("visual_code.new_type"), new_admin_visual_code_type_path, :icon => 'add', :id => 'admin_new_visual_code_type' %>
+      <%= button_link_to t("visual_code_type.new"), new_admin_visual_code_type_path, :icon => 'add', :id => 'admin_new_visual_code_type' %>
     </li>
   </ul>
   <br class="clear" />
@@ -16,8 +16,8 @@
 
 <table id="visual_code_types" class="index">
   <tr>
-    <th>Name</th>
-    <th>Handler</th>
+	<th><%= t 'visual_code_type.name' %></th>
+	<th><%= t 'visual_code_type.handler' %></th>
     <th></th>
   </tr>
 

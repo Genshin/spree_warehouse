@@ -13,8 +13,11 @@ ja:
     singular: "ビジュアルコード"
     new: "コード登録"
     edit: "コード編集"
-    new_type: "新規VC類"
-    edit_type: "VC類を編集"
+  visual_code_type:
+    name: "VC類名"
+    handler: "ハンドル"
+    new: "新規VC類"
+    edit: "VC類を編集"
   warehouses: "倉庫"
   warehouse:
     name: "倉庫名称"
