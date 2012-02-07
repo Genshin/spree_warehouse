@@ -1,11 +1,9 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
   warehouse: "Warehouse"
   new_warehouse: "New Warehouse"
   edit_warehouse: "Editing Warehouse"
   list_warehouses: "Warehouses"
+  visual_codes: "Visual Codes"
   visual_code:
     system: "Visual Code System"
     data: "Visual Code Data"
@@ -15,5 +13,14 @@ en:
     singular: "Visual Code"
     new: "Register Code"
     edit: "Edit Visual Code"
-    new_type: "New VC Type"
-    edit_type: "Edit VC Type"
+  visual_code_type:
+    name: "Type Name"
+    handler: "Handler"
+    new: "New VC Type"
+    edit: "Edit VC Type"
+  warehouses: "Warehouses"
+  warehouse:
+    name: "Name"
+    code: "Code"
+    location: "Location"
+    details: "Details"
