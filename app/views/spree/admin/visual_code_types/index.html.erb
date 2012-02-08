@@ -17,14 +17,12 @@
 <table id="visual_code_types" class="index">
   <tr>
 	<th><%= t 'visual_code_type.name' %></th>
-	<th><%= t 'visual_code_type.handler' %></th>
     <th></th>
   </tr>
 
 <% @visual_code_types.each do |vct| %>
   <tr>
     <td><%= vct.name %></td>
-    <td><%= vct.handler %></td>
     <td class="actions">
       <%= link_to_edit vct %>
       <%= link_to_delete vct %>
