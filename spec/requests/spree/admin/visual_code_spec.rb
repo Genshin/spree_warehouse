@@ -1,11 +1,8 @@
-# encoding: utf-8
-
 require 'spec_helper'
 
 describe Spree::VisualCode do
   before (:each) do
     sign_in_as!(Factory(:admin_user))
-    Spree::Ability.register_ability(AbilityDecorator)
 
     #need types to check against
     @visual_code_type_qr = Spree::VisualCodeType.find_or_create_by_name({:name => "QR Code", :handler => "qrcode"})
