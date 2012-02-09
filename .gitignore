@@ -11,3 +11,4 @@ spec/dummy
 *.orig
 Gemfile.lock
 Guardfile
+.rvmrc
