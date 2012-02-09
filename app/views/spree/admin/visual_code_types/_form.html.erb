@@ -1,14 +1,8 @@
 <div>
   <%= f.field_container :name do %>
-    <%= f.label :name, t("visual_code.type_name") %><br />
+    <%= f.label :name, t("visual_code_type.name") %><br />
     <%= f.text_field :name %>
     <%= error_message_on :visual_code_type, :name %>
-  <% end %>
-
-  <%= f.field_container :handler do %>
-    <%= f.label :handler, t("visual_code.handler") %><br />
-    <%= f.text_field :handler %>
-    <%= error_message_on :visual_code_type, :handler %>
   <% end %>
 </div>
 

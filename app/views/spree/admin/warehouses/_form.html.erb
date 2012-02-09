@@ -1,24 +1,24 @@
 <div>
   <%= f.field_container :name do %>
-    <%= f.label :name, t("name") %><br />
+    <%= f.label :name, t("warehouse.name") %><br />
     <%= f.text_field :name %>
     <%= error_message_on :warehouse, :name %>
   <% end %>
 
   <%= f.field_container :code do %>
-    <%= f.label :location, t("code") %><br />
+    <%= f.label :location, t("warehouse.code") %><br />
     <%= f.text_field :code %>
     <%= error_message_on :warehouse, :code %>
   <% end %>
 
    <%= f.field_container :location do %>
-    <%= f.label :location, t("location") %><br />
+    <%= f.label :location, t("warehouse.location") %><br />
     <%= f.text_area :location %>
     <%= error_message_on :warehouse, :location %>
   <% end %>
 
    <%= f.field_container :details do %>
-    <%= f.label :details, t("details") %><br />
+    <%= f.label :details, t("warehouse.details") %><br />
     <%= f.text_area :details %>
     <%= error_message_on :warehouse, :details %>
   <% end %>      

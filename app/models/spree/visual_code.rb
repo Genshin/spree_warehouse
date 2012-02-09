@@ -1,5 +1,6 @@
 class Spree::VisualCode < ActiveRecord::Base
-  validates_presence_of :code
-  validates_presence_of :type
+  validates :code, :presence => true
+  validates :type_id, :presence => true
+
   has_one :visual_code_type
 end

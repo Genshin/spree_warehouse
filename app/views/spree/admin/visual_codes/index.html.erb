@@ -12,7 +12,9 @@
   <br class="clear" />
 </div>
 
-<h1><%= t("visual_code.codes") %></h1>
+<div data-hook="admin_visual_codes_index">
+  <h1><%= t("visual_code.codes") %></h1>
+</div>
 
 <table id="visual_codes" class="index">
   <tr>
@@ -24,10 +26,10 @@
 <% @visual_codes.each do |vc| %>
   <tr>
     <td><%= vc.code %></td>
-    <td><%= vc.type %></td>
+    <td><%= vc.type_id.name %></td>
     <td class="actions">
-      <%= link_to_edit ct %>
-      <%= link_to_delete ct %>
+      <%= link_to_edit vc %>
+      <%= link_to_delete vc %>
     </td>
   </tr>
 <% end %>
