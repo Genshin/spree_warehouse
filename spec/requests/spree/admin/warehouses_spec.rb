@@ -3,7 +3,6 @@ require 'spec_helper'
 describe 'Warehouses' do
   before(:each) do
     sign_in_as!(Factory(:admin_user))
-    Spree::Ability.register_ability(AbilityDecorator)
 
     @warehouse1 = Factory(:warehouse, :name => 'huge_warehouse_1')
     Factory(:warehouse, :name => 'huge_warehouse_2')
