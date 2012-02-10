@@ -1,6 +1,6 @@
 <div>
   <%= f.field_container :name do %>
-    <%= f.label :name, t("visual_code_type.name") %><br />
+    <%= f.label :name, t(:name, :scope => :visual_code_type) %><br />
     <%= f.text_field :name %>
     <%= error_message_on :visual_code_type, :name %>
   <% end %>
