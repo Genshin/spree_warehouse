@@ -6,7 +6,7 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li id="new_visual_code_link">
-      <%= button_link_to t("visual_code.new"), new_admin_visual_code_path, :icon => 'add', :id => 'admin_new_visual_code' %>
+      <%= button_link_to t(:new, :scope => :visual_code), new_admin_visual_code_path, :icon => 'add', :id => 'admin_new_visual_code' %>
     </li>
   </ul>
   <br class="clear" />
@@ -24,9 +24,10 @@
   </tr>
 
 <% @visual_codes.each do |vc| %>
+  <% vct = Spree::VisualCodeType.find_by_id(vc) %>
   <tr>
     <td><%= vc.code %></td>
-    <td><%= vc.type_id.name %></td>
+    <td><%= vct.name %></td>
     <td class="actions">
       <%= link_to_edit vc %>
       <%= link_to_delete vc %>
