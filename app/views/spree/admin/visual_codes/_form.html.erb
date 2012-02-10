@@ -1,12 +1,12 @@
 <div>
   <%= f.field_container :name do %>
-    <%= f.label :code, t(:data, :scope => :visual_code)) %><br />
+    <%= f.label :code, t(:data, :scope => :visual_code) %><br />
     <%= f.text_field :code %>
     <%= error_message_on :visual_code, :code %>
   <% end %>
 
   <%= f.field_container :type_id do %>
-    <%= f.label :type_id, t("visual_code.type") %><br />
+    <%= f.label :type_id, t(:type, :scope => :visual_code) %><br />
 	  <%= f.select :type_id, Spree::VisualCodeType.all.collect { |vc| [vc.name, vc.id] } %>
     <%= error_message_on :visual_code, :type_id %>
   <% end %>
