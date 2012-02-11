@@ -13,7 +13,7 @@ module Spree
         if self.root
           self.root.update_attribute(:name, self.name)
         else
-          self.root = Spree::ContainerTaxon.create!({ :container_taxonomy_id => self.id, :name => self.name })
+          self.root = ContainerTaxon.create!({ :container_taxonomy_id => self.id, :name => self.name })
         end
       end
 

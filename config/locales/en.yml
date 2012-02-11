@@ -24,3 +24,8 @@ en:
     code: "Code"
     location: "Location"
     details: "Details"
+    
+  container_taxonomy_edit: "Edit Container Taxonomy"
+  new_container_taxon: "New Container Taxon"
+  new_container_taxonomy: "New Container Taxonomy"
+  container_taxonomy_tree_error: "Container Taxonomy tree error"
