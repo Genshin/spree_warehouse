@@ -16,7 +16,7 @@ describe Spree::VisualCodeType do
   end
 
   #TODO turn this into admin/visual_codes/types ?
-  context "GET /admin/visual_code_types" do
+  context "GET /admin/visual_codes/types" do
     it "should list visual code types" do
       within("table#visual_code_types") do
         page.should have_content("QR Code")
