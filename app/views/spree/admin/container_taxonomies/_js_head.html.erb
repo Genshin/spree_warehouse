@@ -1,0 +1,8 @@
+<% content_for :head do %>
+  <%= javascript_tag "var container_taxonomy_id = #{@container_taxonomy.id};
+    var loading = '#{escape_javascript t(:loading)}';
+    var new_container_taxon = '#{escape_javascript t(:new_container_taxon)}';
+    var server_error = '#{escape_javascript t(:server_error)}';
+    var container_taxonomy_tree_error = '#{escape_javascript t(:container_taxonomy_tree_error)}';"
+  %>
+<% end %>
