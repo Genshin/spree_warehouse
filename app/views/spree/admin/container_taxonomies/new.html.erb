@@ -1,0 +1,11 @@
+
+<h1><%= t(:new_container_taxonomy) %></h1>
+
+<%= form_for [:admin, @container_taxonomy] do |f| %>
+
+  <%= render :partial => 'form', :locals => { :f => f } %>
+
+  <p class="form-buttons" data-hook="buttons">
+    <%= button t(:create) %>
+  </p>
+<% end %>
