@@ -9,7 +9,7 @@ describe Spree::VisualCode do
     @visual_code_type_bar = Spree::VisualCodeType.find_or_create_by_name({:name => "BarCode", :handler => "barcode"})
 
     @visual_code1 = Spree::VisualCode.create(:code => "99954321", :type => Spree::VisualCodeType.where(:name => "BarCode"))
-    @visual_code2 = Spree::VisualCode.create(:code => "[TEST] QR Code Data 1234 テスト　試 ★ test", :type => Spree::VisualCodeType.where({:name => "QR Code", :handler => "qrcode"}))
+    @visual_code2 = Spree::VisualCode.create(:code => "[TEST] QR Code Data 1234 test", :type => Spree::VisualCodeType.where({:name => "QR Code", :handler => "qrcode"}))
     
     visit spree.admin_path
     click_link "Warehouses"
