@@ -5,10 +5,9 @@ Spree::Variant.class_eval do
     Spree::Variant.where(:visual_code_id => Spree::VisualCode.where({:code => code, :type_id => Spree::VisualCodeType.where(:name => "Barcode")}))
   end
 
-  def self.set_barcode(code)
+  def set_barcode(code)
     record = self
-    #record.visual_code_id = Spree::VisualCode.find_or_create_by_code
-    #find_or_create_by_code
-
+    record.visual_code_id = Spree::VisualCode.find_or_create_by_code(code, "Barcode")
+    record.save
   end
 end
