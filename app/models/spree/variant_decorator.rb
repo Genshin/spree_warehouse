@@ -1,6 +1,6 @@
 Spree::Variant.class_eval do
-  has_one :visual_code 
-  
+  has_many :visual_codes 
+  #accepts_nested_attributes_for :visual_code 
   after_create :set_visual_code
   
   def self.find_bar_code(code)
