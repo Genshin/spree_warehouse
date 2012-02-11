@@ -1,0 +1,26 @@
+<table class="index">
+  <thead>
+    <tr data-hook="container_taxons_header">
+      <th><%= t(:name) %></th>
+      <th><%= t(:path) %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% container_taxons.each do |container_taxon| %>
+      <tr id="<%= dom_id(container_taxon) %>" data-hook="container_taxons_row">
+        <td><%= container_taxon.name %></td>
+        <td><%= container_taxon_path container_taxon %></td>
+        <td class="actions">
+          
+          
+          
+          
+        </td>
+      </tr>
+    <% end %>
+    <% if container_taxons.empty? %>
+     <tr data-hook="container_taxons_none"><td colspan="3"><%= t(:none) %>.</td></tr>
+    <% end %>
+  </tbody>
+</table>
