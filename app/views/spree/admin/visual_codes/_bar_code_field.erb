@@ -1,10 +1,22 @@
-<p data-hook="bar_code">
-  <%= f.fields_for :visual_codes do |vc| %>
-     Bar Code: <%= vc.visual_code_type.name %>
-  <% end %> 
+<%= f.fields_for :visual_code_attributes do |vc| %>
+  <p data-hook="visual_code">
+    <%= vc.label :code, t(:data, :scope => :visual_code) %><br />
+    <% if !@variant.visual_code.nil? %>
+      <%= vc.text_field :code , :value => @variant.visual_code.code %>
+    <% else %>
+      <%= vc.text_field :code %>
+    <% end %>
+    <%= error_message_on :code, :code %>
+  </p>
   
-  <!-- this way will actually display a field for now atleast -->
-</p>
+  <p data-hook="visual_code_type">
+    <%= vc.label :visual_code_type_id, t(:visual_code_type) %><br />
+    <%= vc.select :visual_code_type_id , options_from_collection_for_select(Spree::VisualCodeType.all , "id", "name") %>      
+    <%= error_message_on :visual_code_type ,:visual_code_type%>
+  </p>
+    
+<% end %>
+
   
   
 

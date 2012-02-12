@@ -1,6 +1,8 @@
 Spree::Variant.class_eval do
-  has_one :visual_code
+  belongs_to :visual_code
   accepts_nested_attributes_for :visual_code
+  attr_accessible :visual_code, :visual_code_attributes
+  #alias_method :visual_code=, :visual_code_attributes=
   
   #after_create :set_barcode
 
