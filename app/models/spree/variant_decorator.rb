@@ -12,6 +12,26 @@ Spree::Variant.class_eval do
 
   #can be called on individual objects
   #EG: Spree::Variant.find(1).set_barcode("12345")
+  def set_barcode(code)
+    record = self
+    record.visual_code_id = Spree::VisualCode.find_or_create_by_code(code, "Barcode")
+    record.save
+  end
+  
+  def set_primary_barcode(code = nil)
+    debugger
+
+    p = Spree::Product.find(self.product_id)
+    if p.has_variants? # write to the current variant
+      record = self
+      record.visual_code_id = Spree::VisualCode.find_or_create_by_code(code, "Barcode")
+      record.save
+    else # write to master variant
+      record = p.variants.where(:is_master => true)
+      record.visual_code_id = Spree::VisualCode.find_or_create_by_code(code, "Barcode")
+      record.save
+    end
+  end
   def set_barcode(code = nil)
     debugger
 

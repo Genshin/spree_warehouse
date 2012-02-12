@@ -24,10 +24,9 @@
   </tr>
 
 <% @visual_codes.each do |vc| %>
-  <% vct = Spree::VisualCodeType.find_by_id(vc) %>
   <tr>
     <td><%= vc.code %></td>
-    <td><%= vct.name %></td>
+    <td><%= vc.type.name %></td>
     <td class="actions">
       <%= link_to_edit vc %>
       <%= link_to_delete vc %>
