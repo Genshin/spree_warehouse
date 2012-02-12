@@ -1,13 +1,10 @@
 <p data-hook="visual_code"><%= f.label :visual_codes, t(:singular, :scope => :visual_code) %>: <br />
 
-<% unless @product.has_variants? %> 
-
-  <%= f.fields_for :visual_codes do |vc| %>
-    Bar Code  : <%= vc.code.text_field :code %>
-  <% end %>
-  
-  <span class="enter_visual_code">
-<% end%>
+  <% unless @product.has_variants? %> 
+    <%= f.fields_for :visual_codes do |vc| %>
+      Bar Code  : <%= vc.code.text_field :code %>
+    <% end %>  
+  <% end%>
 
 </p>
   
