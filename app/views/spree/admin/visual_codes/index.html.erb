@@ -26,7 +26,7 @@
 <% @visual_codes.each do |vc| %>
   <tr>
     <td><%= vc.code %></td>
-    <td><%= vc.type.name %></td>
+    <td><%= vc.visual_code_type.name %></td>
     <td class="actions">
       <%= link_to_edit vc %>
       <%= link_to_delete vc %>
