@@ -1,15 +1,15 @@
-<p data-hook="visual_code"><%= f.label :visual_codes, t(:singular, :scope => :visual_code) %>: <br />
-
-<% unless @product.has_variants? %> 
-
-  <%= f.fields_for :visual_codes do |vc| %>
-    Bar Code  : <%= vc.code.text_field :code %>
-  <% end %>
-  
-  <span class="enter_visual_code">
+<% unless @product.has_variants? %>
+  <p data-hook="visual_code">
+    <%= f.fields_for :visual_codes do |vc| %>
+       
+       <!-- need to get the code printed here - vc.code wont work -->
+       Bar Code: <!-- this hidden field is to hardcode the type to Barcode for now -->
+       <%= f.hidden_field :type_id, :name => 'visual_code_type_id', :value => Spree::VisualCodeType.where(:name => "Barcode").first.id %>
+    <% end %> 
+  </p>  
 <% end%>
 
-</p>
+
   
   
 
