@@ -12,12 +12,11 @@ FactoryGirl.define do
 
   factory :visual_code, :class => Spree::VisualCode do
     code { Factory.next(:unique_name) }
-    type Spree::VisualCodeType.where(:name => 'QR Code')
+    visual_code_type Spree::VisualCodeType.where(:name => 'QR Code')
   end
 
   factory :visual_code_type, :class => Spree::VisualCodeType do
     name { Factory.next(:unique_name) }
-    handler 'barcode'
   end
   
   factory :container_taxonomy, :class => Spree::ContainerTaxonomy do 
