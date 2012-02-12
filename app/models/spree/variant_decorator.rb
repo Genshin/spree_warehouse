@@ -1,5 +1,6 @@
 Spree::Variant.class_eval do
   has_one :visual_code
+  accepts_nested_attributes_for :visual_code
 
   #returns product variant with the given barcode
   #EG: Spree::Variant.find_by_barcode("12345")
