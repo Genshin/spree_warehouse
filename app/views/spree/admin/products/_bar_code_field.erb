@@ -2,15 +2,8 @@
 
 <% unless @product.has_variants? %> 
 
-<%= visual_code_form.fields_for :code do |vc| %>
+  <%= f.fields_for :visual_codes do |vc| %>
     Bar Code  : <%= vc.code.text_field :code %>
-  <% end %>
-
-  
-  <%= form.fields_for :visual_codes do |vc| %>
-    <%= vc.text_field :code %>
-    <%= vc.label :id, t(visual_code.singular) %><br />
-    
   <% end %>
   
   <span class="enter_visual_code">
