@@ -1,0 +1,49 @@
+<%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
+<%= render :partial => 'js_head' %>
+
+<h1><%= t(:container_taxonomy_edit) %></h1>
+
+<p id="ajax_error" class="errorExplanation" style="display:none;"></p>
+
+<%= form_for [:admin, @container_taxonomy] do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+    <div>
+      <%= label_tag nil, t(:tree) %><br />
+      <div id="container_taxonomy_tree" class="tree" data-url="<%= admin_container_taxonomy_container_taxons_path @container_taxonomy %>"></div>
+    </div>
+    <p id="progress" style="display:none;">
+      <%= image_tag 'spinner.gif', :title => 'Spinner', :style => "vertical-align:bottom;" %> <%= t(:updating) %>..
+    </p>
+    <p><br /><small><%= t(:taxonomy_tree_instruction) %></small></p>
+
+    <p class="form-buttons">
+      <%= button t(:update) %> <%= t(:or) %> <%= link_to t(:cancel), admin_container_taxonomies_path %>
+    </p>
+<% end %>
+
+
+<% content_for :head do %>
+  <%= javascript_tag do -%>
+    var initial = [
+      { "attr" :
+      { "id" : "<%= @container_taxonomy.root.id %>", "rel" : "root" },
+      "data" : "<%= @container_taxonomy.root.name %>",
+      "state" : "open",
+      "children" : [
+        <% @container_taxonomy.root.children.each_with_index do |container_taxon,i| %>
+          {
+            "attr" :
+            { "id" : "<%= container_taxon.id %>"},
+            "data" : "<%= container_taxon.name %>"
+            <% unless container_taxon.children.empty? %>
+              ,"state" : "closed"
+            <% end %>
+          }<%= ',' if i < (@container_taxonomy.root.children.size - 1) %>
+        <% end %>
+      ]
+        }
+    ];
+  <% end -%>
+<% end %>
+
+<%= javascript_include_tag "admin/container_taxonomy.js" %>
