@@ -1,11 +1,13 @@
-<p data-hook="bar_code"><%= f.label :visual_code, t(:singular, :scope => :visual_code) %>: <br />
- 
+<p data-hook="bar_code">
+
   <%= f.fields_for :visual_code do |vc| %>
-    Bar Code  : <%= vc.code.text_field :code %>
+    <%= f.label vc.code %>:
+    <%= f.text_field vc.code %><br />    
+  <% end %> 
+
+  <%= f.label :visual_code, t(:singular, :scope => :visual_code) %>: <br />
+  Bar Code  : <%= f.text_field :visual_code_id %>
   
-  <% end %>
-  
-  <span class="enter_visual_code"> 
 </p>
   
   
