@@ -1,12 +1,9 @@
 <p data-hook="bar_code">
-
   <%= f.fields_for :visual_codes do |vc| %>
-   <!-- also need to use vc.code here, but it breaks it -->
+     Bar Code: <%= vc.visual_code_type.name %>
   <% end %> 
   
-  <!-- this way will actualy display a field for now atleast -->
-  Bar Code  : <%= f.text_field :visual_code_id %>
-  
+  <!-- this way will actually display a field for now atleast -->
 </p>
   
   
