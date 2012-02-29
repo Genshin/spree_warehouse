@@ -9,6 +9,7 @@ ENV["RAILS_ROOT"] ||= File.dirname(__FILE__) + "../../../spec/dummy"
 
 require 'spree/url_helpers'
 include Spree::UrlHelpers
+#include Devise::TestHelpers
 
 require "factory_girl/step_definitions"
 Dir.glob(File.join(File.dirname(__FILE__), '../../spec/factories/*.rb')).each {|f| require f }

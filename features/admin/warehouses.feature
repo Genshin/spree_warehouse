@@ -21,6 +21,7 @@ Feature: Managing Warehouses
       | Name    | Huge Warehouse   |
       | Details | We are ... |
 
+  @wip
   @javascript
   Scenario: Deleting a warehouse
     Given a warehouse "Huge Warehouse" exists
