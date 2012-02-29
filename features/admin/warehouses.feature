@@ -5,7 +5,7 @@ Feature: Managing Warehouses
 
   Background:
     Given I am admin
-    Given I am at warehouses path
+    Given I am at warehouses menu
  
   Scenario: Listing warehouses
     Given there are 30 warehouses
