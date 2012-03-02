@@ -10,7 +10,7 @@ Feature: Managing Visual Codes
     Given I am at visual codes sub menu
  
   Scenario: Listing visual codes
-    When I visit visual code listing
+    When I visit visual codes listing
     Then we should have 1 visual codes
 
   Scenario: Creating a visual code
@@ -20,7 +20,7 @@ Feature: Managing Visual Codes
     And we should have 2 visual codes
     
   Scenario: Editting a visual code
-    When I click edit 
+    When I click edit button
     And I edit the visual code 
     Then we should see the editted visual code
     And we should have 1 visual codes

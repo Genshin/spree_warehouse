@@ -1,7 +1,3 @@
-Given 'a visual code type exists' do 
-  @visual_code_type_barcode = Factory(:visual_code_type, :name => "BarCode")
-end
-
 Given 'a visual code exists' do 
   @visual_code = Factory(:visual_code, :code => "654321" , :visual_code_type => @visual_code_type_barcode)
 end
@@ -10,18 +6,13 @@ Given /^I am at visual codes sub menu$/ do
   visit spree.admin_visual_codes_path
 end
 
-When /^I visit visual code listing$/ do
+When /^I visit visual codes listing$/ do
   click_link "Visual Codes"
 end
 
 When 'I start creating a visual code' do
   click_link "admin_new_visual_code"
 end
-
-When 'I click edit' do 
- click_link "Edit"
-end
-
 
 Then 'we should have $count visual codes' do |count|
   Spree::VisualCode.count.should == count.to_i

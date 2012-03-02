@@ -13,3 +13,11 @@ Given 'I am at warehouses menu' do
   visit spree.admin_path
   click_link  "Warehouses"
 end
+
+Given 'a visual code type exists' do 
+  @visual_code_type_barcode = Factory(:visual_code_type, :name => "BarCode")
+end
+
+When 'I click edit button' do 
+ click_link "Edit"
+end
