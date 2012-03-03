@@ -1,4 +1,6 @@
 module Spree
-  class Admin::VisualCodesController < Admin::ResourceController  
+  module Admin 
+    class VisualCodesController < ResourceController  
+    end
   end
 end

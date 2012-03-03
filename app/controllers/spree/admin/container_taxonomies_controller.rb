@@ -5,7 +5,6 @@ module Spree
 
       def get_children
         @container_taxons = ContainerTaxon.find(params[:parent_id]).children
-
         respond_with(@container_taxons)
       end
 

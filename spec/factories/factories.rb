@@ -2,9 +2,7 @@ FactoryGirl.define do
   sequence(:unique_name) { |n| "Name #{n}" }
   sequence(:unique_taxonomy_name) { |n| "Storage Hall #{n}" }
   sequence(:unique_container_taxon) { |n| "Shelve #{n}" }
-  
-
-
+ 
   factory :warehouse , :class => Spree::Warehouse do 
     name { Factory.next(:unique_name) }
     details 'Warehouse Details'

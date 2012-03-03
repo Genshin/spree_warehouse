@@ -1,4 +1,7 @@
 module Spree
-  class Admin::WarehousesController < Admin::ResourceController
+  module Admin
+    class WarehousesController < ResourceController
+    
+    end
   end
 end

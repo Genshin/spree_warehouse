@@ -1,5 +1,7 @@
 module Spree
-  class Admin::VisualCodeTypesController < Admin::ResourceController
-  
+  module Admin
+    class VisualCodeTypesController < ResourceController
+        
+    end
   end
 end
