@@ -1,25 +1,23 @@
-
-  <%= f.fields_for :master do |m| %>
-    <%= m.fields_for :visual_code_attributes do |vc| %>
+<%= f.fields_for :master do |m| %>
+  <%= m.fields_for :visual_code_attributes do |vc| %>
     
-      <p data-hook="visual_code">
-        <%= vc.label :code, t(:data, :scope => :visual_code) %><br />
-        <% if !@product.master.visual_code.nil? %>
-          <%= vc.text_field :code , :value => @product.master.visual_code.code %>
-        <% else %>
-          <%= vc.text_field :code %>
-        <% end %>
-        <%= error_message_on :code, :code %>
-      </p>
+    <p data-hook="visual_code">
+      <%= vc.label :code, t(:data, :scope => :visual_code) %><br />
+      <% if !@product.master.visual_code.nil? %>
+        <%= vc.text_field :code , :value => @product.master.visual_code.code %>
+      <% else %>
+        <%= vc.text_field :code %>
+      <% end %>
+      <%= error_message_on :code, :code %>
+    </p>
       
-      <p data-hook="visual_code_type">
-        <%= vc.label :visual_code_type_id, t(:visual_code_type) %><br />
-        <%= vc.select :visual_code_type_id , options_from_collection_for_select(Spree::VisualCodeType.all , "id", "name") %>      
-        <%= error_message_on :visual_code_type ,:visual_code_type%>
-      </p>
-       
-    <% end %>
-  <% end %>    
+    <p data-hook="visual_code_type">
+      <%= vc.label :visual_code_type_id, t(:visual_code_type) %><br />
+      <%= vc.select :visual_code_type_id , options_from_collection_for_select(Spree::VisualCodeType.all , "id", "name") %>      
+      <%= error_message_on :visual_code_type ,:visual_code_type%>
+    </p>   
+  <% end %>
+<% end %>    
 
 
 

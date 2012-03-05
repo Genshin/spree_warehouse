@@ -2,11 +2,11 @@ Given 'a visual code exists' do
   @visual_code = Factory(:visual_code, :code => "654321" , :visual_code_type => @visual_code_type_barcode)
 end
 
-Given /^I am at visual codes sub menu$/ do
+Given 'I am at visual codes sub menu' do
   visit spree.admin_visual_codes_path
 end
 
-When /^I visit visual codes listing$/ do
+When 'I visit visual codes listing' do
   click_link "Visual Codes"
 end
 
