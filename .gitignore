@@ -10,5 +10,4 @@ spec/dummy
 *.swp
 *.orig
 Gemfile.lock
-Guardfile
 .rvmrc

@@ -6,10 +6,11 @@ gem 'rails' , '>= 3.1.1', '<= 3.1.3'
 gem 'spree', "~>1.0.0" 
 #gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => "1-0-stable
 
-
 group :test do
   gem 'guard'
   gem 'guard-rspec', '~> 0.6.0'
+  gem 'guard-cucumber'
+  gem 'libnotify'
   gem 'rspec-rails', '~> 2.8.0'
   gem 'factory_girl_rails', '~> 1.6.0'
   gem 'cucumber-rails'

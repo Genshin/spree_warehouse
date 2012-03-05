@@ -25,6 +25,7 @@ Feature: Managing Warehouses
     Given a warehouse "Subaru" exists
     When I visit the warehouse path
     Then we should see the "Subaru" warehouse
+    
 
   @wip
   @javascript
