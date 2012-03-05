@@ -20,6 +20,11 @@ Feature: Managing Warehouses
     Then we should have the following warehouse:
       | Name    | Huge Warehouse   |
       | Details | We are ... |
+  
+  Scenario: Showing a warehouse
+    Given a warehouse "Subaru" exists
+    When I visit the warehouse path
+    Then we should see the "Subaru" warehouse
 
   @wip
   @javascript

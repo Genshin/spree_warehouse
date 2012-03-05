@@ -5,7 +5,6 @@ FactoryGirl.define do
  
   factory :warehouse , :class => Spree::Warehouse do 
     name { Factory.next(:unique_name) }
-    details 'Warehouse Details'
   end
 
   factory :visual_code, :class => Spree::VisualCode do

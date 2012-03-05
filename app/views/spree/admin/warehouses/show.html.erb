@@ -1,1 +1,36 @@
 <%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
+
+<h1><%= @warehouse.name %></h1>
+
+<table>
+  <tr data-hook="name">
+    <th><%= t(:name) %></th>
+    <td>
+      <%= @warehouse.name %>
+    </td>
+  </tr>
+  <tr data-hook="code">
+    <th><%= t(:code) %></th>
+    <td>
+      <%= @warehouse.code %>
+    </td>
+  </tr>
+  <tr data-hook="location">
+    <th><%= t(:location) %></th>
+    <td>
+      <%= @warehouse.location %>
+    </td>
+  </tr>
+  
+  <tr data-hook="details">
+    <th><%= t(:details) %></th>
+    <td>
+      <%= @warehouse.details %>
+    </td>
+  </tr>
+</table>
+
+<p>
+  <%= link_to_edit @warehouse, :class => 'edit_user' %> <%= t(:or) %>
+  <%= link_to t(:back), collection_url %>
+</p>
