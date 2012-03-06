@@ -28,7 +28,6 @@ end
 
 Then 'we should see the new visual code type' do 
   within('#visual_code_types') { page.should have_content("QR") }
-  within('#visual_code_types') { page.should have_content("BarCode") }
 end
 
 Then 'we should see the editted visual code type' do 

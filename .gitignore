@@ -3,6 +3,7 @@
 .#*
 .DS_Store
 .sass_cache/
+.sass_cache
 .idea
 .project
 tmp

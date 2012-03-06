@@ -18,6 +18,19 @@ Given 'a visual code type exists' do
   @visual_code_type_barcode = Factory(:visual_code_type, :name => "BarCode")
 end
 
+Given 'a barcode exists' do 
+  @barcode = Factory(:barcode)
+end
+
 When 'I click edit button' do 
   click_link "Edit"
 end
+
+Then 'we should not have a "$link" link' do |link|
+  page.should_not have_content(link)
+end
+
+Then 'we should have a "$link" link' do |link|
+  page.should have_content(link)
+end
+

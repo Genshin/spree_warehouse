@@ -17,6 +17,11 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:unique_vc_type) }
   end
   
+  factory :barcode, :class => Spree::VisualCodeType do
+    name "Barcode"
+    can_delete false
+  end
+  
   factory :container_taxonomy, :class => Spree::ContainerTaxonomy do 
     name { FactoryGirl.generate(:unique_taxonomy_name)}
   end
