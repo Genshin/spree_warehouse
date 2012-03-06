@@ -11,11 +11,6 @@
       <%= error_message_on :code, :code %>
     </p>
       
-    <p data-hook="visual_code_type">
-      <%= vc.label :visual_code_type_id, t(:visual_code_type) %><br />
-      <%= vc.select :visual_code_type_id , options_from_collection_for_select(Spree::VisualCodeType.all , "id", "name") %>      
-      <%= error_message_on :visual_code_type ,:visual_code_type%>
-    </p>   
   <% end %>
 <% end %>    
 
