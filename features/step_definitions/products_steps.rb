@@ -1,3 +1,15 @@
+Given /^the following products exist:$/ do |table|
+  attributes = table.rows_hash
+  attributes.each do |field_name, value|
+    fill_in field_name, :with => value
+  end
+  click_button 'Create'
+end
+
+
+
+
+
 Given /^count_on_hand is 10 for all products$/ do
   Product.update_all("count_on_hand=10")
 end

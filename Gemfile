@@ -13,6 +13,7 @@ group :development , :test do
   gem 'guard-livereload'
   gem 'guard-bundler'
   gem 'libnotify'
+  gem "sass", :require => 'sass'
   #gem 'rack-livereload'
   #optimisation for livereload
   #gem 'yajl-ruby' 
