@@ -85,6 +85,29 @@ describe "Products" do
       page.should have_content("Price can't be blank")
     end
   end
+  
+  
+  
+  context "assign a visual code" do
+    before(:each) do
+      Factory(:product, :name => 'apache baseball cap', :available_on => '2011-01-01 01:01:01', :sku => "A100")
+      click_link "Products"
+      click_link "Edit"
+      page.should have_content("Editing Product") 
+    end
+
+    it "should allow an admin to assign a visual code to product" do
+      within('input#product_master_attributes_visual_code_attributes_code') { page.should have_content("") }
+      
+      fill_in "product_master_attributes_visual_code_attributes_code", :with => "123456"
+      click_button "Update"
+      page.should have_content("successfully updated!")
+      within('input#product_master_attributes_visual_code_attributes_code') { page.should have_content("123456") }
+    end
+  end
+
+
+
 
   context "cloning a product", :js => true do
     it "should allow an admin to clone a product" do
