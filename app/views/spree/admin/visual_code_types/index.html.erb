@@ -25,7 +25,7 @@
     <td><%= vct.name %></td>
     <td class="actions">
       <%= link_to_edit vct %>
-      <%= link_to_delete vct %>
+      <%= link_to_delete vct if vct.can_delete? %>
     </td>
   </tr>
 <% end %>
