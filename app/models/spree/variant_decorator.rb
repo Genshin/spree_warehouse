@@ -4,6 +4,14 @@ module Spree
     accepts_nested_attributes_for :visual_code
     attr_accessible :visual_code, :visual_code_attributes
     
+    before_validation :save_vc_type  
+    
+    def save_vc_type
+      if self.visual_code
+        self.visual_code.attributes = { :code => self.visual_code.code, :visual_code_type_id => VisualCodeType.barcode.id } 
+      end
+      true
+    end
     #returns product variant with the given barcode
     #EG: Spree::Variant.find_by_barcode("12345")
     def self.find_by_barcode(code)

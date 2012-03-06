@@ -15,7 +15,7 @@ group :development , :test do
   gem 'libnotify'
   #gem 'rack-livereload'
   #optimisation for livereload
-  gem 'yajl-ruby' 
+  #gem 'yajl-ruby' 
 end
 
 

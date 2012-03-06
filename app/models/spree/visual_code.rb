@@ -17,5 +17,6 @@ module Spree
   
       return res
     end
+      
   end
 end
