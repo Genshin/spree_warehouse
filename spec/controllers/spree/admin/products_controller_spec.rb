@@ -6,7 +6,5 @@ describe Spree::Admin::ProductsController do
   end
 
   context "#index" do
-
-
   end
 end
