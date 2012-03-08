@@ -1,9 +1,9 @@
 module Spree
   Variant.class_eval do
-    belongs_to :visual_code
-    accepts_nested_attributes_for :visual_code
-    attr_accessible :visual_code, :visual_code_attributes
     
+    
+    
+=begin
     before_validation :save_vc_type  
     
     def save_vc_type
@@ -12,6 +12,7 @@ module Spree
       end
       true
     end
+
     #returns product variant with the given barcode
     #EG: Spree::Variant.find_by_barcode("12345")
     def self.find_by_barcode(code)
@@ -37,5 +38,6 @@ module Spree
       end
       record.save
     end
+=end    
   end
 end

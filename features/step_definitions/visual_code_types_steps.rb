@@ -1,10 +1,4 @@
-Given 'I am at visual code types sub menu' do
-  click_link "Visual Codes"
-  click_link "Visual Code Types"
-end
-
 When 'I visit visual code types listing' do
-  click_link "Visual Codes"
   click_link "Visual Code Types"
 end
 

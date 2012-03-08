@@ -8,11 +8,6 @@ FactoryGirl.define do
     name
   end
 
-  factory :visual_code, :class => Spree::VisualCode do
-    code { FactoryGirl.generate(:name) }
-    visual_code_type { Spree::VisualCodeType.where(:name => 'QR Code') }
-  end
-
   factory :visual_code_type, :class => Spree::VisualCodeType do
     name { FactoryGirl.generate(:unique_vc_type) }
   end
