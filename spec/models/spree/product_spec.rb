@@ -1,13 +1,15 @@
 require 'spec_helper'
 
 describe Spree::Product do
-
-  context "class" do
-    describe "visual_code" do
-      it "should return the visual code for this Product" do
-        #relation_type = Spree::RelationType.create!(:name => "Related Products", :applies_to => "Spree::Product")
-        #Spree::Product.relation_types.should include(relation_type)
-      end
+  before do
+    @product = Spree::Product.new(:name => "Foo", :price => 1.99)
+  end
+  
+  context "visual code" do
+    it "should save visual code" do
+      @product.visual_code = "123456"
+      @product.save
+      @product.visual_code.should == "123456"
     end
   end
 end

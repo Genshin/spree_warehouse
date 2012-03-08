@@ -2,7 +2,7 @@ namespace :spree_warehouse do
   namespace :db do 
     
     user_roles = ['stocker','packager','shipper']
-    visual_code_types = [ {:name => "Barcode"}, {:name => "QR Code"} ]
+    visual_code_types = [ {:name => "Barcode", :can_delete => false}, {:name => "QR Code" , :can_delete => false} ]
 
     desc "Seeds all spree_warehouse data into the DB"
     task :seed => :environment do

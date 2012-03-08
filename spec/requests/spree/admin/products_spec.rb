@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Products" do
   before(:each) do
-    sign_in_as!(Factory(:admin_user))
+    sign_in_as!(Factory(:wh_admin_user))
     visit spree.admin_path
   end
 
@@ -97,12 +97,10 @@ describe "Products" do
     end
 
     it "should allow an admin to assign a visual code to product" do
-      within('input#product_master_attributes_visual_code_attributes_code') { page.should have_content("") }
-      
-      fill_in "product_master_attributes_visual_code_attributes_code", :with => "123456"
+      fill_in "product_visual_code", :with => "123456"
       click_button "Update"
       page.should have_content("successfully updated!")
-      within('input#product_master_attributes_visual_code_attributes_code') { page.should have_content("123456") }
+      find('input#product_visual_code').value.should == "123456"
     end
   end
 
