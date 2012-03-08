@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'Warehouses' do
   before(:each) do
-    sign_in_as!(Factory(:wh_admin_user))
+    sign_in_as!(Factory(:admin_user))
 
     @warehouse1 = Factory(:warehouse, :name => 'huge_warehouse_1')
     Factory(:warehouse, :name => 'huge_warehouse_2')
