@@ -5,11 +5,13 @@ module Spree
       before_filter :restrict, :except => [:index, :show]
       
       def restrict
-        @visual_code_type = VisualCodeType.find(params[:id])
-        unless @visual_code_type.can_delete?
-          respond_to do |format|
-            format.html { redirect_to admin_visual_code_types_url, :notice => 'Cannot edit system visual code type!' }
-            format.json { render :text => 'Cannot edit system visual code type!' }
+        if VisualCodeType.exists?(params[:id])
+          @visual_code_type = VisualCodeType.find(params[:id]) 
+          unless @visual_code_type.can_delete?
+            respond_to do |format|
+              format.html { redirect_to admin_visual_code_types_url, :notice => 'Cannot edit system visual code type!' }
+              format.json { render :text => 'Cannot edit system visual code type!' }
+            end
           end
         end
       end

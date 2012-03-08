@@ -37,4 +37,10 @@ Feature: Managing Visual Code Types
     Then we should see the editted visual code type
     And we should have 1 visual code types
     
+ Scenario: Trying to edit system visual code type
+    Given a barcode exists
+    When I enter the edit url for barcode manually
+    Then we should be redirected to "/admin/visual_code_types"
+    And we should have a message saying it is forbidden
+    
 

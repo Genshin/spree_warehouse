@@ -5,6 +5,10 @@ def sign_in_as!(user)
   click_button 'Login'
 end
 
+def current_path
+  URI.parse(current_url).path
+end
+
 Given 'I am admin' do
   sign_in_as!(Factory(:wh_admin_user))
 end
@@ -32,5 +36,9 @@ end
 
 Then 'we should have a "$link" link' do |link|
   page.should have_content(link)
+end
+
+Then 'we should be redirected to "$path"' do |path|
+  current_path.should == path
 end
 
