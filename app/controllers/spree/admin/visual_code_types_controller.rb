@@ -1,12 +1,24 @@
 module Spree
   module Admin
     class VisualCodeTypesController < ResourceController
-            
+      
+      before_filter :restrict, :except => [:index, :show]
+      
+      def restrict
+        @visual_code_type = VisualCodeType.find(params[:id])
+        unless @visual_code_type.can_delete?
+          respond_to do |format|
+            format.html { redirect_to admin_visual_code_types_url, :notice => 'Cannot edit system visual code type!' }
+            format.json { render :text => 'Cannot edit system visual code type!' }
+          end
+        end
+      end
+      
       def index
         @visual_code_types = VisualCodeType.all
         respond_to do |format|
           format.html
-          format.json { render json: [:admin, @visual_code_types] }
+          format.json { render :json => [:admin, @visual_code_types] }
         end
       end
 
@@ -21,7 +33,7 @@ module Spree
         @visual_code_type = VisualCodeType.new
         respond_to do |format|
           format.html 
-          format.json { render json: [:admin, @visual_code_type] }
+          format.json { render :json => [:admin, @visual_code_type] }
         end
       end
 
@@ -35,11 +47,11 @@ module Spree
 
         respond_to do |format|
           if @visual_code_type.save
-            format.html { redirect_to admin_visual_code_types_url, notice: 'Visual Code type was successfully created.' }
-            format.json { render json: [:admin, @visual_code_type], status: :created, location: @visual_code_type }
+            format.html { redirect_to admin_visual_code_types_url, :notice => 'Visual Code type was successfully created.' }
+            format.json { render :json => [:admin, @visual_code_type], :status => :created, :location => @visual_code_type }
           else
-            format.html { render action: "new" }
-            format.json { render json: [:admin, @visual_code_type.errors], status: :unprocessable_entity }
+            format.html { render :action => "new" }
+            format.json { render :json => [:admin, @visual_code_type.errors], :status => :unprocessable_entity }
           end
         end
       end
@@ -49,11 +61,11 @@ module Spree
 
         respond_to do |format|
           if @visual_code_type.update_attributes(params[:visual_code_type])
-            format.html { redirect_to admin_visual_code_types_url, notice: 'Visual Code Type was successfully updated.' }
+            format.html { redirect_to admin_visual_code_types_url, :notice => 'Visual Code Type was successfully updated.' }
             format.json { head :ok }
           else
-            format.html { render action: "edit" }
-            format.json { render json: [:admin, @visual_code_type.errors], status: :unprocessable_entity }
+            format.html { render :action => "edit" }
+            format.json { render :json => [:admin, @visual_code_type.errors], :status => :unprocessable_entity }
           end
         end
       end
