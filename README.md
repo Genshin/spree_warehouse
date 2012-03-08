@@ -6,23 +6,18 @@ Please see the design document (still a work in progress) [here](https://docs.go
 
 Installation
 =======
-We support only Spree 1.0.0.rc2 and above !
+We support only Spree 1.0.0 and above !
 
-Make a new app using the latest Rails: 
-
-    $ gem install rails
-    $ rails new app_name
-    $ cd app_name
+Install spree 1.0 
 
 Include in your Gemfile: 
 
-    gem 'spree', :git => 'https://github.com/spree/spree.git'
+    gem 'spree', "~>1.0.0" 
     gem 'spree_warehouse' , :git => 'git@github.com:Genshin/spree_warehouse.git'
 
 And run: 
 
     $ bundle
-    $ rails g spree:install
     $ rake spree_warehouse:install:migrations 
     $ rake db:migrate
     $ rails s 
