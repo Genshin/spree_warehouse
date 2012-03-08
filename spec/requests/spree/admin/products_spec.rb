@@ -96,13 +96,11 @@ describe "Products" do
       page.should have_content("Editing Product") 
     end
 
-    pending "should allow an admin to assign a visual code to product" do
-      within('input#product_visual_code') { page.should have_content("") }
-      
+    it "should allow an admin to assign a visual code to product" do
       fill_in "product_visual_code", :with => "123456"
       click_button "Update"
       page.should have_content("successfully updated!")
-      within('input#product_visual_code') { page.should have_content("123456") }
+      find('input#product_visual_code').value.should == "123456"
     end
   end
 
