@@ -24,6 +24,11 @@ module SpreeWarehouse
            puts "Skiping rake db:migrate, don't forget to run it!"
          end
       end
+      
+      def seed
+        puts "Will seed spree_warehouse data into the DB" 
+        run 'bundle exec rake spree_warehouse:db:seed'
+      end
     end
   end
 end
