@@ -2,7 +2,7 @@ de:
   warehouse: "Lager"
   new_warehouse: "Neues Lager"
   edit_warehouse: "Lager bearbeiten"
-  list_warehouses: "Warenhäuser"
+  list_warehouses: "Lager auflisten"
   visual_codes: "Visual Codes"
   visual_code:
     system: "Visual Code System"
