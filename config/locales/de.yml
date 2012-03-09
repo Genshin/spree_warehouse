@@ -1,0 +1,31 @@
+de:
+  warehouse: "Lager"
+  new_warehouse: "Neues Lager"
+  edit_warehouse: "Lager bearbeiten"
+  list_warehouses: "Lager"
+  visual_codes: "Visual Codes"
+  visual_code:
+    system: "Visual Code System"
+    data: "Visual Code Daten"
+    types: "Visual Code Typen"
+    type: "Visual Code Typ"
+    codes: "Visual Codes"
+    singular: "Visual Code"
+    new: "Code registrieren"
+    edit: "Visual Code bearbeiten"
+  visual_code_type:
+    name: "Typname"
+    handler: "Handler"
+    new: "Neuer VC Typ"
+    edit: "VC Typ bearbeiten"
+  warehouses: "Lager"
+  warehouse:
+    name: "Name"
+    code: "Code"
+    location: "Standort"
+    details: "Details"
+    
+  container_taxonomy_edit: "Container-Taxonomie bearbeiten"
+  new_container_taxon: "Neues Container-Taxon"
+  new_container_taxonomy: "Neue Container-Taxonomie"
+  container_taxonomy_tree_error: "Fehler in Container-Taxonomie-Baum"
