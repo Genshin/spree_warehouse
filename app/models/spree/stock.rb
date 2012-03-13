@@ -9,11 +9,11 @@ module Spree
     private
     
     def add_count_to_variant
-      if Variant.exists?(self.variant)
-        variant = Variant.find(self.variant)
-        variant.add_count(self.count)
-        variant.save!
+      if self.variant
+        self.variant.add_count(self.count)
+        self.variant.save!
       end
     end
+    
   end
 end

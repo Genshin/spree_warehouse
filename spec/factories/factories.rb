@@ -27,7 +27,12 @@ FactoryGirl.define do
   
   factory :stock , :class => Spree::Stock do 
     count 99
+    association :variant
   end
+  
+  #factory :variant_with_stock, :parent => :variant do
+  #  after_create { |variant| Factory(:stock, :variant => variant) }
+  #end
   
   factory :stock_receipt , :class => Spree::StockReceipt do 
     supplier "Subaru"
