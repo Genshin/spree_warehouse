@@ -30,10 +30,6 @@ FactoryGirl.define do
     association :variant
   end
   
-  #factory :variant_with_stock, :parent => :variant do
-  #  after_create { |variant| Factory(:stock, :variant => variant) }
-  #end
-  
   factory :stock_receipt , :class => Spree::StockReceipt do 
     supplier "Subaru"
     order_number "0010"
