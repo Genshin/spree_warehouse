@@ -24,16 +24,8 @@ Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |f| require File.expan
 
 
 RSpec.configure do |config|
-  # == Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
-  config.mock_with :rspec
 
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+  config.mock_with :rspec
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   
   config.before(:each) do
@@ -47,6 +39,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    reset_spree_preferences
   end
 
   config.after(:each) do
@@ -65,9 +58,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 end
 
-
-
-
 if defined? CanCan::Ability
   class AbilityDecorator
     include CanCan::Ability
@@ -78,5 +68,8 @@ if defined? CanCan::Ability
   end
 end
 
-
-
+RSpec::Matchers.define :have_valid_factory do |factory_name|
+  match do |model|
+    Factory(factory_name).new_record?.should be_false
+  end
+end
