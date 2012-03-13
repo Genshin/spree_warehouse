@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe Spree::Product do
+  
+  context "validations" do 
+    it { should have_valid_factory(:product) }
+  end
+  
   before do
     @product = Spree::Product.new(:name => "Foo", :price => 1.99)
   end

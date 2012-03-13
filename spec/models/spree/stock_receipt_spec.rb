@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Spree::StockReceipt do
   context 'validation' do
-    let(:stock_receipt) {Factory(:stock_receipt)}
     it { should have_many(:stock) }
+    it { should have_valid_factory(:stock_receipt) }
   end
 end

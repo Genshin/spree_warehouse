@@ -6,7 +6,7 @@ describe Spree::ContainerTaxon do
   let(:container_taxon) { Spree::ContainerTaxon.new(:name => "Ruby on Rails") }
 
   context "validation" do
-    #it { should have_valid_factory(:taxon) }
+    it { should have_valid_factory(:container_taxon) }
     it { should have_many(:stock) }
   end
 
