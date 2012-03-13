@@ -5,5 +5,6 @@ describe Spree::Stock do
     let(:stock) {Factory(:stock)}
     it { should belong_to(:stock_receipt) }
     it { should belong_to(:container_taxon) }
+    it { should belong_to(:variant) }
   end
 end
