@@ -21,6 +21,15 @@ describe Spree::Variant do
       variant.should be_valid
     end
   end
+  
+  context "add_count" do 
+    before { Spree::Config.set :track_inventory_levels => true }
+    it "should increase count_on_hand" do 
+      variant.on_hand = 100
+      variant.add_count 5
+      variant.on_hand.should eql(105)
+    end
+  end
 
   context "on_hand=" do
     before { variant.stub(:inventory_units => mock('inventory-units')) }
@@ -63,7 +72,6 @@ describe Spree::Variant do
           variant.save!
           variant.count_on_hand.should == 95
         end
-
       end
 
       context "and count is decreased" do
@@ -78,9 +86,7 @@ describe Spree::Variant do
           variant.inventory_units.should_not_receive(:with_state)
           variant.on_hand = 10
         end
-
       end
-
     end
 
     context "when :track_inventory_levels is false" do
@@ -89,9 +95,7 @@ describe Spree::Variant do
       it "should raise an exception" do
         lambda { variant.on_hand = 100 }.should raise_error
       end
-
     end
-
   end
 
   context "on_hand" do
@@ -109,9 +113,7 @@ describe Spree::Variant do
       it "should return nil" do
         variant.on_hand.should eql(1.0/0) # Infinity
       end
-
     end
-
   end
 
   context "in_stock?" do
@@ -139,7 +141,7 @@ describe Spree::Variant do
       it "should be true" do
         variant.in_stock?.should be_true
       end
-
+      
     end
   end
 end
