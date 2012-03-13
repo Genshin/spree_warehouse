@@ -24,6 +24,15 @@ FactoryGirl.define do
   factory :container_taxon, :class => Spree::ContainerTaxon do 
     name { FactoryGirl.generate(:unique_container_taxon)}
   end
+  
+  factory :stock , :class => Spree::Stock do 
+    count 99
+  end
+  
+  factory :stock_receipt , :class => Spree::StockReceipt do 
+    supplier "Subaru"
+    order_number "0010"
+  end
 
 end
 
