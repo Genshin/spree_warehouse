@@ -34,6 +34,10 @@ FactoryGirl.define do
     supplier "Subaru"
     order_number "0010"
   end
+  
+  factory :package , :class => Spree::Package do 
+    tracking_number "0020"
+  end
 
 end
 
