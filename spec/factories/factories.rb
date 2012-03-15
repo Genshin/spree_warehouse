@@ -38,6 +38,11 @@ FactoryGirl.define do
   factory :package , :class => Spree::Package do 
     tracking_number "0020"
   end
+  
+  factory :package_line_item , :class => Spree::PackageLineItem do 
+    package { Factory(:package) }
+    line_item { Factory(:line_item) }
+  end
 
 end
 
