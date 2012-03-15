@@ -8,6 +8,7 @@ describe Spree::ContainerTaxon do
   context "validation" do
     it { should have_valid_factory(:container_taxon) }
     it { should have_many(:stock) }
+    it { should have_many(:packages) }
   end
 
   context "set_permalink" do
