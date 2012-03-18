@@ -5,6 +5,5 @@ describe Spree::Package do
     it { should belong_to(:order)} 
     it { should belong_to(:container_taxon) }
     it { should have_valid_factory(:package) }
-    it { should have_many(:line_items) }
   end
 end
