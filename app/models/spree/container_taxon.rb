@@ -4,7 +4,6 @@ module Spree
 
     belongs_to :container_taxonomy
     has_many :stock
-    has_many :packages
      
     before_create :set_permalink
 
