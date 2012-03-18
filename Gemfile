@@ -8,31 +8,29 @@ gem 'spree', "~>1.0.0"
 #gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => "1-0-stable
 
 
-group :development , :test do 
-  gem 'guard'
-  gem 'guard-livereload'
-  gem 'guard-bundler'
-  gem 'libnotify'
-  gem "sass", :require => 'sass'
-  #gem 'rack-livereload'
-  #optimisation for livereload
-  #gem 'yajl-ruby' 
-end
-
-
 group :test do
-  gem 'guard-rspec', '~> 0.6.0'
-  gem 'guard-cucumber'
-  
   gem 'rspec-rails', '~> 2.8.0'
   gem 'factory_girl_rails', '~> 1.6.0'
-  gem 'cucumber-rails', '1.2.1'
+  gem 'cucumber-rails'
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara'
   gem 'selenium-webdriver', '~> 2.18.0'
   gem 'database_cleaner', '0.7.1'
   gem 'launchy'
+  
+  gem "sass", :require => 'sass'
+  
+  #Guard
+  gem 'guard'
+  gem 'guard-rspec', '~> 0.6.0'
+  gem 'guard-cucumber'
+  gem 'guard-livereload'
+  gem 'guard-bundler'
+  gem 'libnotify'
+  #gem 'rack-livereload'
+  #optimisation for livereload
+  #gem 'yajl-ruby' 
 
   platform :ruby_18 do
     gem 'rcov'
