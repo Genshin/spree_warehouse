@@ -7,6 +7,23 @@ gem 'spree', "~>1.0.0"
 
 #gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => "1-0-stable
 
+group :development, :test do 
+  gem "sass", :require => 'sass'
+end
+
+group :development do 
+  gem 'guard'
+  gem 'guard-rspec', '~> 0.6.0'
+  gem 'guard-cucumber'
+  gem 'guard-bundler'
+  
+  #desktop notifications
+  gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin')  && 'rb-fsevent'
+  gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
+  gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
+  gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
+end
+
 
 group :test do
   gem 'rspec-rails', '~> 2.8.0'
@@ -15,23 +32,10 @@ group :test do
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara'
-  gem 'selenium-webdriver', '~> 2.18.0'
+  gem 'selenium-webdriver'
   gem 'database_cleaner', '0.7.1'
   gem 'launchy'
   
-  gem "sass", :require => 'sass'
-  
-  #Guard
-  gem 'guard'
-  gem 'guard-rspec', '~> 0.6.0'
-  gem 'guard-cucumber'
-  gem 'guard-livereload'
-  gem 'guard-bundler'
-  gem 'libnotify'
-  #gem 'rack-livereload'
-  #optimisation for livereload
-  #gem 'yajl-ruby' 
-
   platform :ruby_18 do
     gem 'rcov'
   end
