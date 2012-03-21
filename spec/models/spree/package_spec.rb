@@ -5,8 +5,8 @@ describe Spree::Package do
     it { should have_valid_factory(:package) }
     it { should belong_to :shipment }
     it { should belong_to :container_taxon }
+    it { should have_many :inventory_units }
   end
-    
     
   let(:order) { mock_model Spree::Order, :backordered? => false }
   let(:shipping_method) { mock_model Spree::ShippingMethod, :calculator => mock('calculator') }
