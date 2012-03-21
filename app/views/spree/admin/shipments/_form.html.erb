@@ -12,7 +12,7 @@
     <% @shipment.order.inventory_units.each do |inventory_unit| %>
       <tr data-hook="shipments_row">
         <td style="text-align:center;">
-          <%= check_box_tag "inventory_units[#{inventory_unit.id}]",
+          <%= check_box_tag "inventory_units[ids][#{inventory_unit.id}]",
                             :true,
                             (inventory_unit.shipment == @shipment),
                             { :disabled => %w(shipped backordered returned).include?(inventory_unit.state),
@@ -20,12 +20,12 @@
         </td>
         <td style="vertical-align:top; width:120px;"><%= inventory_unit.variant.sku %></td>
         <td style="width:300px;">
-          <%=inventory_unit.variant.product.name %>
+          <%= inventory_unit.variant.product.name %>
           <%= '(' + variant_options(inventory_unit.variant) + ')' unless inventory_unit.variant.option_values.empty? %>
         </td>
         <td><%= t(inventory_unit.state) %></td>
         
-        <td><%= select_tag "inventory_units[#{inventory_unit.id}]", options_from_collection_for_select(@shipment.packages, "id", "tracking_number") %></td>
+        <td><%= select_tag "inventory_units[packages][#{inventory_unit.id}]", options_from_collection_for_select(@shipment.packages, "id", "tracking_number", inventory_unit.package_id) %></td>
         <td>
           <% if inventory_unit.shipment == @shipment %>
             <%= t(:included_in_this_shipment) %>
@@ -37,6 +37,8 @@
     <% end %>
   </table>
 <% end %>
+
+
 
 <div data-hook="admin_shipment_form_address">
   <% shipment_form.fields_for 'address' do |sa_form| %>

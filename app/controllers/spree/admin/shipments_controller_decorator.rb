@@ -16,7 +16,22 @@ module Spree
         end
       end
       
+      def assign_inventory_units
+        return unless params[:inventory_units].has_key? :ids
+        assign_packages_to_inventory_units
+        @shipment.inventory_unit_ids = params[:inventory_units][:ids].keys
+      end
+  
+      
       private
+      
+      def assign_packages_to_inventory_units
+        params[:inventory_units][:packages].each do |iu_id,package_id|
+          @inventory_unit = InventoryUnit.find(iu_id)
+          @inventory_unit.package = Package.find(package_id)
+          @inventory_unit.save
+        end
+      end
       
       def build_shipment
         @shipment = @order.shipments.build
