@@ -11,7 +11,19 @@ group :development, :test do
   gem "sass", :require => 'sass'
 end
 
-group :development do 
+
+group :test do
+  gem 'rspec-rails', '~> 2.8.0'
+  gem 'factory_girl_rails', '~> 1.7.0'
+  gem 'cucumber-rails'
+  gem 'ffaker'
+  gem 'shoulda-matchers', '~> 1.0.0'
+  gem 'capybara'
+  gem 'selenium-webdriver','~> 2.20.0'
+  gem 'database_cleaner', '0.7.1'
+  gem 'launchy'
+  
+  
   gem 'guard'
   gem 'guard-rspec', '~> 0.6.0'
   gem 'guard-cucumber'
@@ -22,20 +34,7 @@ group :development do
   gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
   gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
   gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
-end
 
-
-group :test do
-  gem 'rspec-rails', '~> 2.8.0'
-  gem 'factory_girl_rails', '~> 1.7.0'
-  gem 'cucumber-rails'
-  gem 'ffaker'
-  gem 'shoulda-matchers', '~> 1.0.0'
-  gem 'capybara'
-  gem 'selenium-webdriver', '2.16.0'
-  gem 'database_cleaner', '0.7.1'
-  gem 'launchy'
-  
   platform :ruby_18 do
     gem 'rcov'
   end
