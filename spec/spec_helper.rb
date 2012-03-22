@@ -4,6 +4,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
+#require 'capybara/rspec'
+
 require 'database_cleaner'
 require 'spree/url_helpers'
 require 'spree/core/testing_support/factories'
@@ -73,3 +75,6 @@ RSpec::Matchers.define :have_valid_factory do |factory_name|
     Factory(factory_name).new_record?.should be_false
   end
 end
+
+
+#Capybara.default_driver = :selenium
