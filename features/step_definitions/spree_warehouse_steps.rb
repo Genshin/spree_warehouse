@@ -10,7 +10,7 @@ def current_path
 end
 
 Given 'I am admin' do
-  sign_in_as!(Factory(:wh_admin_user))
+  sign_in_as!(Factory(:admin_user))
 end
 
 Given 'I am at warehouses menu' do

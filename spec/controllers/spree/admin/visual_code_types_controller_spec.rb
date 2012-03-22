@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Spree::Admin::VisualCodeTypesController do
   before do
-    controller.stub :current_user => Factory(:wh_admin_user)
+    controller.stub :current_user => Factory(:admin_user)
   end
 
   context "#edit" do
