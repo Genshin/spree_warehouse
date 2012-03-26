@@ -27,11 +27,16 @@ en:
   
   package: "Package"  
   new_package: "New Package"
-    
-    
+  
+  containers: "Containers"   
   container_taxonomy_edit: "Edit Container Taxonomy"
   new_container_taxon: "New Container Taxon"
   new_container_taxonomy: "New Container Taxonomy"
   container_taxonomy_tree_error: "Container Taxonomy tree error"
-  
+   
   first_create_the_shipment: "Create the shipment first to have the ability to create a new package"
+  
+  picked: "Picked"
+  
+  picking_list: "Picking List"
+  picking_list_for_order: "Picking List for Order : "

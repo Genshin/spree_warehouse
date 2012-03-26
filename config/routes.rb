@@ -1,4 +1,5 @@
-Spree::Core::Engine.routes.append do
+#Spree::Core::Engine.routes.append do
+Spree::Core::Engine.routes.draw do
   namespace :admin do
     resources :warehouses
     resources :visual_codes
@@ -11,11 +12,18 @@ Spree::Core::Engine.routes.append do
       end
     end
     
-    resources :shipments do
-      member do
-        get :create_package
-      end
+    resources :orders do
+      resources :shipments do
+        collection do 
+          get :picking_list
+        end
+ 
+        member do
+          get :create_package
+        end
+      end   
     end
+
   end
 end
 
