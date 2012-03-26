@@ -33,23 +33,18 @@ module Spree
     end
     
     def update_shipment_state
-      @shipment_state =
-      case shipment.inventory_units.count
-      when 0
-        nil
-      when shipment.inventory_units.picked.count
-        'picked'
-        puts "They are picked all"
+      if shipment.inventory_units.count == shipment.inventory_units.picked.count
+        self.shipment.update_attribute_without_callbacks('state', 'picked')
       end
+
+     # self.shipment.update_attribute_without_callbacks('state', @shipment_state)
       
-      self.shipment.update_attribute('state', @shipment_state)
      # self.state_changes.create({
      #     :previous_state => 'not_picked',
      #     :next_state     => @shipment_state,
      #     :name           => 'shipment',
      #     :user_id        => (User.respond_to?(:current) && User.current && User.current.id) || self.user_id
      # })
-   
     end
     
     def not_packed?

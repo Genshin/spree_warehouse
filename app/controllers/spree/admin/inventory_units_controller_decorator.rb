@@ -3,12 +3,16 @@ module Spree
     InventoryUnitsController.class_eval do 
       
       before_filter :load_inventory_unit , :only => [:fire]
-
       respond_to :html
 
       def fire
         if @iu.send("#{params[:e]}")
-          flash.notice = t(:unit_picked)
+          if @iu.shipment.state == 'picked'
+            flash.notice = t(:shipment_is_picked)
+          else
+            flash.notice = t(:unit_picked)
+          end
+          
         else
           flash[:error] = t(:cannot_perform_operation)
         end

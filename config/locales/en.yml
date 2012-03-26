@@ -40,6 +40,7 @@ en:
   pick: "Pick"
   picked: "Picked"
   unit_picked: "Unit Picked"
+  shipment_is_picked: "Shipment is Picked"
   
   picking_list: "Picking List"
   picking_list_for_order: "Picking List for Order : "
