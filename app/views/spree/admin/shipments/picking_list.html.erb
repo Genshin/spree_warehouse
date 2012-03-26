@@ -14,7 +14,11 @@
       <tr>
       	<td><%= iu.variant.name %></td>
       	<td><%= iu.variant.sku %></td>
-      	<td>Containers</td>
+      	<% unless iu.variant.container_taxons.empty? %>
+      	  <td><%= iu.variant.container_taxons %></td>
+      	<% else %>
+      	  <td><%= t(:no_containers_assigned) %></td>
+      	<% end %>
       	<td><%= iu.shipment.number %> - <%= iu.shipment.inventory_units.count %> units</td>
       	<td>Pick</td>
       </tr>

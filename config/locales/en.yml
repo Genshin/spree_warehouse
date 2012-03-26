@@ -29,6 +29,7 @@ en:
   new_package: "New Package"
   
   containers: "Containers"   
+  no_containers_assigned: "No containers assigned"
   container_taxonomy_edit: "Edit Container Taxonomy"
   new_container_taxon: "New Container Taxon"
   new_container_taxonomy: "New Container Taxonomy"
