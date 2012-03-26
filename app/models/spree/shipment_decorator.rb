@@ -13,11 +13,11 @@ module Spree
     
     state_machine :initial => 'not_picked', :use_transactions => false do
       
-      event :picked do 
+      event :pick do 
         transition :from => 'not_picked' , :to => 'picked'
       end 
       
-      event :packed do
+      event :pack do
         transition :from => 'picked', :to => 'packed'
       end
       
@@ -43,6 +43,12 @@ module Spree
         
     def package
       @package ||= self.packages.last
+    end
+    
+    def packed?
+      self.inventory_units.each do |iu|
+        return false if iu.not_packed?
+      end
     end
     
     
