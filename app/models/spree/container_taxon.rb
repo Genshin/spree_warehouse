@@ -5,6 +5,7 @@ module Spree
     belongs_to :container_taxonomy
     has_many :stock
     has_many :packages
+    has_and_belongs_to_many :variants, :join_table => 'spree_variants_container_taxons'
      
     before_create :set_permalink
 
