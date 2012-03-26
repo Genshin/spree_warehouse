@@ -3,7 +3,7 @@ module Spree
     ShipmentsController.class_eval do 
       
       before_filter :load_order
-      before_filter :load_shipment, :only => [:destroy, :edit, :update, :fire, :create_package]
+      before_filter :load_shipment, :only => [:destroy, :edit, :update, :fire, :create_package, :picked]
       before_filter :load_shipping_methods, :except => [:country_changed, :index, :picking_list, :create_package]
       
       def create_package
@@ -28,7 +28,7 @@ module Spree
         @shipments = @order.shipments
         respond_with(@shipments)
       end
-
+      
 
       private
       

@@ -37,7 +37,9 @@ en:
    
   first_create_the_shipment: "Create the shipment first to have the ability to create a new package"
   
+  pick: "Pick"
   picked: "Picked"
+  unit_picked: "Unit Picked"
   
   picking_list: "Picking List"
   picking_list_for_order: "Picking List for Order : "

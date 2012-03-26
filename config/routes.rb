@@ -12,6 +12,13 @@ Spree::Core::Engine.routes.draw do
       end
     end
     
+    resources :inventory_units do
+      member do
+        put :fire
+        get :fire
+      end
+    end
+    
     resources :orders do
       resources :shipments do
         collection do 

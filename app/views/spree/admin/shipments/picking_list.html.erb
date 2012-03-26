@@ -19,8 +19,12 @@
       	<% else %>
       	  <td><%= t(:no_containers_assigned) %></td>
       	<% end %>
-      	<td><%= iu.shipment.number %> - <%= iu.shipment.inventory_units.count %> units</td>
-      	<td>Pick</td>
+      	<td><%= iu.shipment.number %></td>
+      	<% if iu.state == 'sold' %>
+      	  <td><%= button_link_to t(:pick), fire_admin_inventory_unit_path(iu, :e => 'pick'), :method => :put%></td>
+      	<% else %>
+      	  <td><%= t(:picked) %></td>
+      	<% end %>
       </tr>
     <% end %>
   <% end %>
