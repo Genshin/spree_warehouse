@@ -2,7 +2,7 @@ module Spree
   InventoryUnit.class_eval do
     
     belongs_to :package
-    has_many :state_changes, :as => :stateful
+    #has_many :state_changes, :as => :stateful
     
     scope :picked, where(:state => 'picked')
     
@@ -37,8 +37,6 @@ module Spree
         self.shipment.update_attribute_without_callbacks('state', 'picked')
       end
 
-     # self.shipment.update_attribute_without_callbacks('state', @shipment_state)
-      
      # self.state_changes.create({
      #     :previous_state => 'not_picked',
      #     :next_state     => @shipment_state,
