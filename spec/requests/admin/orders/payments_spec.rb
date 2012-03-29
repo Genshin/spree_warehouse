@@ -29,6 +29,7 @@ describe "Payments" do
     before(:each) do
       Factory(:payment, :order => @order, :amount => @order.outstanding_balance, :payment_method => Factory(:bogus_payment_method, :environment => 'test'))
       visit spree.admin_path
+      sign_in_as!(Factory(:admin_user))
       click_link "Orders"
       within('table#listing_orders tbody tr:nth-child(1)') { click_link "R100" }
     end
@@ -61,9 +62,12 @@ describe "Payments" do
     # Regression test for #1269
     it "cannot create a payment for an order with no payment methods" do
       Spree::PaymentMethod.delete_all
+      Spree::Payment.delete_all
       @order.payments.delete_all
+      @order.reload
 
       visit spree.new_admin_order_payment_path(@order)
+      #save_and_open_page
       page.should have_content("You cannot create a payment for an order without any payment methods defined.")
       page.should have_content("Please define some payment methods first.")
     end
