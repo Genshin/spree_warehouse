@@ -1,0 +1,31 @@
+<div data-hook="admin_stock_index">
+  <h1><%= t(:stock) %></h1>
+</div>
+
+<table id="stock" class="index">
+  <tr>
+  	<th><%= t(:sku) %></th>
+    <th><%= t(:product) %></th>
+	<th><%= t(:variant)%></th>
+  </tr>
+
+  <% @products.each do |product| %>
+	<% if product.has_variants? %>
+	  <% product.variants.each do |variant| %>
+	    <tr>
+	      <td><%= variant.sku %></td>
+	      <td><%= product.name %></td>
+	      <td><%= variant.name %></td>
+	    </tr>
+	  <% end %>
+	<% else %>
+	  <tr>
+	    <td><%= product.sku %></td>
+	    <td><%= product.name  %></td>
+	    <td><%= product.master.name %></td>
+	  </tr>
+	<% end %>
+  <% end %>
+</table>
+
+
