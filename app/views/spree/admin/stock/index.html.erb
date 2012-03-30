@@ -7,6 +7,7 @@
   	<th><%= t(:sku) %></th>
     <th><%= t(:product) %></th>
 	<th><%= t(:variant)%></th>
+	<th></th>
   </tr>
 
   <% @products.each do |product| %>
@@ -16,6 +17,7 @@
 	      <td><%= variant.sku %></td>
 	      <td><%= product.name %></td>
 	      <td><%= variant.name %></td>
+	      <td><%= link_to "Out", {:action => 'out'}, :id => "out[#{variant.id}]", :class => 'button', :remote => true %></td>
 	    </tr>
 	  <% end %>
 	<% else %>
@@ -23,6 +25,7 @@
 	    <td><%= product.sku %></td>
 	    <td><%= product.name  %></td>
 	    <td><%= product.master.name %></td>
+	    <td><%= link_to "Out", {:action => 'out'}, :id => "out[#{product.master.id}]", :class => 'button', :remote => true %></td>
 	  </tr>
 	<% end %>
   <% end %>

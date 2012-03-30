@@ -20,6 +20,7 @@ Spree::Core::Engine.routes.draw do
     end
     
     match '/stock', :to => 'stock#index'
+    match '/stock/out', :to => 'stock#out'
     
     resources :orders do
       resources :shipments do
