@@ -3,7 +3,7 @@ module Spree
     acts_as_nested_set :dependent => :destroy
 
     belongs_to :container_taxonomy
-    has_many :stock
+    has_many :stock_records
     has_many :packages
     has_and_belongs_to_many :variants, :join_table => 'spree_variants_container_taxons'
      
