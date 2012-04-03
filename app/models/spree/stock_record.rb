@@ -1,6 +1,7 @@
 module Spree
   class StockRecord < ActiveRecord::Base
-       
+    belongs_to :variant
+ 
     after_create :add_count_to_variant
     
     private
