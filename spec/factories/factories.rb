@@ -26,7 +26,7 @@ FactoryGirl.define do
   end
   
   factory :stock_record , :class => Spree::StockRecord do 
-    count 99
+    quantity 99
     association :variant
   end
   

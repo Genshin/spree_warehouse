@@ -9,7 +9,7 @@ module Spree
     
     def add_count_to_variant
       if self.variant
-        self.variant.add_count(self.count)
+        self.variant.add_count(self.quantity)
         self.variant.save!
       end
     end
