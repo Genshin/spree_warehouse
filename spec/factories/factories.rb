@@ -30,11 +30,6 @@ FactoryGirl.define do
     association :variant
   end
   
-  factory :stock_receipt , :class => Spree::StockReceipt do 
-    supplier "Subaru"
-    order_number "0010"
-  end
-  
   factory :package , :class => Spree::Package do 
     tracking_number "0020"
   end
