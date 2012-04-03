@@ -1,9 +1,6 @@
 module Spree
-  class Stock < ActiveRecord::Base
-    belongs_to :stock_receipt
-    belongs_to :container_taxon
-    belongs_to :variant
-    
+  class StockRecord < ActiveRecord::Base
+       
     after_create :add_count_to_variant
     
     private

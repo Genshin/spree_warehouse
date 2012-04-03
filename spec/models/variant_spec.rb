@@ -9,7 +9,6 @@ describe Spree::Variant do
 
   context "validations" do
     it { should have_valid_factory(:variant) }
-    it { should have_many(:stock) }
     it { should have_and_belong_to_many(:container_taxons) }
 
     it "should validate price is greater than 0" do

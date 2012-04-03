@@ -25,7 +25,7 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:unique_container_taxon)}
   end
   
-  factory :stock , :class => Spree::Stock do 
+  factory :stock_record , :class => Spree::StockRecord do 
     count 99
     association :variant
   end
