@@ -1,0 +1,8 @@
+<span id="restocking_fieldset">
+  <%= form_for :stock_record, :url => admin_restock_path, :html => { :id => "restocking_form" } do |f| %>
+    <%= f.label :quantity, t(:quantity) %>
+    <%= f.text_field :quantity, :class => 'small' %>
+    <%= hidden_field :stock_record, :id, :value => @variant.id %>
+    <%= f.submit t(:restock), :html => {:class => 'button', :id => 'restocking_form_submit'} %>
+  <% end %>
+</div>

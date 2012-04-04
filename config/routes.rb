@@ -19,8 +19,11 @@ Spree::Core::Engine.routes.draw do
       end
     end
     
-    match '/stock', :to => 'stock#index'
-    match '/stock/out', :to => 'stock#out'
+    match '/stock', :to => 'stock#index', :as => :stock
+    match '/stock/:id/restocking', :to => 'stock#restocking', :as => :restocking
+    match '/stock/restock', :to => 'stock#restock' , :as => :restock
+    match '/stock/:id/destocking', :to => 'stock#destocking', :as => :destocking
+    match '/stock/destock', :to => 'stock#destock' , :as => :destock
     
     resources :orders do
       resources :shipments do
