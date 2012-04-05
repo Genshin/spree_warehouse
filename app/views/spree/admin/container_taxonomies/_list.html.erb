@@ -1,13 +1,13 @@
 <table class="index" id='listing_container_taxonomies' data-hook>
   <tr data-hook="container_taxonomies_header">
     <th><%= t(:name) %></th>
+    <th><%= t(:count)%></th>
     <th></th>
   </tr>
 <% @container_taxonomies.each do |container_taxonomy| %>
   <tr id="<%= dom_id container_taxonomy %>" data-hook="container_taxonomies_row">
-    <td>
-      <%= container_taxonomy.name %>
-    </td>
+    <td><%= container_taxonomy.name %></td>
+    <td><%= container_taxonomy.container_taxons.count %></td>
     <td class="actions">
       <%= link_to_edit container_taxonomy.id, :class => 'edit' %>
       &nbsp;
