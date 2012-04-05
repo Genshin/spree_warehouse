@@ -6,7 +6,7 @@
     <%= f.label :reason, t(:reason) %>
     <%= f.select :reason, @reasons, {} %>
     
-    <%= hidden_field :stock_record, :id, :value => @variant.id %>
+    <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= f.submit t(:destock), :html => {:class => 'button', :id => 'destocking_form_submit'} %>
   <% end %>
 </div>

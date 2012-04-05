@@ -14,5 +14,7 @@ module Spree
       end
     end
     
+    scope :restocked, where(:direction == "in")
+    
   end
 end
