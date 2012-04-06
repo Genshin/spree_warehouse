@@ -33,7 +33,7 @@ module Spree
       
       
       def destocking
-        @reasons = ['destock', 'transfer']
+        @reasons = DestockingReason.all
       end
       
       def destock

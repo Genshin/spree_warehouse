@@ -6,5 +6,6 @@ describe Spree::DestockingReason do
     it { should have_valid_factory(:destocking_reason) }
     it { should validate_presence_of(:name) }
     it { Factory(:destocking_reason).should validate_uniqueness_of(:name) }
+    it { should have_many(:stock_records) }
   end
 end

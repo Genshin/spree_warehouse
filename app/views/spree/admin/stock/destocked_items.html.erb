@@ -18,7 +18,14 @@
   <% unless @destocked_items.nil? %>
     <% @destocked_items.each do |di| %>
       <tr>
-	    <td><%= di.container_taxon.name %></td>
+	   
+	    <% unless di.container_taxon.nil? %>
+	      <td><%= di.container_taxon.name %></td>
+	    <% else %>
+	      <td><%= t(:no_container_taxons) %></td>
+	    <% end %>
+	    	
+	    	
 	    <td><%= di.quantity %></td>
 	    <td><%= di.variant.sku %></td>
 	    <td><%= di.variant.product.name %></td>

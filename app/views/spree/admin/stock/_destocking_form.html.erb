@@ -4,8 +4,8 @@
     <%= f.label :quantity, t(:quantity) %>
     <%= f.text_field :quantity , :class => 'small' %>
     
-    <%= f.label :reason, t(:reason) %>
-    <%= f.select :reason, @reasons, {} %>
+    <%= f.label :destocking_reason_id, t(:reason) %>
+    <%= f.select :destocking_reason_id, options_from_collection_for_select(@reasons, "id", "name") %>
     
     <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= hidden_field :stock_record, :direction, :value => "out" %>
