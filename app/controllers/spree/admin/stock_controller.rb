@@ -14,6 +14,10 @@ module Spree
         @restocked_items = StockRecord.restocked
       end
       
+      def destocked_items
+        @destocked_items = StockRecord.destocked
+      end
+      
       def restocking
         @container_taxons = ContainerTaxon.all
       end
@@ -21,13 +25,10 @@ module Spree
       def restock
         @variant = Variant.find(params[:stock_record][:variant_id])
         
-        puts params.to_json
         if @stock_record = StockRecord.create(params[:stock_record])
           flash[:notice] = "#{@variant.name} successfully_restocked"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
-        
-        
       end
       
       
@@ -37,8 +38,11 @@ module Spree
       
       def destock
         @variant = Variant.find(params[:stock_record][:variant_id])
-        flash[:notice] = "#{@variant.name} successfully_destocked"
-        respond_with { |format| format.html { redirect_to :admin_stock } }
+        
+        if @stock_record = StockRecord.create(params[:stock_record])
+          flash[:notice] = "#{@variant.name} successfully_destocked"
+          respond_with { |format| format.html { redirect_to :admin_stock } }
+        end
       end
       
       private

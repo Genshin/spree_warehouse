@@ -2,6 +2,10 @@ module Spree
   class StockRecord < ActiveRecord::Base
     belongs_to :variant
     belongs_to :container_taxon
+    
+    scope :restocked, where('direction = ?','in')
+    scope :destocked, where('direction = ?','out')
+
  
     after_create :add_count_to_variant
     
@@ -14,7 +18,7 @@ module Spree
       end
     end
     
-    scope :restocked, where(:direction == "in")
+
     
   end
 end

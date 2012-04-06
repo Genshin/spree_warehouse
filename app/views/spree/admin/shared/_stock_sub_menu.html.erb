@@ -1,12 +1,14 @@
 <% content_for :sub_menu do %>
   <ul id="sub_nav" data-hook="admin_stock_sub_tabs">
     
-    <% if request.fullpath.include?("stock") and !request.fullpath.include?("restocked_items") %>
+    <% if request.fullpath.include?("stock") and !request.fullpath.include?("restocked_items") and !request.fullpath.include?("destocked_items") %>
       <%= tab :stock, :match_path => '/stock/index', :css_class => 'selected' %>
       <%= tab :restocked_items, :match_path => '/stock/restocked_items' %>
+      <%= tab :destocked_items, :match_path => '/stock/destocked_items' %>
     <% else %>
       <%= tab :stock, :match_path => '/stock/index' %>
       <%= tab :restocked_items, :match_path => '/stock/restocked_items' %>
+      <%= tab :destocked_items, :match_path => '/stock/destocked_items' %>
     <% end %>
   </ul>
 <% end %>
