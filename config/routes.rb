@@ -27,6 +27,7 @@ Spree::Core::Engine.routes.draw do
     match '/stock/:id/destocking', :to => 'stock#destocking', :as => :destocking
     match '/stock/destock', :to => 'stock#destock' , :as => :destock
 
+    resources :destocking_reasons
     
     resources :orders do
       resources :shipments do

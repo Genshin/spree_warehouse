@@ -30,6 +30,11 @@ FactoryGirl.define do
     association :variant
   end
   
+  factory :destocking_reason, :class => Spree::DestockingReason do 
+    name "destock"
+    description "No description"
+  end
+  
   factory :package , :class => Spree::Package do 
     tracking_number "0020"
   end

@@ -52,5 +52,10 @@ en:
   destock: "Destock"
   destocking: "Destocking"
   
+  new_destocking_reason: "New Destocking Reason"
+  destocking_reasons_list: "Destocking Reasons"
+  editing_destocking_reason: "Editing Destocking Reason"
+  destocking_reasons_description: "Manage reasons for destocking stock"
+  
 
  
