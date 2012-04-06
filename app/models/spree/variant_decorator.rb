@@ -7,5 +7,9 @@ module Spree
       self.count_on_hand += num
     end
     
+    def remove_count(num)
+      self.count_on_hand = self.count_on_hand - num
+    end
+    
   end
 end

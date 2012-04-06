@@ -8,18 +8,21 @@ module Spree
     scope :destocked, where('direction = ?','out')
 
  
-    after_create :add_count_to_variant
+    after_create :modify_variant_count
     
     private
     
-    def add_count_to_variant
-      if self.variant
-        self.variant.add_count(self.quantity)
+    def modify_variant_count
+      unless self.variant.nil?
+        if self.direction == 'in'
+          self.variant.add_count(self.quantity)
+        else
+          self.variant.remove_count(self.quantity)
+        end
         self.variant.save!
+        
       end
     end
-    
 
-    
   end
 end
