@@ -78,7 +78,9 @@
 </div>
 
 <div>
-<h3>Master Package : <%= @shipment.master_package.tracking_number %></h3>	
+<% if @shipment.master_package %>
+  <h3>Master Package : <%= @shipment.master_package.tracking_number %></h3>	
+<% end %>
 
 <% if @shipment.number %>
   <h3>Packages : <%= @shipment.packages.count %></h3>

@@ -1,0 +1,39 @@
+<%= render :partial => 'spree/admin/shared/stock_sub_menu' %>
+
+<div data-hook="admin_destocked_items_index">
+  <h1><%= t(:destocked_items_list) %></h1>
+</div>
+
+<table id="destocked_items_table" class="index">
+  <tr>
+  	<th><%= t(:container_taxon) %></th>
+  	<th><%= t(:quantity) %></th>
+  	<th><%= t(:sku) %></th>
+    <th><%= t(:product) %></th>
+	<th><%= t(:variant)%></th>
+    <th><%= t(:on_hand)%></th>
+	<th>Destocked Before</th>
+	<th></th>
+  </tr>
+  <% unless @destocked_items.nil? %>
+    <% @destocked_items.each do |di| %>
+      <tr>
+	   
+	    <% unless di.container_taxon.nil? %>
+	      <td><%= di.container_taxon.name %></td>
+	    <% else %>
+	      <td><%= t(:no_container_taxons) %></td>
+	    <% end %>
+	    	
+	    	
+	    <td><%= di.quantity %></td>
+	    <td><%= di.variant.sku %></td>
+	    <td><%= di.variant.product.name %></td>
+	    <td><%= di.variant.name %></td>
+        <td><%= di.variant.count_on_hand %></td>
+        <td><%= time_ago_in_words(di.created_at) %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

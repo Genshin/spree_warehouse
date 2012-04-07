@@ -3,8 +3,8 @@ module Spree
     ShipmentsController.class_eval do 
       
       before_filter :load_order
-      before_filter :load_shipment, :only => [:destroy, :edit, :update, :fire, :create_package]
-      before_filter :load_shipping_methods, :except => [:country_changed, :index, :create_package]
+      before_filter :load_shipment, :only => [:destroy, :edit, :update, :fire, :create_package, :picked]
+      before_filter :load_shipping_methods, :except => [:country_changed, :index, :picking_list, :create_package]
       
       def create_package
         @package = @shipment.packages.build
@@ -17,12 +17,19 @@ module Spree
       end
       
       def assign_inventory_units
-        return unless params[:inventory_units].has_key? :ids
-        assign_packages_to_inventory_units
-        @shipment.inventory_unit_ids = params[:inventory_units][:ids].keys
+        unless params[:inventory_units].nil? 
+          return unless params[:inventory_units].has_key? :ids
+          assign_packages_to_inventory_units
+          @shipment.inventory_unit_ids = params[:inventory_units][:ids].keys
+        end
       end
-  
       
+      def picking_list
+        @shipments = @order.shipments
+        respond_with(@shipments)
+      end
+      
+
       private
       
       def assign_packages_to_inventory_units

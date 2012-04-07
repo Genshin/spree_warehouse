@@ -1,0 +1,45 @@
+<%= render :partial => 'spree/admin/shared/stock_sub_menu' %>
+
+<div data-hook="admin_stock_index">
+  <h1><%= t(:stock) %></h1>
+</div>
+
+<table id="stock" class="index">
+  <tr>
+  	<th><%= t(:sku) %></th>
+    <th><%= t(:product) %></th>
+	<th><%= t(:variant)%></th>
+    <th><%= t(:on_hand)%></th>
+	<th></th>
+	<th></th>
+  </tr>
+
+  <% @products.each do |product| %>
+	<% if product.has_variants? %>
+	  <% product.variants.each do |variant| %>
+	    <tr>
+	      <td><%= variant.sku %></td>
+	      <td><%= product.name %></td>
+	      <td><%= variant.name %></td>
+          <td><%= variant.count_on_hand %></td>
+	      <td id="restocking_<%= variant.id %>"><%= button_link_to t(:restock), admin_restocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %></td>
+	      <td id="destocking_<%= variant.id %>"><%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %></td>
+	    </tr>
+	  <% end %>
+	<% else %>
+	  <tr>
+	    <td><%= product.sku %></td>
+	    <td><%= product.name  %></td>
+	    <td><%= product.master.name %></td>
+	    <td><%= product.master.count_on_hand %></td>
+	    <td id="restocking_<%= product.master.id %>"><%= button_link_to t(:restock), admin_restocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %></td>
+	    <td id="destocking_<%= product.master.id %>"><%= button_link_to t(:destock), admin_destocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %></td>
+	  </tr>
+	<% end %>
+  <% end %>
+</table>
+
+
+
+
+
