@@ -13,7 +13,7 @@ RSpec::Core::RakeTask.new
 
 
 task :all_tests do
-  ["rake spec", "cucumber" ].each do |cmd|
+  ["rake spec"].each do |cmd|
     puts "Starting to run #{cmd}..."
     #system("export DISPLAY=:99.0 && bundle exec #{cmd}")
     system("bundle exec #{cmd}")

@@ -1,0 +1,15 @@
+<span id="destocking_fieldset">
+  <%= form_for :stock_record, :url => admin_destock_path, :html => { :id => "destocking_form" } do |f| %>
+  
+    <%= f.label :quantity, t(:quantity) %>
+    <%= f.text_field :quantity , :class => 'small' %>
+    
+    <%= f.label :destocking_reason_id, t(:reason) %>
+    <%= f.select :destocking_reason_id, options_from_collection_for_select(@reasons, "id", "name") %>
+    
+    <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
+    <%= hidden_field :stock_record, :direction, :value => "out" %>
+    
+    <%= f.submit t(:destock), :html => {:class => 'button', :id => 'destocking_form_submit'} %>
+  <% end %>
+</div>

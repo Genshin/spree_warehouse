@@ -25,14 +25,14 @@ FactoryGirl.define do
     name { FactoryGirl.generate(:unique_container_taxon)}
   end
   
-  factory :stock , :class => Spree::Stock do 
-    count 99
+  factory :stock_record , :class => Spree::StockRecord do 
+    quantity 99
     association :variant
   end
   
-  factory :stock_receipt , :class => Spree::StockReceipt do 
-    supplier "Subaru"
-    order_number "0010"
+  factory :destocking_reason, :class => Spree::DestockingReason do 
+    name "destock"
+    description "No description"
   end
   
   factory :package , :class => Spree::Package do 

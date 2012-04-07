@@ -1,0 +1,32 @@
+<%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Picking List' , :caption => t(:picking_list_for_order) } %>
+
+<table class="index">
+  <tr data-hook="admin_shipments_index_headers">
+    <th><%= t(:name) %></th>
+    <th><%= t(:sku) %></th>
+    <th><%= t(:containers) %></th>
+    <th><%= t(:shipment) %></th>
+    <th><%= t(:action) %></th>
+  </tr>
+  
+  <% @shipments.each do |shipment| %>
+    <% shipment.inventory_units.each do |iu| %>
+      <tr>
+      	<td><%= iu.variant.name %></td>
+      	<td><%= iu.variant.sku %></td>
+      	<% unless iu.variant.container_taxons.empty? %>
+      	  <td><%= iu.variant.container_taxons %></td>
+      	<% else %>
+      	  <td><%= t(:no_containers_assigned) %></td>
+      	<% end %>
+      	<td><%= iu.shipment.number %></td>
+      	<% if iu.state == 'sold' %>
+      	  <td><%= button_link_to t(:pick), fire_admin_inventory_unit_path(iu, :e => 'pick'), :method => :put%></td>
+      	<% else %>
+      	  <td><%= t(:picked) %></td>
+      	<% end %>
+      </tr>
+    <% end %>
+  <% end %>
+  
+</table>

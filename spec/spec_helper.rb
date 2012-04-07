@@ -4,6 +4,8 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
+#require 'capybara/rspec'
+
 require 'database_cleaner'
 require 'spree/url_helpers'
 require 'spree/core/testing_support/factories'
@@ -58,6 +60,43 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 end
 
+
+shared_context "product prototype" do
+  
+  def build_option_type_with_values(name, values)
+    ot = Factory(:option_type, :name => name)
+    values.each do |val|
+      ot.option_values.create(:name => val.downcase, :presentation => val)
+    end
+    ot
+  end
+  
+  let(:product_attributes) do
+    # Factory.attributes_for is un-deprecated!
+    #   https://github.com/thoughtbot/factory_girl/issues/274#issuecomment-3592054
+    Factory.attributes_for(:simple_product)
+  end
+
+  let(:prototype) do
+    size = build_option_type_with_values("size", %w(Small Medium Large))
+    Factory(:prototype, :name => "Size", :option_types => [ size ])
+  end
+  
+  let(:option_values_hash) do
+    hash = {}
+    prototype.option_types.each do |i|
+      hash[i.id.to_s] = i.option_value_ids
+    end
+    hash
+  end
+  
+end  
+
+
+PAYMENT_STATES = Spree::Payment.state_machine.states.keys unless defined? PAYMENT_STATES
+SHIPMENT_STATES = Spree::Shipment.state_machine.states.keys unless defined? SHIPMENT_STATES
+ORDER_STATES = Spree::Order.state_machine.states.keys unless defined? ORDER_STATES
+
 if defined? CanCan::Ability
   class AbilityDecorator
     include CanCan::Ability
@@ -73,3 +112,6 @@ RSpec::Matchers.define :have_valid_factory do |factory_name|
     Factory(factory_name).new_record?.should be_false
   end
 end
+
+
+#Capybara.default_driver = :selenium

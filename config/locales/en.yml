@@ -27,11 +27,35 @@ en:
   
   package: "Package"  
   new_package: "New Package"
-    
-    
+  
+  containers: "Containers"   
+  no_containers_assigned: "No containers assigned"
   container_taxonomy_edit: "Edit Container Taxonomy"
   new_container_taxon: "New Container Taxon"
   new_container_taxonomy: "New Container Taxonomy"
   container_taxonomy_tree_error: "Container Taxonomy tree error"
-  
+   
   first_create_the_shipment: "Create the shipment first to have the ability to create a new package"
+  
+  pick: "Pick"
+  picked: "Picked"
+  unit_picked: "Unit Picked"
+  shipment_is_picked: "Shipment is Picked"
+  
+  picking_list: "Picking List"
+  picking_list_for_order: "Picking List for Order : "
+  
+  submit: "Submit"
+  
+  restock: "Restock"
+  restocking: "Restocking"
+  destock: "Destock"
+  destocking: "Destocking"
+  
+  new_destocking_reason: "New Destocking Reason"
+  destocking_reasons_list: "Destocking Reasons"
+  editing_destocking_reason: "Editing Destocking Reason"
+  destocking_reasons_description: "Manage reasons for destocking stock"
+  
+
+ 
