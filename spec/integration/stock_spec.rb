@@ -18,7 +18,7 @@ describe "change count_on_hand" do
     
     it "should increase variant count_on_hand after creating a stock" do 
       product.master.count_on_hand = 100
-      stock = Factory(:stock_record , :quantity => 100,  :variant => product.master) 
+      stock = Factory(:stock_record , :quantity => 100,  :variant => product.master, :direction => 'in') 
       product.master.count_on_hand.should eql(200)
     end
   end
