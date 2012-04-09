@@ -24,11 +24,16 @@ module Spree
       
       def restock
         @variant = Variant.find(params[:stock_record][:variant_id])
+        unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
+          @variant.container_taxons << ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+          @variant.save
+        end
         
         if @stock_record = StockRecord.create(params[:stock_record])
           flash[:notice] = "#{@variant.name} successfully_restocked"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
+        
       end
       
       
