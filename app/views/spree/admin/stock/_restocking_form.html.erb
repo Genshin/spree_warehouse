@@ -10,6 +10,6 @@
     <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= hidden_field :stock_record, :direction, :value => "in" %>
     
-    <%= f.submit t(:restock), :html => {:class => 'button', :id => 'restocking_form_submit'} %>
+    <%= f.submit t(:restock), {:class => 'button', :id => 'restocking_form_submit'} %>
   <% end %>
 </div>

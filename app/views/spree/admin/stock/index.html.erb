@@ -9,7 +9,7 @@
   <tr>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
-    <th><%= sort_link @search,:name, t(:product) %></th>
+    <th><%= sort_link @search,:name, t(:product), { :default_order => "desc" },  {:title => 'admin_stock_listing_name_title'} %></th>
 	  <th><%= t(:quantity) %></th>
 	  <th></th>
 	  <th></th>
