@@ -1,0 +1,9 @@
+<%= tab :overview, :route => :admin %>
+<%= tab :orders, :payments, :creditcard_payments, :shipments, :creditcards, :return_authorizations %>
+<%= tab :products , :option_types, :properties, :prototypes, :variants, :product_properties, :taxons %>
+<%= tab :stock, :url => spree.admin_stock_path %>
+<%= tab :warehouses , :visual_code_types, :visual_codes, :container_taxonomies %>
+<%= tab :reports %>
+<%= tab :configurations, :general_settings, :mail_methods, :tax_categories, :zones, :states, :payment_methods, :inventory_settings,
+        :taxonomies, :shipping_methods, :trackers, :destocking_reasons, :label => 'configuration' %>
+<%= tab :users %>
