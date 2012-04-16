@@ -1,6 +1,6 @@
 <%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Picking List' , :caption => t(:picking_list_for_order) } %>
 
-<table class="index">
+<table id="picking_list" class="index">
   <tr data-hook="admin_picking_list_headers">
     <th><%= t(:name) %></th>
     <th><%= t(:sku) %></th>
