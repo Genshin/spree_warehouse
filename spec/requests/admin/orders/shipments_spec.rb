@@ -1,5 +1,3 @@
-
-
 require 'spec_helper'
 
 describe "Shipments" do
@@ -49,7 +47,6 @@ describe "Shipments" do
   end
   
   context "package" do
-    
     it "should be able to create a new package for a shipment", :js => true do
       
       click_link "Shipments"
@@ -64,7 +61,6 @@ describe "Shipments" do
 
       @order.shipment.packages.count.should == 1
     end
-    
   end
 
 end

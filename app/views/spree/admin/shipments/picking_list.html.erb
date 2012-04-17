@@ -1,7 +1,7 @@
 <%= render :partial => 'spree/admin/shared/order_tabs', :locals => { :current => 'Picking List' , :caption => t(:picking_list_for_order) } %>
 
-<table class="index">
-  <tr data-hook="admin_shipments_index_headers">
+<table id="picking_list" class="index">
+  <tr data-hook="admin_picking_list_headers">
     <th><%= t(:name) %></th>
     <th><%= t(:sku) %></th>
     <th><%= t(:containers) %></th>
@@ -14,19 +14,22 @@
       <tr>
       	<td><%= iu.variant.name %></td>
       	<td><%= iu.variant.sku %></td>
-      	<% unless iu.variant.container_taxons.empty? %>
-      	  <td><%= iu.variant.container_taxons %></td>
+      	<% unless iu.variant.variant_container_taxons.empty? %>
+          <td>
+      	    <% iu.variant.variant_container_taxons.each do |vct| %>
+              <%= vct.container_taxon.name %>(<%= vct.quantity %>)
+            <% end %>
+          </td> 
       	<% else %>
       	  <td><%= t(:no_containers_assigned) %></td>
       	<% end %>
       	<td><%= iu.shipment.number %></td>
       	<% if iu.state == 'sold' %>
-      	  <td><%= button_link_to t(:pick), fire_admin_inventory_unit_path(iu, :e => 'pick'), :method => :put%></td>
+      	  <td><%= button_link_to t(:pick), fire_admin_inventory_unit_path(iu, :e => 'pick'), :method => :put %></td>
       	<% else %>
       	  <td><%= t(:picked) %></td>
       	<% end %>
       </tr>
     <% end %>
   <% end %>
-  
 </table>
