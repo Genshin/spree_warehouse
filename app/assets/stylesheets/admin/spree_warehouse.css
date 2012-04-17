@@ -1,3 +1,11 @@
 /*
  *= require admin/spree_core
 */
+
+tr.even td {
+  background: #E5ECF9;
+}
+
+tr.odd td {
+  background: #E5ECF9;
+}

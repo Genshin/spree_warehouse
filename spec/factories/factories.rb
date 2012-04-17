@@ -28,6 +28,7 @@ FactoryGirl.define do
   factory :stock_record , :class => Spree::StockRecord do 
     quantity 99
     association :variant
+    association :container_taxon
   end
   
   factory :destocking_reason, :class => Spree::DestockingReason do 
@@ -38,6 +39,6 @@ FactoryGirl.define do
   factory :package , :class => Spree::Package do 
     tracking_number "0020"
   end
-
+  
 end
 
