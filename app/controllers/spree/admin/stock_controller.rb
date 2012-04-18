@@ -29,6 +29,7 @@ module Spree
       
       def restocking
         @container_taxons = ContainerTaxon.all
+        @container_taxon_id = params[:container_taxon_id].nil? ? 'nil' : params[:container_taxon_id]
       end
       
       def restock
@@ -54,7 +55,7 @@ module Spree
       
       def destocking
         @reasons = DestockingReason.all
-        @container_taxon_id = params[:container_taxon_id]
+        @container_taxon_id = params[:container_taxon_id].nil? ? 'nil' : params[:container_taxon_id]
       end
       
       def destock

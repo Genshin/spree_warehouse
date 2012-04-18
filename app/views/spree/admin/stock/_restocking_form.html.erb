@@ -5,7 +5,7 @@
     <%= f.text_field :quantity, :class => 'small' %>
     
     <%= f.label :container_taxon_id, t(:container_taxon) %>
-    <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name") %>
+    <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) %>
     
     <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= hidden_field :stock_record, :direction, :value => "in" %>
