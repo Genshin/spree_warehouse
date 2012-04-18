@@ -51,6 +51,7 @@ en:
   restocking: "Restocking"
   destock: "Destock"
   destocking: "Destocking"
+  new_stock: "New Stock"
   
   new_destocking_reason: "New Destocking Reason"
   destocking_reasons_list: "Destocking Reasons"

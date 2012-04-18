@@ -6,6 +6,10 @@ module Spree
       
       respond_to :html
       
+      def new
+        @container_taxons = ContainerTaxon.all
+      end
+      
       def search
         index
         render :index

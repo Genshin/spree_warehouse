@@ -1,11 +1,11 @@
 <%= render :partial => 'spree/admin/shared/stock_sub_menu' %>
 
-<div data-hook="admin_stock_index">
-  <h1><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</h1>
-</div>
-
+<span id="new_stock" class="toolbar" data-hook="toolbar">
+  <%= button_link_to t(:new_stock), admin_new_stock_path, { :id => 'new_stock_link', :icon => 'add', :remote => true } %>
+</span>
 
 <table id="stock" class="index">
+  <caption><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</caption>
   <tr>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
