@@ -9,6 +9,7 @@
     
     <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= hidden_field :stock_record, :direction, :value => "out" %>
+    <%= hidden_field :stock_record, :container_taxon_id, :value => @container_taxon_id %>
     
     <%= f.submit t(:destock), :html => {:class => 'button', :id => 'destocking_form_submit'} %>
   <% end %>

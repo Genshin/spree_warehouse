@@ -9,7 +9,7 @@
   <tr>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
-    <th><%= sort_link @search,:name, t(:product), { :default_order => "desc" },  {:title => 'admin_stock_listing_name_title'} %></th>
+    <th><%= sort_link @search,:name, t(:product), { :default_order => "desc" },  { :title => 'admin_stock_listing_name_title' } %></th>
 	  <th><%= t(:quantity) %></th>
 	  <th></th>
 	  <th></th>
@@ -62,16 +62,16 @@
 
 	  <% else %>
 
-	    <% if product.master.container_taxons.count > 0  %>
-        <% product.master.variant_container_taxons.each_with_index do |ct, ct_index| %>
+	    <% if product.master.variant_container_taxons.count > 0  %>
+        <% product.master.variant_container_taxons.each_with_index do |vct, vct_index| %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
-	  	      <td><%= ct.container_taxon.name %></td>
+	  	      <td><%= vct.container_taxon.name %></td>
 	          <td><%= product.sku %></td>
             <td></td>
-	          <td><%= ct.quantity %></td>
+	          <td><%= vct.quantity %></td>
             <td></td>
 	          <td id="destocking_<%= product.master.id %>">
-              <%= button_link_to t(:destock), admin_destocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %>
+              <%= button_link_to t(:destock), admin_destocking_path(product.master, :container_taxon_id => vct.container_taxon_id), { :id => product.master.id, :icon => 'switch', :remote => true } %>
             </td>
 	        </tr>
 	      <% end %>
@@ -85,10 +85,10 @@
   <div class="box" data-hook="admin_users_index_search">
     <h3><%= t(:search) %></h3>
 
-    <%= form_for [:admin, @search], :url => admin_stock_path, :html => {:method => :get} do |f| %>
+    <%= form_for [:admin, @search], :url => admin_stock_path, :html => { :method => :get } do |f| %>
       <p>
         <%= f.label :name_contains, t(:product_name) %><br />
-        <%= f.text_field :name_contains, :size =>18 %>
+        <%= f.text_field :name_contains, :size => 18 %>
       </p>
 
       <p>
