@@ -36,7 +36,7 @@ module Spree
       end
       
       def index 
-        @search = Spree::Product.metasearch(params[:search])
+        @search = Product.metasearch(params[:search])
         @products = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
         respond_with(@products) do |format|
           format.html
@@ -44,7 +44,8 @@ module Spree
       end
       
       def restocked_items
-        @restocked_items = StockRecord.restocked
+        @search = StockRecord.restocked.metasearch(params[:search])
+        @restocked_items = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
       
       def destocked_items
