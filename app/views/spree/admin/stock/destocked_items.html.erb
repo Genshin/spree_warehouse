@@ -6,14 +6,15 @@
 
 <table id="destocked_items_table" class="index">
   <tr>
-    <th><%= sort_link @search, :container_taxon_name, t(:container_taxon) %></th>
-    <th><%= sort_link @search, :quantity, t(:quantity) %></th>
-  	<th><%= sort_link @search, :variant_sku, t(:sku) %></th>
-    <th><%= sort_link @search, :variant_product_name, t(:product) %></th>
-	  <th><%= t(:variant)%></th>
-    <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand) %></th>
-	  <th><%= t(:destocked_at) %></th>
-	  <th><%= sort_link @search, :created_at, t(:destocked_before) %></th>
+    <th><%= sort_link @search, :container_taxon_name, t(:container_taxon), { :default_order => "asc" }, { :title => 'admin_destocked_items_container_taxon' } %></th>
+    <th><%= sort_link @search, :quantity, t(:quantity), { :default_order => "asc" }, { :title => 'admin_destocked_items_quantity' } %></th>
+    <th><%= sort_link @search, :variant_sku, t(:sku), { :default_order => "asc" }, { :title => 'admin_destocked_items_sku' } %></th>
+    <th><%= sort_link @search, :variant_product_name, t(:product), { :default_order => "asc" }, { :title => 'admin_destocked_items_product_name' } %></th>
+    <th><%= t(:variant)%></th>
+    <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand), { :default_order => "asc" }, { :title => 'admin_destocked_items_on_hand' } %></th>
+    <th><%= t(:destocked_at) %></th>
+    <th><%= sort_link @search, :created_at, t(:destocked_before), { :default_order => "asc" }, { :title => 'admin_destocked_items_destocked_before' } %></th>
+    <th></th>
   </tr>
   <% unless @destocked_items.nil? %>
     <% @destocked_items.each do |di| %>
@@ -23,7 +24,6 @@
 	      <% else %>
 	        <td><%= t(:no_container_taxons) %></td>
 	      <% end %>
-	      
         <td><%= di.quantity %></td>
 	      <td><%= di.variant.sku %></td>
 	      <td><%= di.variant.product.name %></td>
