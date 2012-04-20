@@ -5,8 +5,6 @@ gem 'sqlite3'
 gem 'rails', '>= 3.1.1', '<= 3.1.3'
 gem 'spree', '~>1.0.0' 
 
-#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => "1-0-stable
-
 group :development, :test do 
   gem "sass", :require => 'sass'
 end

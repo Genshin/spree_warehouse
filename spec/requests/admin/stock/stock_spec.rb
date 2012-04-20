@@ -56,11 +56,19 @@ describe "Stock" do
 
       click_link "Stock"
       within('table.index tr:nth-child(2)') { page.should have_content("apache baseball cap") }
+      sleep 2 
       within('table.index tr:nth-child(2)') { click_link "Restock" }
-      
-      sleep 10 
-      wait_until { page.has_content?("stock_record_quantity") } 
-      fill_in "stock_record_quantity", :with => 99
+      within('table.index tr:nth-child(2)') { click_link "Restock" }
+      puts page.find("table.index:last-child").text
+      wait_until { page.find("#restocking_fieldset") }
+
+      #wait_until { page.find("#stock_record_quantity").visible? }
+      #wait_until { page.evaluate_script("jQuery.active === 0") }
+      #wait_until { page.evaluate_script("$body.addEventListener('DOMNodeInserted', function(){ console.log('new node');}, false);")
+      #wait_until(10) { page.has_content?("Quantity") } 
+      #wait_until { page.find('html')[:class].include?('ui-loading') }
+      within('table.index tr:nth-child(2)') { fill_in "stock_record_quantity", :with => 99 }
+
       select 'A#1', :from => 'stock_record_container_taxon_id'
       click_button "Restock"
 

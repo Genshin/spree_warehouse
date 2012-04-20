@@ -1,45 +1,37 @@
 <%= render :partial => 'spree/admin/shared/stock_sub_menu' %>
 
-<div data-hook="admin_stock_index">
-  <h1><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</h1>
-</div>
-
+<span id="new_stock" class="toolbar" data-hook="toolbar">
+  <%= button_link_to t(:new_stock), admin_new_stock_path, { :id => 'new_stock_link', :icon => 'add', :remote => true } %>
+</span>
 
 <table id="stock" class="index">
+  <caption><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</caption>
   <tr>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
-    <th><%= sort_link @search,:name, t(:product), { :default_order => "desc" },  {:title => 'admin_stock_listing_name_title'} %></th>
+    <th><%= sort_link @search,:name, t(:product) %></th>
 	  <th><%= t(:quantity) %></th>
 	  <th></th>
 	  <th></th>
   </tr>
 
   <% @products.each_with_index do |product, product_i| %>
-    <tr class="<%= odd_or_even?(product_i) %>">
-      <td></td>
-      <td><%= product.master.sku %></td>
-      <td><%= product.name %></td>
-      <td><%= product.count_on_hand %></td>
-      <td id="restocking_<%= product.master.id %>">
-        <%= button_link_to t(:restock), admin_restocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %>
-      </td>
-      <td></td>
-    </tr>
 	  
     <% if product.has_variants?  %>
 	    <% product.variants.each_with_index do |variant, variant_index| %>
 	      <% if variant.container_taxons.count > 0  %>
          
-	        <% variant.variant_container_taxons.each do |ct| %>
+	        <% variant.variant_container_taxons.each do |vct| %>
 	          <tr class="<%= odd_or_even?(product_i) %>">
-	      	    <td><%= ct.container_taxon.name %></td>
+	      	    <td><%= vct.container_taxon.name %></td>
 	            <td><%= variant.sku %></td>
-              <td></td>
-	            <td><%= ct.quantity %></td>
-              <td></td>
-              <td id="destocking_<%= variant.id %>">
-                <%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
+              <td><%= product.name %></td>
+	            <td><%= vct.quantity %></td>
+              <td id="restocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
+                <%= button_link_to t(:restock), admin_restocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
+              </td>
+              <td id="destocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
+                <%= button_link_to t(:destock), admin_destocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
               </td>
 	          </tr>
 	        <% end %>
@@ -47,31 +39,32 @@
 	        <tr class="<%= odd_or_even?(product_i) %>">
 	      	  <td><%= t(:no_container_taxons) %></td>
 	          <td><%= variant.sku %></td>
-	          <td></td>
+	          <td><%= product.name %></td>
             <td><%= variant.count_on_hand %></td>
-            <td id="restocking_<%= variant.id %>">
+            <td id="restocking_<%= variant.id %>_nil">
               <%= button_link_to t(:restock), admin_restocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
             </td>
-	          <td id="destocking_<%= variant.id %>">
+	          <td id="destocking_<%= variant.id %>_nil">
               <%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
             </td>
 	        </tr>
-
 	      <% end %>
 	    <% end %>
 
 	  <% else %>
 
-	    <% if product.master.container_taxons.count > 0  %>
-        <% product.master.variant_container_taxons.each_with_index do |ct, ct_index| %>
+	    <% if product.master.variant_container_taxons.count > 0  %>
+        <% product.master.variant_container_taxons.each_with_index do |vct, vct_index| %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
-	  	      <td><%= ct.container_taxon.name %></td>
+	  	      <td><%= vct.container_taxon.name %></td>
 	          <td><%= product.sku %></td>
-            <td></td>
-	          <td><%= ct.quantity %></td>
-            <td></td>
-	          <td id="destocking_<%= product.master.id %>">
-              <%= button_link_to t(:destock), admin_destocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %>
+            <td><%= product.name %></td>
+	          <td><%= vct.quantity %></td>
+            <td id="restocking_<%= product.master.id %>_<%= vct.container_taxon_id %>">
+              <%= button_link_to t(:restock), admin_restocking_path(product.master, :container_taxon_id => vct.container_taxon_id),  { :id => product.master.id, :icon => 'switch', :remote => true } %>
+            </td>
+	          <td id="destocking_<%= product.master.id %>_<%= vct.container_taxon_id %>">
+              <%= button_link_to t(:destock), admin_destocking_path(product.master, :container_taxon_id => vct.container_taxon_id), { :id => product.master.id, :icon => 'switch', :remote => true } %>
             </td>
 	        </tr>
 	      <% end %>
@@ -80,15 +73,16 @@
 
   <% end %>
 </table>
+<%= paginate @products %>
 
 <% content_for :sidebar do %>
-  <div class="box" data-hook="admin_users_index_search">
+  <div class="box" data-hook="admin_stock_index_search">
     <h3><%= t(:search) %></h3>
 
-    <%= form_for [:admin, @search], :url => admin_stock_path, :html => {:method => :get} do |f| %>
+    <%= form_for [:admin, @search], :url => admin_stock_path, :html => { :method => :get } do |f| %>
       <p>
         <%= f.label :name_contains, t(:product_name) %><br />
-        <%= f.text_field :name_contains, :size =>18 %>
+        <%= f.text_field :name_contains, :size => 18 %>
       </p>
 
       <p>
@@ -100,7 +94,7 @@
         <%= f.text_field :variants_including_master_container_taxons_name_contains, :size => 15 %>
       </p>
 
-      <div data-hook="admin_users_index_search_buttons">
+      <div data-hook="admin_stock_index_search_buttons">
         <p><%= button t(:search) %></p>
       </div>
     <% end %>

@@ -1,5 +1,4 @@
-#Spree::Core::Engine.routes.append do
-Spree::Core::Engine.routes.draw do
+Spree::Core::Engine.routes.append do
   namespace :admin do
     resources :warehouses
     resources :visual_codes
@@ -26,7 +25,9 @@ Spree::Core::Engine.routes.draw do
     match '/stock/restock', :to => 'stock#restock' , :as => :restock
     match '/stock/:id/destocking', :to => 'stock#destocking', :as => :destocking
     match '/stock/destock', :to => 'stock#destock' , :as => :destock 
-
+    match '/stock/new', :to => 'stock#new', :as => :new_stock
+    match '/stock/create', :to => 'stock#create', :as => :create_stock
+    match '/stock/products', :to => 'stock#products', :as => :products_stock
 
     resources :destocking_reasons
     
