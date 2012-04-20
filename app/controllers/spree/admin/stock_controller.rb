@@ -9,10 +9,30 @@ module Spree
       def new
         @container_taxons = ContainerTaxon.all
       end
-      
-      def search
-        index
-        render :index
+
+      def products
+        if params[:term]
+          like= "%".concat(params[:term].concat("%"))
+          products = Product.where("name like ?", like).includes([:variants])
+        else
+          products = Product.all
+        end
+        list = products.map do |p| 
+          Hash[ 
+            id: p.id, 
+            label: p.name,
+            name: p.name,
+            variants: p.variants_including_master.map do |v| 
+              { 
+                id: v.id, 
+                sku: v.sku 
+              } 
+            end
+          ] 
+        end
+
+        puts list.to_json
+        render json: list
       end
       
       def index 
