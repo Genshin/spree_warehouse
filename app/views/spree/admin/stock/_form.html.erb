@@ -1,0 +1,40 @@
+<%= form_for :stock_record, :url => admin_create_stock_path, :html => { :id => "new_stock_form" } do |f| %>
+
+  <%= f.label :product, t(:product) %>
+  <%= f.text_field :product, :class => 'small' %>
+  
+  <%= f.label :variant_id, t(:sku) %>  
+  <select id="skus"></select>
+  <%= f.label :quantity, t(:quantity) %>
+  <%= f.text_field :quantity, :class => 'small' %>
+    
+  <%= f.label :container_taxon_id, t(:container_taxon) %>
+  <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) %>
+  <%= hidden_field :stock_record, :direction, :value => "in" %>
+    
+  <%= f.submit t(:create), {:class => 'button', :id => 'new_stock_form_submit'} %>
+<% end %>
+
+
+<%= javascript_tag do %>
+$(document).ready(function(){
+  $("#stock_record_product").autocomplete({
+    source: "<%= admin_products_stock_path %>",
+    select: function(event, ui) { 
+      $("#stock_record_product").val(ui.item.label);
+      $('#skus').empty();
+      $.each(ui.item.variants, function(i, item){
+        $('#skus').append("<option value='"+ item.id + "'>" + item.sku + "</option>");   
+      });
+      return false;
+    }
+  })
+  .data("autocomplete")._renderItem = function( ul, item ) {
+    return $( "<li></li>" )
+      .data( "item.autocomplete", item )
+      .append( "<a>" + item.label + " (" + item.variants.length + " variants)</a>" )
+      .appendTo( ul );
+  };
+
+});
+<% end %>

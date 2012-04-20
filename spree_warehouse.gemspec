@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = 'Warehouse management system based on Spree'
   s.required_ruby_version = '>= 1.8.7'
 
-  s.author            = 'Rei Kagetsuki'
+  s.authors           = ['Rei Kagetsuki', 'Vassil Kalkov']
   s.email             = 'info@genshin.org'
   s.homepage          = 'http://github.com/Genshin/spree_warehouse'
 

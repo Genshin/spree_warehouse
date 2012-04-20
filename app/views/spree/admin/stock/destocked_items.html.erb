@@ -6,34 +6,59 @@
 
 <table id="destocked_items_table" class="index">
   <tr>
-  	<th><%= t(:container_taxon) %></th>
-  	<th><%= t(:quantity) %></th>
-  	<th><%= t(:sku) %></th>
-    <th><%= t(:product) %></th>
-	<th><%= t(:variant)%></th>
-    <th><%= t(:on_hand)%></th>
-	<th>Destocked Before</th>
-	<th></th>
+    <th><%= sort_link @search, :container_taxon_name, t(:container_taxon), { :default_order => "asc" }, { :title => 'admin_destocked_items_container_taxon' } %></th>
+    <th><%= sort_link @search, :quantity, t(:quantity), { :default_order => "asc" }, { :title => 'admin_destocked_items_quantity' } %></th>
+    <th><%= sort_link @search, :variant_sku, t(:sku), { :default_order => "asc" }, { :title => 'admin_destocked_items_sku' } %></th>
+    <th><%= sort_link @search, :variant_product_name, t(:product), { :default_order => "asc" }, { :title => 'admin_destocked_items_product_name' } %></th>
+    <th><%= t(:variant)%></th>
+    <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand), { :default_order => "asc" }, { :title => 'admin_destocked_items_on_hand' } %></th>
+    <th><%= t(:destocked_at) %></th>
+    <th><%= sort_link @search, :created_at, t(:destocked_before), { :default_order => "asc" }, { :title => 'admin_destocked_items_destocked_before' } %></th>
+    <th></th>
   </tr>
   <% unless @destocked_items.nil? %>
     <% @destocked_items.each do |di| %>
       <tr>
-	   
-	    <% unless di.container_taxon.nil? %>
-	      <td><%= di.container_taxon.name %></td>
-	    <% else %>
-	      <td><%= t(:no_container_taxons) %></td>
-	    <% end %>
-	    	
-	    	
-	    <td><%= di.quantity %></td>
-	    <td><%= di.variant.sku %></td>
-	    <td><%= di.variant.product.name %></td>
-	    <td><%= di.variant.name %></td>
+	      <% unless di.container_taxon.nil? %>
+	        <td><%= di.container_taxon.name %></td>
+	      <% else %>
+	        <td><%= t(:no_container_taxons) %></td>
+	      <% end %>
+        <td><%= di.quantity %></td>
+	      <td><%= di.variant.sku %></td>
+	      <td><%= di.variant.product.name %></td>
+	      <td><%= di.variant.name %></td>
         <td><%= di.variant.count_on_hand %></td>
+        <td><%= di.created_at %></td>
         <td><%= time_ago_in_words(di.created_at) %></td>
-        <td></td>
       </tr>
     <% end %>
   <% end %>
 </table>
+<%= paginate @destocked_items %>
+
+<% content_for :sidebar do %>
+  <div class="box" data-hook="admin_destocked_items_index_search">
+    <h3><%= t(:search) %></h3>
+
+    <%= form_for [:admin, @search], :url => admin_destocked_items_path, :html => { :method => :get } do |f| %>
+      <p>
+        <%= f.label :variant_product_name_contains, t(:product_name) %><br />
+        <%= f.text_field :variant_product_name_contains, :size => 18 %>
+      </p>
+
+      <p>
+        <%= f.label :variant_sku_contains, t(:sku) %><br />
+        <%= f.text_field :variant_sku_contains, :size => 15 %>
+      </p>
+      <p>
+        <%= f.label :container_taxon_name_contains, t(:container_taxon) %><br />
+        <%= f.text_field :container_taxon_name_contains, :size => 15 %>
+      </p>
+
+      <div data-hook="admin_destocked_items_index_search_buttons">
+        <p><%= button t(:search) %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
