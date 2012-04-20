@@ -6,14 +6,14 @@
 
 <table id="restocked_items_table" class="index">
   <tr>
-    <th><%= sort_link @search, :container_taxon_name, t(:container_taxon) %></th>
-    <th><%= sort_link @search, :quantity, t(:quantity) %></th>
-    <th><%= sort_link @search, :variant_sku, t(:sku) %></th>
-    <th><%= sort_link @search, :variant_product_name, t(:product) %></th>
+    <th><%= sort_link @search, :container_taxon_name, t(:container_taxon), { :default_order => "asc" }, { :title => 'admin_restocked_items_container_taxon' } %></th>
+    <th><%= sort_link @search, :quantity, t(:quantity), { :default_order => "asc" }, { :title => 'admin_restocked_items_quantity' } %></th>
+    <th><%= sort_link @search, :variant_sku, t(:sku), { :default_order => "asc" }, { :title => 'admin_restocked_items_sku' } %></th>
+    <th><%= sort_link @search, :variant_product_name, t(:product), { :default_order => "asc" }, { :title => 'admin_restocked_items_product_name' } %></th>
 	  <th><%= t(:variant)%></th>
-    <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand) %></th>
+    <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand), { :default_order => "asc" }, { :title => 'admin_restocked_items_on_hand' } %></th>
     <th><%= t(:restocked_at) %></th>
-    <th><%= sort_link @search, :created_at, t(:restocked_before) %></th>
+    <th><%= sort_link @search, :created_at, t(:restocked_before), { :default_order => "asc" }, { :title => 'admin_restocked_items_restocked_before' } %></th>
 	  <th></th>
   </tr>
   <% unless @restocked_items.nil? %>
