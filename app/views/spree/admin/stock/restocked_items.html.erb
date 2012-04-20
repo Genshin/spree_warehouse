@@ -12,6 +12,7 @@
     <th><%= sort_link @search, :variant_product_name, t(:product) %></th>
 	  <th><%= t(:variant)%></th>
     <th><%= sort_link @search, :variant_count_on_hand, t(:on_hand) %></th>
+    <th><%= sort_link @search, :created_at, t(:restocked_at) %></th>
     <th><%= sort_link @search, :created_at, t(:restocked_before) %></th>
 	  <th></th>
   </tr>
@@ -24,6 +25,7 @@
 	      <td><%= ri.variant.product.name %></td>
 	      <td><%= ri.variant.name %></td>
         <td><%= ri.variant.count_on_hand %></td>
+        <td><%= ri.created_at %></td>
         <td><%= time_ago_in_words(ri.created_at) %></td>
         <td></td>
       </tr>
