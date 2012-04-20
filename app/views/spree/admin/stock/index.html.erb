@@ -9,7 +9,7 @@
   <tr>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
-    <th><%= sort_link @search,:name, t(:product), { :default_order => "desc" },  { :title => 'admin_stock_listing_name_title' } %></th>
+    <th><%= sort_link @search,:name, t(:product) %></th>
 	  <th><%= t(:quantity) %></th>
 	  <th></th>
 	  <th></th>
@@ -48,7 +48,6 @@
               <%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
             </td>
 	        </tr>
-
 	      <% end %>
 	    <% end %>
 
@@ -74,9 +73,10 @@
 
   <% end %>
 </table>
+<%= paginate @products %>
 
 <% content_for :sidebar do %>
-  <div class="box" data-hook="admin_users_index_search">
+  <div class="box" data-hook="admin_stock_index_search">
     <h3><%= t(:search) %></h3>
 
     <%= form_for [:admin, @search], :url => admin_stock_path, :html => { :method => :get } do |f| %>
@@ -94,7 +94,7 @@
         <%= f.text_field :variants_including_master_container_taxons_name_contains, :size => 15 %>
       </p>
 
-      <div data-hook="admin_users_index_search_buttons">
+      <div data-hook="admin_stock_index_search_buttons">
         <p><%= button t(:search) %></p>
       </div>
     <% end %>
