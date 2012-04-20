@@ -44,6 +44,8 @@ module Spree
       end
       
       def restocked_items
+        params[:search] ||= {} 
+        params[:search][:meta_sort] ||= "created_at.desc"
         @search = StockRecord.restocked.metasearch(params[:search])
         @restocked_items = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
