@@ -1,40 +1,76 @@
-<%= form_for :stock_record, :url => admin_create_stock_path, :html => { :id => "new_stock_form" } do |f| %>
-
-  <%= f.label :product, t(:product) %>
-  <%= f.text_field :product, :class => 'small' %>
+<fieldset>
+  <legend><%= t(:restock) %></legend>
+  <%= form_for :stock_record, :url => admin_restock_path, :html => { :id => "new_stock_form" } do |f| %>
+    <%= hidden_field :stock_record, :direction, :value => "in" %>
   
-  <%= f.label :variant_id, t(:sku) %>  
-  <select id="skus"></select>
-  <%= f.label :quantity, t(:quantity) %>
-  <%= f.text_field :quantity, :class => 'small' %>
-    
-  <%= f.label :container_taxon_id, t(:container_taxon) %>
-  <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) %>
-  <%= hidden_field :stock_record, :direction, :value => "in" %>
-    
-  <%= f.submit t(:create), {:class => 'button', :id => 'new_stock_form_submit'} %>
-<% end %>
+    <div style="float:left; width:50%; margin-right:5%;" data-hook="stock_record_add_product_name">
+      <%= label_tag :add_product_name, t(:name_or_sku) %>
+      <%= text_field_tag :add_product_name, nil, :class => 'fullwidth title' %>
+    </div>
+
+    <div style="float:left; width:10%; margin-right:5%;" data-hook="stock_record_quantity">
+      <%= f.label :quantity, t(:qty) %>
+      <%= f.number_field :quantity, :min => 0, :class => 'fullwidth title' %>
+    </div>
+
+    <div style="float:left; width:15%; margin-right:5%;" data-hook="stock_record_container_taxon">
+      <%= f.label :container_taxon_id, t(:container_taxon) %>
+      <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id), {}, {:class => 'fullwidth title'} %>
+    </div>
+    <%= hidden_field :stock_record, :variant_id %>
+
+    <div style="float: right; width: 10%; padding-top: 5px;" data-hook="stock_record_submit">
+      <%= button t(:restock) %>
+    </div>
+  <% end %>
+</fieldset>
 
 
 <%= javascript_tag do %>
-$(document).ready(function(){
-  $("#stock_record_product").autocomplete({
-    source: "<%= admin_products_stock_path %>",
-    select: function(event, ui) { 
-      $("#stock_record_product").val(ui.item.label);
-      $('#skus').empty();
-      $.each(ui.item.variants, function(i, item){
-        $('#skus').append("<option value='"+ item.id + "'>" + item.sku + "</option>");   
-      });
-      return false;
+  
+$.fn.improved_product_autocomplete = function(){
+  return this.each(function() {
+    $(this).autocomplete({
+      source: function(request, response) {
+        $.get("/admin/products.json?q=" + $('#add_product_name').val() + "&authenticity_token=" + encodeURIComponent($('meta[name=csrf-token]').attr("content")), function(data) {
+          result = prep_product_autocomplete_data(data)
+          response(result);
+        });
+      },
+      minLength: 4,
+      focus: function(event, ui) {
+        $('#add_product_name').val(ui.item.label);
+        return false;
+      },
+      select: function(event, ui) {
+        $('#add_product_name').val(ui.item.label);
+        product = ui.item.data;
+        if (product['variant'] == undefined) {
+          // product
+          $('#stock_record_variant_id').val(product['product']['master']['id']);
+        } else {
+          // variant
+          $('#stock_record_variant_id').val(product['variant']['id']);
+        }
+        return false;
+      }
+    }).data("autocomplete")._renderItem = function(ul, item) {
+      $(ul).addClass('ac_results');
+      html = format_product_autocomplete(item);
+      return $("<li></li>")
+              .data("item.autocomplete", item)
+              .append("<a>" + html + "</a>")
+              .appendTo(ul);
     }
-  })
-  .data("autocomplete")._renderItem = function( ul, item ) {
-    return $( "<li></li>" )
-      .data( "item.autocomplete", item )
-      .append( "<a>" + item.label + " (" + item.variants.length + " variants)</a>" )
-      .appendTo( ul );
-  };
 
+    $(this).data("autocomplete")._resizeMenu = function() {
+      var ul = this.menu.element;
+      ul.outerWidth(this.element.outerWidth());
+    }
+  });
+}
+
+$(document).ready(function(){
+  $("#add_product_name").improved_product_autocomplete();
 });
 <% end %>

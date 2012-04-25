@@ -65,7 +65,8 @@ module Spree
       def restock
         @variant = Variant.find(params[:stock_record][:variant_id])
         unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
-          @variant.container_taxons << ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+          ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+          @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
         else
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
