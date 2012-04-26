@@ -21,9 +21,9 @@
 	  
     <% if product.has_variants?  %>
 	    <% product.variants.each_with_index do |variant, variant_index| %>
-	      <% if variant.variant_container_taxons.any?  %>
+	      <% if variant.variant_container_taxons.active.any?  %>
          
-	        <% variant.variant_container_taxons.each do |vct| %>
+	        <% variant.variant_container_taxons.active.each do |vct| %>
 	          <tr class="<%= odd_or_even?(product_i) %>">
               <% if variant.images.any? %>
                 <td><%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.images.first.attachment.url(:product)%></td>
@@ -43,6 +43,7 @@
               </td>
 	          </tr>
 	        <% end %>
+
 	      <% else %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
             <% if variant.images.any? %>
@@ -67,8 +68,8 @@
 
 	  <% else %>
 
-	    <% if product.master.variant_container_taxons.any?  %>
-        <% product.master.variant_container_taxons.each_with_index do |vct, vct_index| %>
+	    <% if product.master.variant_container_taxons.active.any?  %>
+        <% product.master.variant_container_taxons.active.each_with_index do |vct, vct_index| %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
             <% if product.images.any? %>
               <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>
