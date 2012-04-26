@@ -13,5 +13,9 @@ module Spree
     def deactivate
       self.deactivated_at = Time.now
     end
+
+    def active?
+      self.deactivated_at.nil?
+    end
   end
 end
