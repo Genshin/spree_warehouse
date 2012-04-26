@@ -65,11 +65,15 @@ module Spree
         else
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
+            if variant_ct.quantity == 0  
+              variant_ct.activate  #will show
+            end
             variant_ct.quantity += params[:stock_record][:quantity].to_i 
           else
             variant_ct.quantity = params[:stock_record][:quantity].to_i 
+            variant_ct.activate  #will show
           end 
-          variant.
+          
           variant_ct.save
         end
         @variant.save
@@ -92,10 +96,12 @@ module Spree
           unless variant_ct.quantity.nil?
             variant_ct.quantity = variant_ct.quantity - params[:stock_record][:quantity].to_i 
             if variant_ct.quantity == 0
-              variant_ct.deactivated_at = Time.now 
+              variant_ct.deactivate # won't show
             end
           else
+            #TODO Do we need negative values? 
             variant_ct.quantity = 0 - params[:stock_record][:quantity].to_i 
+            variant_ct.deactivate # won't show
           end 
           variant_ct.save
         end

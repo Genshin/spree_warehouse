@@ -35,7 +35,7 @@ describe Spree::Admin::StockController do
   end
 
   describe "POST :destock" do
-    it "should mark as deactivated if quantity is '0' after destock" do 
+    it "should change 'activated/deactivated' variant_container_taxon" do 
       product.master.count_on_hand.should eql(0)
       
       post :restock, :stock_record => { :variant_id => product.master.id, :container_taxon_id => @ct_shelve.id, :quantity => 100, :direction => 'in'}, :use_route => :spree
@@ -53,6 +53,14 @@ describe Spree::Admin::StockController do
       product.master.variant_container_taxons.active.count.should eql(0)
       product.master.variant_container_taxons.deactivated.count.should eql(1)
       product.master.count_on_hand.should eql(0)
+
+      post :restock, :stock_record => { :variant_id => product.master.id, :container_taxon_id => @ct_shelve.id, :quantity => 100, :direction => 'in'}, :use_route => :spree
+
+      product.reload
+      product.master.variant_container_taxons.count.should eql(1)
+      product.master.variant_container_taxons.active.count.should eql(1)
+      product.master.variant_container_taxons.deactivated.count.should eql(0)
+      product.master.count_on_hand.should eql(100)
     end
   end
 

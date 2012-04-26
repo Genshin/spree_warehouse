@@ -5,5 +5,13 @@ module Spree
 
     scope :active, where(:deactivated_at => nil)
     scope :deactivated, where('deactivated_at IS NOT NULL')
+
+    def activate
+      self.deactivated_at = nil
+    end
+
+    def deactivate
+      self.deactivated_at = Time.now
+    end
   end
 end
