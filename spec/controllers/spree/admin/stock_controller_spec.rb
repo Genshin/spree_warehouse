@@ -21,7 +21,7 @@ describe Spree::Admin::StockController do
   end
 
   describe "POST :restock" do
-    it "should should create a variant_container_taxon after restock" do
+    it "should create a variant_container_taxon after restock" do
       product.master.count_on_hand.should eql(0)
       post :restock, :stock_record => { :variant_id => product.master.id, :container_taxon_id => @ct_shelve.id, :quantity => 50, :direction => 'in'}, :use_route => :spree
       response.should redirect_to(spree.admin_stock_path)
