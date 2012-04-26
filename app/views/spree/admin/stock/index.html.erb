@@ -21,7 +21,7 @@
 	  
     <% if product.has_variants?  %>
 	    <% product.variants.each_with_index do |variant, variant_index| %>
-	      <% if variant.container_taxons.count > 0  %>
+	      <% if variant.variant_container_taxons.any?  %>
          
 	        <% variant.variant_container_taxons.each do |vct| %>
 	          <tr class="<%= odd_or_even?(product_i) %>">
@@ -67,7 +67,7 @@
 
 	  <% else %>
 
-	    <% if product.master.variant_container_taxons.count > 0  %>
+	    <% if product.master.variant_container_taxons.any?  %>
         <% product.master.variant_container_taxons.each_with_index do |vct, vct_index| %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
             <% if product.images.any? %>
