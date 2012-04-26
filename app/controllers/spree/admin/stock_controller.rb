@@ -19,20 +19,15 @@ module Spree
         end
         list = products.map do |p| 
           Hash[ 
-            id: p.id, 
-            label: p.name,
-            name: p.name,
-            variants: p.variants_including_master.map do |v| 
-              { 
-                id: v.id, 
-                sku: v.sku 
-              } 
+            :id => p.id, 
+            :label => p.name,
+            :name => p.name,
+            :variants => p.variants_including_master.map do |v| 
+              { :id => v.id, :sku => v.sku } 
             end
           ] 
         end
-
-        puts list.to_json
-        render json: list
+        render :json => list
       end
       
       def index 
