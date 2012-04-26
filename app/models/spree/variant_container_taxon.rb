@@ -3,6 +3,8 @@ module Spree
     belongs_to :variant
     belongs_to :container_taxon 
 
+    validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
+
     scope :active, where(:deactivated_at => nil)
     scope :deactivated, where('deactivated_at IS NOT NULL')
 
