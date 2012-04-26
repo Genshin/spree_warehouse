@@ -95,6 +95,9 @@ module Spree
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
             variant_ct.quantity = variant_ct.quantity - params[:stock_record][:quantity].to_i 
+            if variant_ct.quantity == 0
+              variant_ct.deactivated_at = Time.now 
+            end
           else
             variant_ct.quantity = 0 - params[:stock_record][:quantity].to_i 
           end 

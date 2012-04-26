@@ -27,6 +27,5 @@ describe "change count_on_hand" do
       stock = Factory(:stock_record , :quantity => 50,  :variant => product.master, :direction => 'out') 
       product.master.count_on_hand.should eql(50)
     end
-
   end
 end
