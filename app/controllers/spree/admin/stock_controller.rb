@@ -69,12 +69,13 @@ module Spree
           else
             variant_ct.quantity = params[:stock_record][:quantity].to_i 
           end 
+          variant.
           variant_ct.save
         end
         @variant.save
       
         if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} successfully_restocked"
+          flash[:notice] = "#{@variant.name} #{ t(:successfully_restocked) }"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end
@@ -101,7 +102,7 @@ module Spree
         @variant.save
 
         if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} successfully_destocked"
+          flash[:notice] = "#{@variant.name} #{t(:successfully_destocked) }"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end
