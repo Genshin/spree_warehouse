@@ -7,7 +7,7 @@ require 'rspec/rails'
 #require 'capybara/rspec'
 
 require 'database_cleaner'
-require 'spree/url_helpers'
+require 'spree/core/url_helpers'
 require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/env'
 require 'active_record/fixtures'
@@ -49,7 +49,7 @@ RSpec.configure do |config|
     Spree::Ability.abilities.delete(AbilityDecorator) if Spree::Ability.abilities.include?(AbilityDecorator)
   end
   
-  config.include Spree::UrlHelpers
+  config.include Spree::Core::UrlHelpers
   config.include Devise::TestHelpers, :type => :controller
   config.include SpreeWarehouse::Engine.routes.url_helpers
   config.include Rack::Test::Methods, :type => :requests
