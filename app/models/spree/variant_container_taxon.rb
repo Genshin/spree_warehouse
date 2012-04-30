@@ -5,6 +5,8 @@ module Spree
 
     validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
 
+    attr_accessible :quantity, :container_taxon_id, :variant_id 
+
     scope :active, where(:deactivated_at => nil)
     scope :deactivated, where('deactivated_at IS NOT NULL')
 
