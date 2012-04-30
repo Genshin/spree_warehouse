@@ -1,15 +1,17 @@
 <%= render :partial => 'spree/admin/shared/stock_sub_menu' %>
 
-<span id="new_stock" class="toolbar" data-hook="toolbar">
+<div id="new_stock"  data-hook="toolbar">
   <%= button_link_to t(:new_stock), admin_new_stock_path, { :id => 'new_stock_link', :icon => 'add', :remote => true } %>
-</span>
+</div>
 
 <table id="stock" class="index">
   <caption><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</caption>
   <tr>
+    <th><%= t(:image) %></th>
   	<th><%= t(:container_taxon) %></th>
   	<th><%= t(:sku) %></th>
     <th><%= sort_link @search,:name, t(:product) %></th>
+    <th><%= t(:variant) %> </th>
 	  <th><%= t(:quantity) %></th>
 	  <th></th>
 	  <th></th>
@@ -19,13 +21,19 @@
 	  
     <% if product.has_variants?  %>
 	    <% product.variants.each_with_index do |variant, variant_index| %>
-	      <% if variant.container_taxons.count > 0  %>
+	      <% if variant.variant_container_taxons.active.any?  %>
          
-	        <% variant.variant_container_taxons.each do |vct| %>
+	        <% variant.variant_container_taxons.active.each do |vct| %>
 	          <tr class="<%= odd_or_even?(product_i) %>">
+              <% if variant.images.any? %>
+                <td><%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.images.first.attachment.url(:product)%></td>
+              <% else %>
+                <td></td>
+              <% end %>
 	      	    <td><%= vct.container_taxon.name %></td>
 	            <td><%= variant.sku %></td>
               <td><%= product.name %></td>
+              <td><%= variant.options_text %></td>
 	            <td><%= vct.quantity %></td>
               <td id="restocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
                 <%= button_link_to t(:restock), admin_restocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
@@ -35,11 +43,18 @@
               </td>
 	          </tr>
 	        <% end %>
+
 	      <% else %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
+            <% if variant.images.any? %>
+              <td><%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.images.first.attachment.url(:product)%></td>
+            <% else %>
+              <td></td>
+            <% end %>
 	      	  <td><%= t(:no_container_taxons) %></td>
 	          <td><%= variant.sku %></td>
 	          <td><%= product.name %></td>
+            <td><%= variant.options_text %></td>
             <td><%= variant.count_on_hand %></td>
             <td id="restocking_<%= variant.id %>_nil">
               <%= button_link_to t(:restock), admin_restocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
@@ -53,12 +68,18 @@
 
 	  <% else %>
 
-	    <% if product.master.variant_container_taxons.count > 0  %>
-        <% product.master.variant_container_taxons.each_with_index do |vct, vct_index| %>
+	    <% if product.master.variant_container_taxons.active.any?  %>
+        <% product.master.variant_container_taxons.active.each_with_index do |vct, vct_index| %>
 	        <tr class="<%= odd_or_even?(product_i) %>">
+            <% if product.images.any? %>
+              <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>
+            <% else %>
+              <td></td>
+            <% end %>
 	  	      <td><%= vct.container_taxon.name %></td>
 	          <td><%= product.sku %></td>
             <td><%= product.name %></td>
+            <td></td>
 	          <td><%= vct.quantity %></td>
             <td id="restocking_<%= product.master.id %>_<%= vct.container_taxon_id %>">
               <%= button_link_to t(:restock), admin_restocking_path(product.master, :container_taxon_id => vct.container_taxon_id),  { :id => product.master.id, :icon => 'switch', :remote => true } %>

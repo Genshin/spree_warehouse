@@ -1,4 +1,7 @@
-Spree::Core::Engine.routes.append do
+#Spree::Core::Engine.routes.append do
+#Spree::Core::Engine.routes.draw do 
+
+Spree::Core::Engine.routes.prepend do
   namespace :admin do
     resources :warehouses
     resources :visual_codes

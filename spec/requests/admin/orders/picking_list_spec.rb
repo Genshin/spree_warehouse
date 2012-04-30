@@ -38,13 +38,13 @@ describe "Picking List" do
     find('table.index tbody tr:nth-child(2) td:nth-child(5)').text.should == "Pending"
     
     click_link "Picking List"
-    within('table#picking_list tbody tr:nth-child(2)') { click_button "Pick" }
+    within('table.index tbody tr:nth-child(2)') { click_button "Pick" }
     page.should have_content("Unit Picked")
-    within('table#picking_list tbody tr:nth-child(2)') { page.should have_content "Picked" }
+    within('table.index tbody tr:nth-child(2)') { page.should have_content "Picked" }
 
-    within('table#picking_list tbody tr:nth-child(3)') { click_button "Pick" }
+    within('table.index tbody tr:nth-child(3)') { click_button "Pick" }
     page.should have_content("Shipment is Picked")
-    within('table#picking_list tbody tr:nth-child(3)') { page.should have_content "Picked" }
+    within('table.index tbody tr:nth-child(3)') { page.should have_content "Picked" }
 
     click_link "Shipments"
     find('table.index tbody tr:nth-child(2) td:nth-child(5)').text.should == "Picked"
