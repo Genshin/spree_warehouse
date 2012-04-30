@@ -40,17 +40,17 @@
 
     <%= form_for [:admin, @search], :url => admin_restocked_items_path, :html => { :method => :get } do |f| %>
       <p>
-        <%= f.label :variant_product_name_contains, t(:product_name) %><br />
-        <%= f.text_field :variant_product_name_contains, :size => 18 %>
+        <%= f.label :variant_product_name_cont, t(:product_name) %><br />
+        <%= f.text_field :variant_product_name_cont, :size => 18 %>
       </p>
 
       <p>
-        <%= f.label :variant_sku_contains, t(:sku) %><br />
-        <%= f.text_field :variant_sku_contains, :size => 15 %>
+        <%= f.label :variant_sku_cont, t(:sku) %><br />
+        <%= f.text_field :variant_sku_cont, :size => 15 %>
       </p>
       <p>
-        <%= f.label :container_taxon_name_contains, t(:container_taxon) %><br />
-        <%= f.text_field :container_taxon_name_contains, :size => 15 %>
+        <%= f.label :container_taxon_name_cont, t(:container_taxon) %><br />
+        <%= f.text_field :container_taxon_name_cont, :size => 15 %>
       </p>
 
       <div data-hook="admin_restocked_items_index_search_buttons">
