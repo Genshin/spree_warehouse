@@ -100,17 +100,17 @@
 
     <%= form_for [:admin, @search], :url => admin_stock_path, :html => { :method => :get } do |f| %>
       <p>
-        <%= f.label :name_contains, t(:product_name) %><br />
-        <%= f.text_field :name_contains, :size => 18 %>
+        <%= f.label :name_cont, t(:product_name) %><br />
+        <%= f.text_field :name_cont, :size => 18 %>
       </p>
 
       <p>
-        <%= f.label :variants_including_master_sku_contains, t(:sku) %><br />
-        <%= f.text_field :variants_including_master_sku_contains, :size => 15 %>
+        <%= f.label :variants_including_master_sku_cont, t(:sku) %><br />
+        <%= f.text_field :variants_including_master_sku_cont, :size => 15 %>
       </p>
       <p>
-        <%= f.label :variants_including_master_container_taxons_name_contains, t(:container_taxon) %><br />
-        <%= f.text_field :variants_including_master_container_taxons_name_contains, :size => 15 %>
+        <%= f.label :variants_including_master_container_taxons_name_cont, t(:container_taxon) %><br />
+        <%= f.text_field :variants_including_master_container_taxons_name_cont, :size => 15 %>
       </p>
 
       <div data-hook="admin_stock_index_search_buttons">

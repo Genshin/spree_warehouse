@@ -4,7 +4,7 @@ module Spree
     has_many :variant_container_taxons
     has_many :container_taxons, :through => :variant_container_taxons
 
-    attr_accessible :visual_code, :variant_container_taxons_attributes
+    attr_accessible :visual_code, :variant_container_taxons
 
     def add_count(num)
       self.count_on_hand += num
