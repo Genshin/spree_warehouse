@@ -58,7 +58,6 @@ describe "Destocked items" do
       #TODO Add count_on_hand to product, so to check for positive values
       #on_hand.asc
       click_link "admin_destocked_items_on_hand"
-      save_and_open_page
       within('table.index tr:nth-child(2)') { page.should have_content("zomg shirt") }
       within('table.index tr:nth-child(2)') { page.should have_content("-10") }
       within('table.index tr:nth-child(3)') { page.should have_content("apache baseball cap") }

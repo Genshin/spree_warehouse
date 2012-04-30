@@ -19,20 +19,15 @@ module Spree
         end
         list = products.map do |p| 
           Hash[ 
-            id: p.id, 
-            label: p.name,
-            name: p.name,
-            variants: p.variants_including_master.map do |v| 
-              { 
-                id: v.id, 
-                sku: v.sku 
-              } 
+            :id => p.id, 
+            :label => p.name,
+            :name => p.name,
+            :variants => p.variants_including_master.map do |v| 
+              { :id => v.id, :sku => v.sku } 
             end
           ] 
         end
-
-        puts list.to_json
-        render json: list
+        render :json => list
       end
       
       def index 
@@ -65,20 +60,26 @@ module Spree
       def restock
         @variant = Variant.find(params[:stock_record][:variant_id])
         unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
-          @variant.container_taxons << ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+          ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+          @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
         else
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
+            if variant_ct.quantity == 0  
+              variant_ct.activate  #will show
+            end
             variant_ct.quantity += params[:stock_record][:quantity].to_i 
           else
             variant_ct.quantity = params[:stock_record][:quantity].to_i 
+            variant_ct.activate  #will show
           end 
+          
           variant_ct.save
         end
         @variant.save
       
         if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} successfully_restocked"
+          flash[:notice] = "#{@variant.name} #{ t(:successfully_restocked) }"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end
@@ -94,15 +95,20 @@ module Spree
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
             variant_ct.quantity = variant_ct.quantity - params[:stock_record][:quantity].to_i 
+            if variant_ct.quantity == 0
+              variant_ct.deactivate # won't show
+            end
           else
+            #TODO Do we need negative values? 
             variant_ct.quantity = 0 - params[:stock_record][:quantity].to_i 
+            variant_ct.deactivate # won't show
           end 
           variant_ct.save
         end
         @variant.save
 
         if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} successfully_destocked"
+          flash[:notice] = "#{@variant.name} #{t(:successfully_destocked) }"
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end

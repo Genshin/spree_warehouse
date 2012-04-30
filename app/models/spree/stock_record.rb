@@ -3,6 +3,8 @@ module Spree
     belongs_to :variant
     belongs_to :container_taxon
     belongs_to :destocking_reason
+
+    validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
     
     scope :restocked, where('direction = ?','in')
     scope :destocked, where('direction = ?','out')
