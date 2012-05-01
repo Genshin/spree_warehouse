@@ -1,12 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.0' 
-gem 'sqlite3'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
 end
-
 
 #group :assets do
 #  gem 'sass-rails', "~> 3.2"
