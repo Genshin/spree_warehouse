@@ -19,15 +19,15 @@
   <% unless @destocked_items.nil? %>
     <% @destocked_items.each do |di| %>
       <tr>
-	      <% unless di.container_taxon.nil? %>
-	        <td><%= di.container_taxon.name %></td>
-	      <% else %>
-	        <td><%= t(:no_container_taxons) %></td>
-	      <% end %>
+        <% unless di.container_taxon.nil? %>
+          <td><%= di.container_taxon.name %></td>
+        <% else %>
+          <td><%= t(:no_container_taxons) %></td>
+        <% end %>
         <td><%= di.quantity %></td>
-	      <td><%= di.variant.sku %></td>
-	      <td><%= di.variant.product.name %></td>
-	      <td><%= di.variant.name %></td>
+        <td><%= di.variant.sku %></td>
+        <td><%= di.variant.product.name %></td>
+        <td><%= di.variant.name %></td>
         <td><%= di.variant.count_on_hand %></td>
         <td><%= di.created_at %></td>
         <td><%= time_ago_in_words(di.created_at) %></td>
