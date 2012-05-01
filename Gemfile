@@ -1,22 +1,23 @@
 source 'http://rubygems.org'
 
-gem 'devise', '1.4.8'
-gem 'sqlite3'
-gem 'rails', '>= 3.1.1', '<= 3.1.3'
-gem 'spree', '~>1.0.0' 
+gem 'spree', '~> 1.1.0' 
 
 group :development, :test do 
-  gem "sass", :require => 'sass'
+  gem "sass", :require => 'sass' 
 end
 
+#group :assets do
+#  gem 'sass-rails', "~> 3.2"
+#  gem 'coffee-rails', "~> 3.2"
+#end
 
 group :test do
-  gem 'rspec-rails', '~> 2.8.0'
+  gem 'rspec-rails', '~> 2.9.0'
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'ffaker'
   gem 'shoulda-matchers', '~> 1.0.0'
   gem 'capybara'
-  gem 'selenium-webdriver','~> 2.20.0'
+  gem 'selenium-webdriver','2.20.0'
   gem 'database_cleaner', '0.7.1'
   gem 'launchy'
   

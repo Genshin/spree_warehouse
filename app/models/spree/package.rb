@@ -4,6 +4,8 @@ module Spree
     belongs_to :container_taxon
     has_many :inventory_units
     
+    attr_accessible :shipment, :container_taxon 
+
     before_create :generate_tracking_number
     
     def generate_tracking_number
