@@ -15,4 +15,4 @@ notifications:
 branches:
   only:
     - master
-    - spree_1_1_stable
+    - spree-1-0-stable
