@@ -6,13 +6,14 @@ Please see the design document (still a work in progress) [here](https://docs.go
 
 Installation
 =======
-We support only Spree 1.0.0 and above !
+We support only Spree  >= 1.0.0
 
-Install spree 1.0 
+This branch is for version 1.1.x, for details check the Versionfile.
+
+Install spree 1.1 
 
 Include in your Gemfile: 
 
-    gem 'spree', "~>1.0.0" 
     gem 'spree_warehouse' , :git => 'git@github.com:Genshin/spree_warehouse.git'
 
 And run: 
@@ -20,6 +21,7 @@ And run:
     $ bundle
     $ rake spree_warehouse:install:migrations 
     $ rake db:migrate
+    $ rake spree_warehouse:db:seed
     $ rails s 
 
 
