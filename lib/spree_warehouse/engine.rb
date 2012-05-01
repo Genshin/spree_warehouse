@@ -9,7 +9,6 @@ module SpreeWarehouse
 
     config.autoload_paths += %W(#{config.root}/lib)
 
-    # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec
     end

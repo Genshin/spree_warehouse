@@ -31,25 +31,25 @@ module Spree
       end
       
       def index 
-        @search = Product.metasearch(params[:search])
-        @products = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        @search = Product.search(params[:q])
+        @products = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
         respond_with(@products) do |format|
           format.html
         end
       end
       
       def restocked_items
-        params[:search] ||= {} 
-        params[:search][:meta_sort] ||= "created_at.desc"
-        @search = StockRecord.restocked.metasearch(params[:search])
-        @restocked_items = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        params[:q] ||= {} 
+        params[:q][:s] ||= "created_at.desc"
+        @search = StockRecord.restocked.search(params[:q])
+        @restocked_items = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
       
       def destocked_items
-        params[:search] ||= {} 
-        params[:search][:meta_sort] ||= "created_at.desc"
-        @search = StockRecord.destocked.metasearch(params[:search])
-        @destocked_items = @search.relation.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        params[:q] ||= {} 
+        params[:q][:s] ||= "created_at.desc"
+        @search = StockRecord.destocked.search(params[:q])
+        @destocked_items = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
       end
       
       def restocking

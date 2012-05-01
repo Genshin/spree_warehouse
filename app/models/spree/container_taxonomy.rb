@@ -5,6 +5,8 @@ module Spree
     has_many :container_taxons
     has_one :root, :conditions => { :parent_id => nil }, :class_name => 'Spree::ContainerTaxon'
 
+    attr_accessible :name
+
     after_save :set_name
     after_destroy :destroy_root_taxon
 
