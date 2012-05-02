@@ -11,7 +11,7 @@ module Spree
       variant.option_values << Factory(:option_value)
       variant
     end
-    let!(:attributes) { [:id, :name, :count_on_hand,
+    let!(:attributes) { [:id, :name, :visual_code, :count_on_hand,
                          :sku, :price, :weight, :height,
                          :width, :depth, :is_master, :cost_price,
                          :permalink] }
