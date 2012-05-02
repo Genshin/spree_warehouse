@@ -46,6 +46,17 @@ module Spree
         json_response["count"].should == 1
       end
 
+      it "can search by visual_code" do
+        Factory(:product, :name => "The best product in the world", :visual_code => '123456')
+        api_get :search, :q => { :variants_including_master_visual_code_eq => "123456" }
+        json_response["products"].first.should have_attributes(attributes)
+        json_response["count"].should == 1
+
+        api_get :search, :q => { :variants_including_master_visual_code_eq => "12345" }
+        json_response["products"].should == nil
+        json_response["count"].should == 0
+      end
+
       it "gets a single product" do
         product.master.images.create!(:attachment => image("thinking-cat.jpg"))
         api_get :show, :id => product.to_param
