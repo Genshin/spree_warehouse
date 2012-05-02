@@ -10,6 +10,10 @@ require 'database_cleaner'
 require 'spree/core/url_helpers'
 require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/env'
+
+require 'spree/api/testing_support/helpers'
+require 'spree/api/testing_support/setup'
+
 require 'active_record/fixtures'
 
 # Requires supporting files with custom matchers and macros, etc,
@@ -50,6 +54,9 @@ RSpec.configure do |config|
   end
   
   config.include Spree::Core::UrlHelpers
+  config.include Spree::Api::TestingSupport::Helpers, :type => :controller
+  config.extend Spree::Api::TestingSupport::Setup, :type => :controller
+
   config.include Devise::TestHelpers, :type => :controller
   config.include SpreeWarehouse::Engine.routes.url_helpers
   config.include Rack::Test::Methods, :type => :requests
