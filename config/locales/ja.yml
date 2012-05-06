@@ -24,3 +24,47 @@ ja:
     code: "倉庫コード"
     location: "住所・場所"
     details: "備考・詳細"
+
+  package: "パッケージ"  
+  new_package: "新しいパッケージ"
+
+  product_name: "商品名"
+  
+  containers: "コンテナ"   
+  no_containers_assigned: "コンテナが指定されていない"
+  container_taxonomy_edit: "コンテナ構成を編集"
+  container_taxon: "コンテナ"
+  new_container_taxon: "新規コンテナ"
+  new_container_taxonomy: "新規コンテナ構成"
+  container_taxonomy_tree_error: "コンテナ構成にエラーがあった為ツリービュウが作れませんでした"
+   
+  first_create_the_shipment: "新しいパッケージを作る前に新しい配送(送り状)を作って下さい"
+  
+  pick: "ピック"
+  picked: "ビック済み"
+  unit_picked: "Unit Picked"
+  shipment_is_picked: "Shipment is Picked"
+  
+  picking_list: "ピッキングリスト"
+  picking_list_for_order: "この注文のピッキングリスト: "
+  
+  submit: "確定"
+  quantity: "個数"
+  
+  restock: "再入荷"
+  restocking: "再入荷"
+  successfully_restocked: "再入荷処理が完了しました"
+  restocked_at: "再入荷時刻"
+  restocked_before: "前の再入荷時刻"
+  destock: "在庫状況変更"
+  destocking: "在庫状況の管理"
+  successfully_destocked: "在庫状況が変更されました"
+  destocked_at: "在庫状況の変更時刻"
+  destocked_before: "前の在庫状況変更"
+  new_stock: "[再]入荷"
+  
+  new_destocking_reason: "新規在庫状況変更理由"
+  destocking_reasons_list: "在庫状況変更の理由"
+  editing_destocking_reason: "在庫状況変更理由の編集"
+  destocking_reasons_description: "在庫状況変更理由の管理"
+    
