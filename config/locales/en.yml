@@ -67,6 +67,8 @@ en:
   destocking_reasons_list: "Destocking Reasons"
   editing_destocking_reason: "Editing Destocking Reason"
   destocking_reasons_description: "Manage reasons for destocking stock"
+
+  generate_qr_code: "Generate QR code"
   
 
  

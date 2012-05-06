@@ -11,6 +11,10 @@ module Spree
         [:id, :name, :count_on_hand, :visual_code, :sku, :price, :weight, :height, :width, :depth, :is_master, :cost_price, :permalink]
       end
 
+      def stock_attributes
+        [:id, :quantity]
+      end
+
     end
   end
 end

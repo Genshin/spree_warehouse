@@ -52,6 +52,8 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
     Spree::Ability.abilities.delete(AbilityDecorator) if Spree::Ability.abilities.include?(AbilityDecorator)
   end
+
+  config.include FactoryGirl::Syntax::Methods
   
   config.include Spree::Core::UrlHelpers
   config.include Spree::Api::TestingSupport::Helpers, :type => :controller
