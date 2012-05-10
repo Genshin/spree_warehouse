@@ -1,0 +1,1 @@
+collection @stock_records
