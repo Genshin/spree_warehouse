@@ -1,0 +1,4 @@
+<%= form_for :user, :url => admin_generate_qr_code_path, :html => { :id => "admin_qr_generate_form" } do |f| %>
+  <%= text_field_tag :qr_text, nil, :class => 'fullwidth title' %>
+  <%= button t(:generate_qr_code) %>
+<% end %>
