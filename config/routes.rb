@@ -2,6 +2,14 @@
 #Spree::Core::Engine.routes.draw do 
 
 Spree::Core::Engine.routes.prepend do
+
+  namespace :api do
+    scope :module => :v1 do
+      resources :stock 
+    end
+  end
+
+
   namespace :admin do
     resources :warehouses
     resources :visual_codes
@@ -32,6 +40,9 @@ Spree::Core::Engine.routes.prepend do
     match '/stock/create', :to => 'stock#create', :as => :create_stock
     match '/stock/products', :to => 'stock#products', :as => :products_stock
 
+
+    match '/users/generate_qr_code', :to => 'users#generate_qr_code', :as => :generate_qr_code
+
     resources :destocking_reasons
     
     resources :orders do
@@ -48,4 +59,3 @@ Spree::Core::Engine.routes.prepend do
 
   end
 end
-
