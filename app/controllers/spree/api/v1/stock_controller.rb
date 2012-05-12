@@ -7,6 +7,10 @@ module Spree
           @stock_records = StockRecord.all
         end
 
+        def show
+          @stock_records = StockRecord.all
+        end
+
       end
     end
   end

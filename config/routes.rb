@@ -40,8 +40,11 @@ Spree::Core::Engine.routes.prepend do
     match '/stock/create', :to => 'stock#create', :as => :create_stock
     match '/stock/products', :to => 'stock#products', :as => :products_stock
 
-
-    match '/users/generate_qr_code', :to => 'users#generate_qr_code', :as => :generate_qr_code
+    resources :users do 
+      member do 
+        get :qr
+      end
+    end
 
     resources :destocking_reasons
     
