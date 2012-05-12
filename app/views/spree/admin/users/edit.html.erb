@@ -11,5 +11,11 @@
       <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
     </div>
   <% end %>
-  <%= render :partial => 'qr' %>
+  <%= render :partial => 'generate_qr_code' %>
+</div>
+
+<div>
+  <% if @user.api_key? %>
+
+  <% end %>
 </div>

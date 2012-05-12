@@ -1,3 +1,0 @@
-<%= if @user.api_key?
-		button_to t(:generate_qr_code), admin_generate_qr_code_path(:id => @user.id)
-	end %>

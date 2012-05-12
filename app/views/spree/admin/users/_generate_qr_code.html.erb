@@ -1,34 +1,5 @@
-<style type="text/css">
- table.qrcode {
-  border-width: 0;
-  border-style: none;
-  border-color: #0000ff;
-  border-collapse: collapse;
- }
- td {
-   border-width: 0;
-   border-style: none;
-   border-color: #0000ff;
-   border-collapse: collapse;
-   padding: 0;
-   margin: 0;
-   width: 10px;
-   height: 10px;
- }
- td.black { background-color: #000; }
- td.white { background-color: #fff; }
-</style>
- 
-<table class="qrcode">
- <% @qr.modules.each_index do |x| -%>
-   <tr>
-   <% @qr.modules.each_index do |y| -%>
-    <% if @qr.dark?(x,y) -%>
-    <td class="black"/>
-    <% else -%>
-    <td class="white"/>
-    <% end -%>
-   <% end -%>
-   </tr>
- <% end -%>
-</table>
+<% if @user.api_key? %>
+  <%= button_link_to t(:generate_qr_code), qr_admin_user_path(@user.id) %>
+<% end %>
+
+
