@@ -12,7 +12,7 @@ module Spree
 
     validates :name, :presence => true
 
-    attr_accessible :name, :parent_id, :position, :icon, :description, :permalink, :container_taxonomy_id
+    attr_accessible :name, :parent_id, :position, :icon, :description, :permalink, :container_taxonomy_id, :container_taxonomy
 
     # Creates permalink based on Stringex's .to_url method
     def set_permalink
