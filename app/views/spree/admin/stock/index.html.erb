@@ -29,7 +29,13 @@
               <% else %>
                 <td></td>
               <% end %>
-              <td><%= vct.container_taxon.name %></td>
+              <td>
+                <% if vct.container_taxon %>
+                  <%= vct.container_taxon.name  %>
+                <% else %>
+                  <%= t(:no_container_taxons) %>
+                <% end %>
+              </td>
               <td><%= variant.sku %></td>
               <td><%= product.name %></td>
               <td><%= variant.options_text %></td>
