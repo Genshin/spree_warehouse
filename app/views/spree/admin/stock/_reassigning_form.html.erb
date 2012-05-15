@@ -1,0 +1,14 @@
+<fieldset id="reassigning">
+  <%= form_for :stock_record, :url => admin_reassign_path, :html => { :id => "reassigning_form" } do |f| %>
+    <%= f.label :quantity, t(:qty) %>
+    <%= f.number_field :quantity, :min => 0, :class => 'small' %>
+    
+    <%= f.label :container_taxon_id, t(:container_taxon) %>
+    <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) if @container_taxon_id %>
+    
+    <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
+    <%= hidden_field :stock_record, :direction, :value => "in" %>
+    
+    <%= button t(:submit) %>
+  <% end %>
+</fieldset>

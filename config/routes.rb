@@ -30,14 +30,22 @@ Spree::Core::Engine.routes.prepend do
     end
     
     match '/stock', :to => 'stock#index', :as => :stock
+    
     match '/stock/restocked_items', :to => 'stock#restocked_items', :as => :restocked_items
     match '/stock/destocked_items', :to => 'stock#destocked_items', :as => :destocked_items
+
     match '/stock/:id/restocking', :to => 'stock#restocking', :as => :restocking
     match '/stock/restock', :to => 'stock#restock' , :as => :restock
+
     match '/stock/:id/destocking', :to => 'stock#destocking', :as => :destocking
     match '/stock/destock', :to => 'stock#destock' , :as => :destock 
+
+    match '/stock/:id/reassigning', :to => 'stock#reassigning', :as => :reassigning
+    match '/stock/reassign', :to => 'stock#reassign' , :as => :reassign
+
     match '/stock/new', :to => 'stock#new', :as => :new_stock
     match '/stock/create', :to => 'stock#create', :as => :create_stock
+
     match '/stock/products', :to => 'stock#products', :as => :products_stock
 
     resources :users do 

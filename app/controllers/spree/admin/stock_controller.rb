@@ -119,6 +119,17 @@ module Spree
         end
       end
       
+      #TODO clear this and call directly restock , rename reassigning to reassign
+      def reassign
+        restock
+      end
+
+      def reassigning
+        @container_taxons = ContainerTaxon.all
+        @variant = Variant.find(params[:id])
+        @container_taxon_id = params[:container_taxon_id].nil? ? 'nil' : params[:container_taxon_id]
+      end
+
       private 
       
       def load_variant
