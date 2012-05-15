@@ -8,7 +8,7 @@
     
     <%= hidden_field :stock_record, :variant_id, :value => @variant.id %>
     <%= hidden_field :stock_record, :direction, :value => "out" %>
-    <%= hidden_field :stock_record, :container_taxon_id, :value => @container_taxon_id %>
+    <%= hidden_field :stock_record, :container_taxon_id, :value => @container_taxon_id if @container_taxon_id %>
     
     <%= button t(:submit) %>
   <% end %>
