@@ -15,6 +15,14 @@ module Spree
         [:id, :quantity]
       end
 
+      def container_taxonomy_attributes
+        [:id, :name]
+      end
+
+      def container_taxon_attributes
+        [:id, :name, :permalink, :position, :parent_id, :taxonomy_id]
+      end
+
     end
   end
 end
