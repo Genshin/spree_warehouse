@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'spree', '~> 1.1.0' 
+gem 'spree', '~> 1.1.1' 
 
 #gem 'rqrcode-rails3', '0.1.3',:require => 'rqrcode_rails3'
 gem 'rqrcode'
