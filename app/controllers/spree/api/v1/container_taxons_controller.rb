@@ -12,37 +12,37 @@ module Spree
 
         def create
           authorize! :create, ContainerTaxon
-          @taxon = Taxon.new(params[:taxon])
-          if @taxon.save
+          @container_taxon = ContainerTaxon.new(params[:container_taxon])
+          if @container_taxon.save
             render :show, :status => 201
           else
-            invalid_resource!(@taxon)
+            invalid_resource!(@container_taxon)
           end
         end
 
         def update
-          authorize! :update, Taxon
-          if taxon.update_attributes(params[:taxon])
+          authorize! :update, container_taxon
+          if container_taxon.update_attributes(params[:container_taxon])
             render :show, :status => 200
           else
-            invalid_resource!(taxon)
+            invalid_resource!(container_taxon)
           end
         end
 
         def destroy
-          authorize! :delete, Taxon
-          taxon.destroy
+          authorize! :delete, container_taxon
+          container_taxon.destroy
           render :text => nil, :status => 200
         end
 
         private
 
-        def taxonomy
-          @taxonomy ||= Taxonomy.find(params[:taxonomy_id])
+        def container_taxonomy
+          @container_taxonomy ||= ContainerTaxonomy.find(params[:container_taxonomy_id])
         end
 
-        def taxon
-          @taxon ||= taxonomy.taxons.find(params[:id])
+        def container_taxon
+          @container_taxon ||= container_taxonomy.container_taxons.find(params[:id])
         end
 
       end

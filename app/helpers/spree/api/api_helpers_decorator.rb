@@ -20,7 +20,7 @@ module Spree
       end
 
       def container_taxon_attributes
-        [:id, :name, :permalink, :position, :parent_id, :taxonomy_id]
+        [:id, :name, :permalink, :position, :parent_id, :container_taxonomy_id]
       end
 
     end
