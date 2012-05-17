@@ -4,7 +4,6 @@ module Spree
   describe Api::V1::VariantsController do
     render_views
 
-
     let!(:product) { Factory(:product) }
     let!(:variant) do
       variant = product.master

@@ -1,1 +1,2 @@
-collection @stock_records
+object @stock_record
+attributes *stock_attributes
