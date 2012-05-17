@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.1' 
 
-gem 'rqrcode'
-gem 'mini_magick'
+#gem 'rqrcode'
+#gem 'mini_magick'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 

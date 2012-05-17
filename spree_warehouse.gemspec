@@ -19,5 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'spree_core', '~> 1.1.1'
   s.add_dependency 'spree_api', '~> 1.1.1'
   s.add_dependency 'rainbow'
+  s.add_dependency 'rqrcode'
+  s.add_dependency 'mini_magick'
   s.add_development_dependency 'sqlite3'
 end
