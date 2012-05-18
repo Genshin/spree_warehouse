@@ -4,11 +4,10 @@ module Spree
   describe Spree::Api::V1::StockController do
     render_views
 
-    let!(:product) { Factory(:product) }
+    let(:product) { Factory(:product, :name => 'Subaru Impreza') }
     let!(:attributes) { [:id, :quantity, :container_taxon_id, :direction] }
     let!(:stock_record) { Factory(:stock_record, :quantity => 7) }
-
-
+    let(:destocking_reason) { Factory(:destocking_reason) }
 
     before do
       stub_authentication!
@@ -35,11 +34,16 @@ module Spree
       sign_in_as_admin!
 
       it "can create a new stock record" do
-        api_post :create, :stock_record => { :quantity => 7, :container_taxon_id => @ct_shelve.id, :direction => 'in'  }
+        api_post :create, :stock_record => { :quantity => 7, :variant_id => product.master.id, 
+            :container_taxon_id => @ct_shelve.id, :direction => 'in', :destocking_reason_id => destocking_reason.id,
+            :order_number => "123"  }
+
         json_response.should have_attributes(attributes)
         json_response["stock_record"]["quantity"].should eql(7)
+        json_response["stock_record"]["variant_id"].should eql(product.master.id)
         json_response["stock_record"]["container_taxon_id"].should eql(@ct_shelve.id)
         json_response["stock_record"]["direction"].should eql("in")
+        json_response["stock_record"]["destocking_reason_id"].should eql(destocking_reason.id)
         response.status.should == 201
       end
 

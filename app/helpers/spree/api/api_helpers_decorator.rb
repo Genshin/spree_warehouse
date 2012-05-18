@@ -12,7 +12,7 @@ module Spree
       end
 
       def stock_attributes
-        [:id, :quantity, :container_taxon_id, :direction]
+        [:id, :quantity, :container_taxon_id, :variant_id, :direction, :order_number, :destocking_reason_id]
       end
 
       def container_taxonomy_attributes
