@@ -14,6 +14,8 @@ module Spree
       container_taxon2.children << create(:container_taxon, :name => "3.2.2", :container_taxonomy => container_taxonomy)
       container_taxon.children << container_taxon2
       container_taxonomy.root.children << container_taxon
+      @product = Factory(:product, :name => 'Subaru Impreza')
+      #@stock_record = Factory(:stock_record, :quantity => 7, :variant_id => @product.master.id, :container_taxon_id => container_taxon.id, :direction => 'in')
     end
 
     context "as a normal user" do
@@ -66,6 +68,20 @@ module Spree
         response.status.should == 201
 
         container_taxon.reload.children.count.should eq 2
+      end
+
+      #TODO Finish this test
+      it "can search for container_taxons" do
+        api_post :create, :stock_record => { :quantity => 7, :variant_id => @product.master.id, 
+            :container_taxon_id => container_taxon.id, :direction => 'in'}
+            
+        response.status.should == 201
+        api_get :search, :q => { :name_cont => "Ruby" }
+        puts json_response
+        json_response.first['container_taxon']['name'].should eq "Ruby"
+        json_response.first['container_taxon']['variants'].count.should eq 1
+        variant = json_response.first['container_taxon']['variants'].first
+        puts variant
       end
 
       it "cannot create a new container_taxon with invalid attributes" do
