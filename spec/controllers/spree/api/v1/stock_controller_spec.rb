@@ -5,11 +5,15 @@ module Spree
     render_views
 
     let!(:product) { Factory(:product) }
-    let!(:attributes) { [:id, :quantity] }
+    let!(:attributes) { [:id, :quantity, :container_taxon_id, :direction] }
     let!(:stock_record) { Factory(:stock_record, :quantity => 7) }
+
+
 
     before do
       stub_authentication!
+      c_taxonomy = Factory(:container_taxonomy, :name => 'Rack#1') 
+      @ct_shelve = Factory(:container_taxon, :container_taxonomy => c_taxonomy, :name => 'Shelve#1') 
     end
 
     context "as a normal user" do
@@ -31,9 +35,11 @@ module Spree
       sign_in_as_admin!
 
       it "can create a new stock record" do
-        api_post :create, :stock_record => { :quantity => 7 }
+        api_post :create, :stock_record => { :quantity => 7, :container_taxon_id => @ct_shelve.id, :direction => 'in'  }
         json_response.should have_attributes(attributes)
         json_response["stock_record"]["quantity"].should eql(7)
+        json_response["stock_record"]["container_taxon_id"].should eql(@ct_shelve.id)
+        json_response["stock_record"]["direction"].should eql("in")
         response.status.should == 201
       end
 
