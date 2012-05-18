@@ -2,8 +2,14 @@ module Spree
   module Api
     module V1
       class ContainerTaxonsController < Spree::Api::V1::BaseController
+
         def index
           @container_taxons = container_taxonomy.root.children
+        end
+
+        def search
+          @container_taxons = ContainerTaxon.search(params[:q]).result.page(params[:page])
+          render :index
         end
 
         def show

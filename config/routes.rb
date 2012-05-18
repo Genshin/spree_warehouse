@@ -6,9 +6,15 @@ Spree::Core::Engine.routes.prepend do
   namespace :api do
     scope :module => :v1 do
       resources :stock 
+
       resources :container_taxonomies do
-        resources :container_taxons
+        resources :container_taxons do
+          collection do
+            get :search
+          end
+        end
       end
+      
     end
   end
 
