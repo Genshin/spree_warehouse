@@ -15,6 +15,7 @@
     <th><%= t(:destocked_at) %></th>
     <th><%= sort_link @search, :created_at, t(:destocked_before), { :default_order => "asc" }, { :title => 'admin_destocked_items_destocked_before' } %></th>
     <th></th>
+    <th></th>
   </tr>
   <% unless @destocked_items.nil? %>
     <% @destocked_items.each do |di| %>
@@ -31,6 +32,13 @@
         <td><%= di.variant.count_on_hand %></td>
         <td><%= di.created_at %></td>
         <td><%= time_ago_in_words(di.created_at) %></td>
+        <% if di.container_taxon %>
+          <td id="reassigning_<%= di.variant.id %>_<%= di.container_taxon.id %>">
+        <% else %>
+          <td id="reassigning_<%= di.variant.id %>_nil">
+        <% end %>
+          <%= button_link_to t(:reassign_stock), admin_reassigning_path(di.variant),  { :id => di.variant.id, :icon => 'switch', :remote => true } %>
+        </td>
       </tr>
     <% end %>
   <% end %>

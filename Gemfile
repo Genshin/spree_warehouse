@@ -1,20 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'spree', '~> 1.1.0' 
+gem 'spree', '~> 1.1.1' 
 
-#gem 'rqrcode-rails3', '0.1.3',:require => 'rqrcode_rails3'
-gem 'rqrcode'
-gem 'mini_magick'
-#gem 'rqrcode-rails3', :git => 'https://github.com/samvincent/rqrcode-rails3.git'
+#gem 'rqrcode'
+#gem 'mini_magick'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
 end
-
-#group :assets do
-#  gem 'sass-rails', "~> 3.2"
-#  gem 'coffee-rails', "~> 3.2"
-#end
 
 group :test do
   gem 'rspec-rails', '~> 2.9.0'

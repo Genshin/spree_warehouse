@@ -62,6 +62,10 @@ en:
   destocked_at: "Destocked At"
   destocked_before: "Destocked Before"
   new_stock: "New Stock"
+
+  reassign: "Reassign"
+  reassigning: "Reassigning"
+  reassign_stock: "Reassign Stock"
   
   new_destocking_reason: "New Destocking Reason"
   destocking_reasons_list: "Destocking Reasons"
