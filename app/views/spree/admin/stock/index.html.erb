@@ -18,9 +18,10 @@
   </tr>
 
   <% @products.each_with_index do |product, product_i| %>
-    <% if product.has_variants?  %>
+
+    <% if product.has_variants? %>
       <% product.variants.each_with_index do |variant, variant_index| %>
-        <% if variant.variant_container_taxons.active.any?  %>
+        <% if variant.variant_container_taxons.active.any? %>
     
           <% variant.variant_container_taxons.active.each do |vct| %>
             <tr class="<%= odd_or_even?(product_i) %>">
@@ -29,15 +30,30 @@
               <% else %>
                 <td></td>
               <% end %>
-              <td><%= vct.container_taxon.name %></td>
+              <td>
+                <% if vct.container_taxon %>
+                  <%= vct.container_taxon.name %>
+                <% else %>
+                  <%= t(:no_container_taxons) %>
+                <% end %>
+              </td>
               <td><%= variant.sku %></td>
               <td><%= product.name %></td>
               <td><%= variant.options_text %></td>
               <td><%= vct.quantity %></td>
-              <td id="restocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
-                <%= button_link_to t(:restock), admin_restocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
-              </td>
-              <td id="destocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
+              <% if vct.container_taxon_id %>
+                <td id="restocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
+              <% else %>
+                <td id="restocking_<%= variant.id %>_nil">
+              <% end %>
+                  <%= button_link_to t(:restock), admin_restocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
+                </td>
+
+              <% if vct.container_taxon_id %>
+                <td id="destocking_<%= variant.id %>_<%= vct.container_taxon_id %>">
+              <% else %>
+                <td id="destocking_<%= variant.id %>_nil">
+              <% end %>
                 <%= button_link_to t(:destock), admin_destocking_path(variant, :container_taxon_id => vct.container_taxon_id),  { :id => variant.id, :icon => 'switch', :remote => true } %>
               </td>
             </tr>
@@ -66,7 +82,7 @@
       <% end %>
 
     <% else %>
-      <% if product.master.variant_container_taxons.active.any?  %>
+      <% if product.master.variant_container_taxons.active.any? %>
         <% product.master.variant_container_taxons.active.each_with_index do |vct, vct_index| %>
           <tr class="<%= odd_or_even?(product_i) %>">
             <% if product.images.any? %>

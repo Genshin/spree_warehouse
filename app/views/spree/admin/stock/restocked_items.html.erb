@@ -19,7 +19,13 @@
   <% unless @restocked_items.nil? %>
     <% @restocked_items.each do |ri| %>
       <tr>
-        <td><%= ri.container_taxon.name %></td>
+        <td>
+          <% if ri.container_taxon %>
+            <%= ri.container_taxon.name %>
+          <% else %>
+            <%= t(:no_container_taxons) %>
+          <% end %>
+        </td>
         <td><%= ri.quantity %></td>
         <td><%= ri.variant.sku %></td>
         <td><%= ri.variant.product.name %></td>

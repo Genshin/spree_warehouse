@@ -60,8 +60,14 @@ module Spree
       def restock
         @variant = Variant.find(params[:stock_record][:variant_id])
         unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
-          ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
-          @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
+          #TODO Clean this ugly check 
+          if ContainerTaxon.exists?(params[:stock_record][:container_taxon_id])
+            ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+            @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
+          else
+            @variant.variant_container_taxons.create(:quantity => params[:stock_record][:quantity])
+          end
+
         else
           variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
           unless variant_ct.quantity.nil?
@@ -113,6 +119,17 @@ module Spree
         end
       end
       
+      #TODO clear this and call directly restock , rename reassigning to reassign
+      def reassign
+        restock
+      end
+
+      def reassigning
+        @container_taxons = ContainerTaxon.all
+        @variant = Variant.find(params[:id])
+        @container_taxon_id = params[:container_taxon_id].nil? ? 'nil' : params[:container_taxon_id]
+      end
+
       private 
       
       def load_variant

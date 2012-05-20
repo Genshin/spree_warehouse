@@ -1,5 +1,5 @@
-<fieldset id="restocking">
-  <%= form_for :stock_record, :url => admin_restock_path, :html => { :id => "restocking_form" } do |f| %>
+<fieldset id="reassigning">
+  <%= form_for :stock_record, :url => admin_reassign_path, :html => { :id => "reassigning_form" } do |f| %>
     <%= f.label :quantity, t(:qty) %>
     <%= f.number_field :quantity, :min => 0, :class => 'small' %>
     
