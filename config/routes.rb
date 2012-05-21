@@ -1,8 +1,6 @@
-#Spree::Core::Engine.routes.append do
-#Spree::Core::Engine.routes.draw do 
-
 Spree::Core::Engine.routes.prepend do
 
+  #API
   namespace :api do
     scope :module => :v1 do
       resources :stock 
@@ -14,11 +12,23 @@ Spree::Core::Engine.routes.prepend do
           end
         end
       end
-      
+
+      resources :products do
+        collection do
+          get :search
+        end
+
+        resources :variants do 
+          collection do
+            get :search
+          end
+        end
+      end
+
     end
   end
-
-
+  
+  #CORE
   namespace :admin do
     resources :warehouses
     resources :visual_codes
