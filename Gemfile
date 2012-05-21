@@ -2,9 +2,6 @@ source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.1' 
 
-#gem 'rqrcode'
-#gem 'mini_magick'
-
 group :development, :test do 
   gem "sass", :require => 'sass' 
 end
@@ -24,10 +21,10 @@ group :test do
   gem 'guard-bundler'
   
   #desktop notifications
-  gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin')  && 'rb-fsevent'
-  gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
-  gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
-  gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
+  #gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin')  && 'rb-fsevent'
+  #gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
+  #gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
+  #gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
 
   platform :ruby_18 do
     gem 'rcov'
