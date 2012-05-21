@@ -25,22 +25,17 @@ group :test do
   #gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
   #gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
   #gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
+end
 
+unless ENV["CI"]
   platform :ruby_18 do
     gem 'rcov'
+    gem 'ruby-debug'
   end
   platform :ruby_19 do
     gem 'simplecov'
+    gem 'ruby-debug19'
   end
-
-end
-
-platform :ruby_18 do
-  gem 'ruby-debug'
-end
-
-platform :ruby_19 do
-  gem 'ruby-debug19'
 end
 
 gemspec
