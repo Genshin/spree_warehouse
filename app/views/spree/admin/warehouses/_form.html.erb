@@ -11,17 +11,15 @@
     <%= error_message_on :warehouse, :code %>
   <% end %>
 
-   <%= f.field_container :location do %>
+  <%= f.field_container :location do %>
     <%= f.label :location, t("warehouse.location") %><br />
     <%= f.text_area :location %>
     <%= error_message_on :warehouse, :location %>
   <% end %>
 
-   <%= f.field_container :details do %>
+  <%= f.field_container :details do %>
     <%= f.label :details, t("warehouse.details") %><br />
     <%= f.text_area :details %>
     <%= error_message_on :warehouse, :details %>
   <% end %>      
 </div>
-
-

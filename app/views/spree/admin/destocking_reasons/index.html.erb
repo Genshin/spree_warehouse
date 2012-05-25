@@ -3,13 +3,11 @@
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
     <li>
-      <p><%= button_link_to t(:new_destocking_reason), new_object_url, :icon => 'add', :id => 'admin_new_destocking_reason_link' %>
-    </p>
+      <p><%= button_link_to t(:new_destocking_reason), new_object_url, :icon => 'add', :id => 'admin_new_destocking_reason_link' %></p>
     </li>
   </ul>
   <br class="clear" />
 </div>
-
 
 <h1><%= t(:destocking_reasons_list) %></h1>
 <table class="index" id='destocking_reasons_list' data-hook>
@@ -22,8 +20,8 @@
   </thead>
   <tbody>
     <% @destocking_reasons.each do |reason|
-         @edit_url = edit_admin_destocking_reason_path(reason)
-         @delete_url = admin_destocking_reason_path(reason)
+      @edit_url = edit_admin_destocking_reason_path(reason)
+      @delete_url = admin_destocking_reason_path(reason)
     %>
       <tr id="<%= reason %>" data-hook="destocking_reason_row">
         <td><%= reason.name %></td>

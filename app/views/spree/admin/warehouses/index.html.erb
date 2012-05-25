@@ -15,11 +15,11 @@
 
 <table id="warehouses" class="index">
   <tr>
-	<th><%= t 'warehouse.name' %></th>
-	<th><%= t 'warehouse.code' %></th>
-	<th><%= t 'warehouse.location' %></th>
-	<th><%= t 'warehouse.details' %></th>
-    <th></th>
+	<th><%= t('warehouse.name') %></th>
+	<th><%= t('warehouse.code') %></th>
+	<th><%= t('warehouse.location') %></th>
+	<th><%= t('warehouse.details') %></th>
+  <th></th>
   </tr>
 
   <% @warehouses.each do |wh| %>
@@ -35,5 +35,3 @@
     </tr>
   <% end %>
 </table>
-
-
