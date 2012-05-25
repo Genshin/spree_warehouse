@@ -73,6 +73,4 @@ en:
   destocking_reasons_description: "Manage reasons for destocking stock"
 
   generate_qr_code: "Generate QR code"
-  
-
- 
+  generate_api_key_first: "To generate QR code you need to generate API key first"
