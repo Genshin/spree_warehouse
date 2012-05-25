@@ -19,12 +19,6 @@ group :test do
   gem 'guard'
   gem 'guard-rspec', '~> 0.6.0'
   gem 'guard-bundler'
-  
-  #desktop notifications
-  #gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin')  && 'rb-fsevent'
-  #gem 'growl',      :require => RUBY_PLATFORM.include?('darwin')  && 'growl'
-  #gem 'rb-inotify', :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
-  #gem 'libnotify',  :require => RUBY_PLATFORM.include?('linux')   && 'rb-inotify'
 end
 
 unless ENV["CI"]
