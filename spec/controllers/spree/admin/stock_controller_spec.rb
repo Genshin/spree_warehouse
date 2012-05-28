@@ -40,8 +40,6 @@ describe Spree::Admin::StockController do
 
   end
 
-  
-
   describe "POST :destock" do
 
     before do 
