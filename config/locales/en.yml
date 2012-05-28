@@ -75,3 +75,8 @@ en:
 
   generate_qr_code: "Generate QR code"
   generate_api_key_first: "To generate QR code you need to generate API key first"
+
+  errors:
+    messages:
+      could_not_restock_no_variant_selected: "Could not restock, no variant selected"
+      could_not_destock_no_variant_selected: "Could not destock, no variant selected"
