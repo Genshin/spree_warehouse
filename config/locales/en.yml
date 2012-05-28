@@ -76,6 +76,8 @@ en:
   generate_qr_code: "Generate QR code"
   generate_api_key_first: "To generate QR code you need to generate API key first"
 
+  generate_pdf: "Generate PDF"
+
   errors:
     messages:
       could_not_restock_no_variant_selected: "Could not restock, no variant selected"

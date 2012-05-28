@@ -79,6 +79,7 @@ Spree::Core::Engine.routes.prepend do
       resources :shipments do
         collection do 
           get :picking_list
+          get :picking_pdf
         end
  
         member do
