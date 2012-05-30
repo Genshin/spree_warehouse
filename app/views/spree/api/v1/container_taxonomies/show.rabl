@@ -6,10 +6,19 @@ else
   attributes *container_taxonomy_attributes
 
   child :root => :root do
-      attributes *container_taxon_attributes
+    attributes *container_taxon_attributes
+
+    child :variants => :variants do
+      attributes *variant_attributes
+    end
 
     child :children => :container_taxons do
       attributes *container_taxon_attributes
+
+      child :variants => :variants do
+        attributes *variant_attributes
+      end
     end
+    
   end
 end
