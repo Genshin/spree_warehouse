@@ -6,8 +6,8 @@ namespace :spree_warehouse do
     visual_code_types = [ {:name => "Barcode", :can_delete => false}, {:name => "QR Code" , :can_delete => false} ]
 
     desc "Seeds all spree_warehouse sample_data into the DB"
-    task :seed_sample => :environment do
-      puts "Executing spree_warehouse:sample:seed_sample task" 
+    task :seed => :environment do
+      puts "Executing spree_warehouse:sample:seed task" 
       [ "sample:seed_container_taxonomies", "sample:seed_container_taxons"].each do |task|
          task = "spree_warehouse:" + task
          puts "\n"
@@ -17,8 +17,8 @@ namespace :spree_warehouse do
 
 
     desc "Removes all spree_warehouse sample seed data from the DB"
-    task :remove_sample => :environment do
-      puts "Executing spree_warehouse:sample:remove_sample task" 
+    task :remove_seed => :environment do
+      puts "Executing spree_warehouse:sample:remove_seed task" 
       ["sample:remove_container_taxons","sample:remove_container_taxonomies"].each do |task|
          task = "spree_warehouse:" + task
          puts "\n"

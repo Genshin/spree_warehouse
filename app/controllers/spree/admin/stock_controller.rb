@@ -58,34 +58,37 @@ module Spree
       end
       
       def restock
-        @variant = Variant.find(params[:stock_record][:variant_id])
-        unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
-          #TODO Clean this ugly check 
-          if ContainerTaxon.exists?(params[:stock_record][:container_taxon_id])
-            ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
-            @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
-          else
-            @variant.variant_container_taxons.create(:quantity => params[:stock_record][:quantity])
-          end
-
-        else
-          variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
-          unless variant_ct.quantity.nil?
-            if variant_ct.quantity == 0  
-              variant_ct.activate  #will show
+        unless params[:stock_record][:variant_id].nil?
+          @variant = Variant.find(params[:stock_record][:variant_id])
+          unless @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
+            #TODO Clean this ugly check 
+            if ContainerTaxon.exists?(params[:stock_record][:container_taxon_id])
+              ct = ContainerTaxon.find(params[:stock_record][:container_taxon_id])
+              @variant.variant_container_taxons.create(:container_taxon_id => ct.id, :quantity => params[:stock_record][:quantity])
+            else
+              @variant.variant_container_taxons.create(:quantity => params[:stock_record][:quantity])
             end
-            variant_ct.quantity += params[:stock_record][:quantity].to_i 
-          else
-            variant_ct.quantity = params[:stock_record][:quantity].to_i 
-            variant_ct.activate  #will show
-          end 
-          
-          variant_ct.save
-        end
-        @variant.save
+
+          else # no existing container taxons for this variant
+            variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
+            unless variant_ct.quantity.nil?
+              variant_ct.activate if variant_ct.quantity == 0  #will show
+              variant_ct.quantity += params[:stock_record][:quantity].to_i 
+            else
+              variant_ct.quantity = params[:stock_record][:quantity].to_i 
+              variant_ct.activate  #will show
+            end 
+            variant_ct.save
+          end
+          @variant.save
       
-        if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} #{ t(:successfully_restocked) }"
+          if @stock_record = StockRecord.create(params[:stock_record])
+            flash[:notice] = "#{@variant.name} #{ t(:successfully_restocked) }"
+            respond_with { |format| format.html { redirect_to :admin_stock } }
+          end
+      
+        else # no variant given
+          flash[:error] = t('errors.messages.could_not_restock_no_variant_selected')
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end
@@ -96,25 +99,28 @@ module Spree
       end
       
       def destock
-        @variant = Variant.find(params[:stock_record][:variant_id])
-        if @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
-          variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
-          unless variant_ct.quantity.nil?
-            variant_ct.quantity = variant_ct.quantity - params[:stock_record][:quantity].to_i 
-            if variant_ct.quantity == 0
+        unless params[:stock_record][:variant_id].nil?
+          @variant = Variant.find(params[:stock_record][:variant_id])
+          if @variant.container_taxons.exists?(:id => params[:stock_record][:container_taxon_id])
+            variant_ct = @variant.variant_container_taxons.find_by_container_taxon_id(params[:stock_record][:container_taxon_id])
+            unless variant_ct.quantity.nil?
+              variant_ct.quantity = variant_ct.quantity - params[:stock_record][:quantity].to_i 
+              variant_ct.deactivate if variant_ct.quantity == 0 # won't show
+            else
+              #TODO Do we need negative values? 
+              variant_ct.quantity = 0 - params[:stock_record][:quantity].to_i 
               variant_ct.deactivate # won't show
-            end
-          else
-            #TODO Do we need negative values? 
-            variant_ct.quantity = 0 - params[:stock_record][:quantity].to_i 
-            variant_ct.deactivate # won't show
-          end 
-          variant_ct.save
-        end
-        @variant.save
+            end 
+            variant_ct.save
+          end
+          @variant.save
 
-        if @stock_record = StockRecord.create(params[:stock_record])
-          flash[:notice] = "#{@variant.name} #{t(:successfully_destocked) }"
+          if @stock_record = StockRecord.create(params[:stock_record])
+            flash[:notice] = "#{@variant.name} #{t(:successfully_destocked) }"
+            respond_with { |format| format.html { redirect_to :admin_stock } }
+          end
+        else # no variant given
+          flash[:error] = t('errors.messages.could_not_destock_no_variant_selected')
           respond_with { |format| format.html { redirect_to :admin_stock } }
         end
       end

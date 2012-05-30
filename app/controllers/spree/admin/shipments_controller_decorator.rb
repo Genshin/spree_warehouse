@@ -5,6 +5,7 @@ module Spree
       before_filter :load_order
       before_filter :load_shipment, :only => [:destroy, :edit, :update, :fire, :create_package, :picked]
       before_filter :load_shipping_methods, :except => [:country_changed, :index, :picking_list, :create_package]
+
       
       def create_package
         @package = @shipment.packages.build
@@ -27,6 +28,12 @@ module Spree
       def picking_list
         @shipments = @order.shipments
         respond_with(@shipments)
+      end
+
+      def picking
+        respond_to do |format|
+          format.pdf { render(:pdf => "breakfast", :layout => false) }
+        end
       end
       
 
