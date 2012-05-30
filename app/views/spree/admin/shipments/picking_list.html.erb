@@ -33,3 +33,4 @@
     <% end %>
   <% end %>
 </table>
+<p><%= button_link_to t(:generate_pdf), {:controller => :shipments, :action => :picking_pdf, :format => :pdf }, :icon => 'pdf' %></p>

@@ -4,30 +4,20 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path("../dummy/config/environment.rb",  __FILE__)
 
 require 'rspec/rails'
-#require 'capybara/rspec'
-
+require 'active_record/fixtures'
 require 'database_cleaner'
 require 'spree/core/url_helpers'
 require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/env'
-
 require 'spree/api/testing_support/helpers'
 require 'spree/api/testing_support/setup'
-
-require 'active_record/fixtures'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
 Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
-
 # include local factories
 Dir["#{File.dirname(__FILE__)}/factories/**/*.rb"].each { |f| require File.expand_path(f)}
-
-
-#fixtures_dir = File.expand_path('../../../core/db/default', __FILE__)
-#ActiveRecord::Fixtures.create_fixtures(fixtures_dir, ['spree/roles'])
-
 
 RSpec.configure do |config|
 
@@ -41,7 +31,6 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :transaction
     end
   end
-
 
   config.before(:each) do
     DatabaseCleaner.start
@@ -68,7 +57,6 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 end
-
 
 shared_context "product prototype" do
   
@@ -101,7 +89,6 @@ shared_context "product prototype" do
   
 end  
 
-
 PAYMENT_STATES = Spree::Payment.state_machine.states.keys unless defined? PAYMENT_STATES
 SHIPMENT_STATES = Spree::Shipment.state_machine.states.keys unless defined? SHIPMENT_STATES
 ORDER_STATES = Spree::Order.state_machine.states.keys unless defined? ORDER_STATES
@@ -121,6 +108,3 @@ RSpec::Matchers.define :have_valid_factory do |factory_name|
     Factory(factory_name).new_record?.should be_false
   end
 end
-
-
-#Capybara.default_driver = :selenium

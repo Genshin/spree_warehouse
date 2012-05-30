@@ -7,12 +7,12 @@ en:
   visual_code:
     system: "Visual Code System"
     data: "Visual Code Data"
-    types: "Visual Code Types"
     type: "Visual Code Type"
     codes: "Visual Codes"
     singular: "Visual Code"
     new: "Register Code"
     edit: "Edit Visual Code"
+  visual_code_types: "Visual Code Types"
   visual_code_type:
     name: "Type Name"
     handler: "Handler"
@@ -32,11 +32,13 @@ en:
   
   containers: "Containers"   
   no_containers_assigned: "No containers assigned"
+  container_taxonomies: "Container Taxonomies"
   container_taxonomy_edit: "Edit Container Taxonomy"
   container_taxon: "Container Taxon"
   new_container_taxon: "New Container Taxon"
   new_container_taxonomy: "New Container Taxonomy"
   container_taxonomy_tree_error: "Container Taxonomy tree error"
+  no_taxons: "No Taxons"
    
   first_create_the_shipment: "Create the shipment first to have the ability to create a new package"
   
@@ -51,13 +53,18 @@ en:
   submit: "Submit"
   quantity: "Quantity"
   
+  stock: "Stock"
   restock: "Restock"
   restocking: "Restocking"
+  restocked_items: "Restocked Items"
+  restocked_items_list: "Restocked Items List"
   successfully_restocked: "successfully restocked"
   restocked_at: "Restocked At"
   restocked_before: "Restocked Before"
   destock: "Destock"
   destocking: "Destocking"
+  destocked_items: "Destocked Items"
+  destocked_items_list: "Destocked Items List"
   successfully_destocked: "successfully destocked"
   destocked_at: "Destocked At"
   destocked_before: "Destocked Before"
@@ -66,13 +73,19 @@ en:
   reassign: "Reassign"
   reassigning: "Reassigning"
   reassign_stock: "Reassign Stock"
-  
+
+  destocking_reasons: "Destocking Reasons"
   new_destocking_reason: "New Destocking Reason"
   destocking_reasons_list: "Destocking Reasons"
   editing_destocking_reason: "Editing Destocking Reason"
   destocking_reasons_description: "Manage reasons for destocking stock"
 
   generate_qr_code: "Generate QR code"
-  
+  generate_api_key_first: "To generate QR code you need to generate API key first"
 
- 
+  generate_pdf: "Generate PDF"
+
+  errors:
+    messages:
+      could_not_restock_no_variant_selected: "Could not restock, no variant selected"
+      could_not_destock_no_variant_selected: "Could not destock, no variant selected"

@@ -71,7 +71,7 @@ module Spree
       end
 
       #TODO Finish this test
-      it "can search for container_taxons" do
+      pending "can search for container_taxons" do
         api_post :create, :stock_record => { :quantity => 7, :variant_id => @product.master.id, 
             :container_taxon_id => container_taxon.id, :direction => 'in'}
             
