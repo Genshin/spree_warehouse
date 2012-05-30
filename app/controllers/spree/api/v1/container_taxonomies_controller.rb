@@ -2,6 +2,12 @@ module Spree
   module Api
     module V1
       class ContainerTaxonomiesController < Spree::Api::V1::BaseController
+
+       def search
+          @container_taxonomies = ContainerTaxonomy.search(params[:q]).result.page(params[:page])
+          render :index
+        end
+
         def index
           @container_taxonomies = ContainerTaxonomy.order('name').includes(:root => :children)
         end

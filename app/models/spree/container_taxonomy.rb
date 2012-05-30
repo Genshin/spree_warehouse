@@ -4,7 +4,9 @@ module Spree
 
     has_many :container_taxons
     has_one :root, :conditions => { :parent_id => nil }, :class_name => 'Spree::ContainerTaxon'
-
+    belongs_to :warehouse
+    
+    accepts_nested_attributes_for :warehouse
     attr_accessible :name
 
     after_save :set_name

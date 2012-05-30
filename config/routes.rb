@@ -6,6 +6,10 @@ Spree::Core::Engine.routes.prepend do
       resources :stock 
 
       resources :container_taxonomies do
+        collection do
+          get :search 
+        end
+        
         resources :container_taxons do
           collection do
             get :search
@@ -35,7 +39,12 @@ Spree::Core::Engine.routes.prepend do
     resources :visual_code_types
     
     resources :container_taxonomies do
-      resources :container_taxons
+      resources :container_taxons do 
+        member do
+          get :generate_pdf 
+        end
+      end
+
       member do
         get :get_children
       end

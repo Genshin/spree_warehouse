@@ -3,8 +3,7 @@ module Spree
     module V1
       VariantsController.class_eval do
       	def search
-          @variants = scope.includes(:option_values).scoped.search(params[:q]).result.page(params[:page])
-          render :index
+          @variants = Variant.search(params[:q]).result.page(params[:page])
         end
       end
     end

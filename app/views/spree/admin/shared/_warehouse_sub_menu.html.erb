@@ -1,11 +1,18 @@
 <% content_for :sub_menu do %>
   <ul id="sub_nav" data-hook="admin_warehouse_sub_tabs">
+
     <%= tab :warehouses, :match_path => '/warehouses' %>
+
     <% if request.fullpath.include?("visual_code_types") %>
       <%= tab :visual_code_types, :match_path => '/visual_code_types', :css_class => 'selected' %>
     <% else %>
       <%= tab :visual_code_types, :match_path => '/visual_code_types' %>
     <% end %>
-    <%= tab :container_taxonomies, :match_path => '/container_taxonomies', :css_class => 'last' %>
+
+   <% if request.fullpath.include?("container_taxonomies") %>
+      <%= tab :container_taxonomies, :match_path => '/container_taxonomies', :css_class => 'selected' %>
+    <% else %>
+      <%= tab :container_taxonomies, :match_path => '/container_taxonomies', :css_class => 'last' %>
+    <% end %>
   </ul>
 <% end %>
