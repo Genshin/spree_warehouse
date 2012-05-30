@@ -25,7 +25,6 @@ module Spree
         @permalink_part = @container_taxon.permalink.split("/").last
         
         @qr = RQRCode::QRCode.new(@container_taxon.to_json, :size => 10, :level => :l)
-
         respond_with(:admin, @container_taxon) 
       end
 
