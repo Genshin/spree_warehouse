@@ -6,3 +6,4 @@
     <%= button t(:update) %> <%= t(:or) %> <%= link_to t(:cancel), edit_admin_container_taxonomy_url(@container_taxonomy) %>
   </p>
 <% end %>
+<p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :generate_pdf, :format => :pdf }, :icon => 'pdf' %></p

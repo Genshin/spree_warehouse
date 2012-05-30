@@ -4,6 +4,13 @@ module Spree
 
       respond_to :html, :json, :js
 
+
+      def generate_pdf
+        respond_to do |format|
+          format.pdf { render(:pdf => "breakfast", :layout => false) }
+        end
+      end
+
       def create
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = @container_taxonomy.container_taxons.build(params[:container_taxon])
