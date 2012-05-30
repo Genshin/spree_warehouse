@@ -8,6 +8,9 @@
 <% end %>
 
 <%= render :partial => 'variants', :locals => { :container_taxon => @container_taxon } %>
+
+<%= @container_taxon.to_json %>
+
 <%= render :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr } %>
 
 <p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :generate_pdf, :format => :pdf }, :icon => 'pdf' %></p
