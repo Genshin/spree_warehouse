@@ -3,6 +3,8 @@ module Spree
     validates_presence_of :name
     validates_uniqueness_of :name
 
+    has_many :container_taxonomies
+
     attr_accessible :name, :code, :location, :details
   end
 end
