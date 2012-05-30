@@ -16,25 +16,3 @@
     <%= f.text_area :description %>
   <% end %>
 </div>
-
-<h2><%= t(:variants) %> (<%= @container_taxon.variant_container_taxons.count %>)</h2>
-<table class="index">
-  <tr>
-    <th><%= t(:name) %></th>
-    <th><%= t(:sku) %></th>
-    <th><%= t(:quantity) %></th>
-    <th><%= t(:restocked_at) %></th>
-    <th><%= t(:restocked_before) %></th>
-  </tr>
-  <% @container_taxon.variant_container_taxons.each do |vct| %>
-   <tr>
-    <td><%= vct.variant.name %></td>
-    <td><%= vct.variant.sku %></td>
-    <td><%= vct.quantity %></td>
-    <td><%= vct.created_at %></td>
-    <td><%= time_ago_in_words(vct.created_at) %></td>
-   </tr>
-  <% end %>
-</table>
-
-<%= render :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr } %>
