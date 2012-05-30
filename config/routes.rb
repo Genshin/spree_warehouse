@@ -6,6 +6,10 @@ Spree::Core::Engine.routes.prepend do
       resources :stock 
 
       resources :container_taxonomies do
+        collection do
+          get :search 
+        end
+        
         resources :container_taxons do
           collection do
             get :search
