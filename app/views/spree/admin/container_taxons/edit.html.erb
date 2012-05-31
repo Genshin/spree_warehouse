@@ -1,3 +1,5 @@
+<%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
+
 <h1><%= t(:container_taxon_edit) %></h1>
 
 <%= form_for [:admin, @container_taxonomy, @container_taxon], :method => :put, :html => { :multipart => true } do |f| %>
@@ -6,11 +8,3 @@
     <%= button t(:update) %> <%= t(:or) %> <%= link_to t(:cancel), edit_admin_container_taxonomy_url(@container_taxonomy) %>
   </p>
 <% end %>
-
-<%= render :partial => 'variants', :locals => { :container_taxon => @container_taxon } %>
-
-<%= @container_taxon.to_json %>
-
-<%= render :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr } %>
-
-<p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :generate_pdf, :format => :pdf }, :icon => 'pdf' %></p

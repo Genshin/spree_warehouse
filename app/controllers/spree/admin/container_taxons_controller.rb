@@ -18,6 +18,8 @@ module Spree
       def show 
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = ContainerTaxon.find(params[:id])
+        @qr = RQRCode::QRCode.new(@container_taxon.to_json, :size => 10, :level => :l)
+        respond_with(:admin, @container_taxon) 
       end
 
       def create
@@ -39,9 +41,6 @@ module Spree
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = @container_taxonomy.container_taxons.find(params[:id])
         @permalink_part = @container_taxon.permalink.split("/").last
-        
-        @qr = RQRCode::QRCode.new(@container_taxon.to_json, :size => 10, :level => :l)
-        respond_with(:admin, @container_taxon) 
       end
 
       def update
