@@ -7,7 +7,8 @@ module Spree
 
       def generate_pdf
         respond_to do |format|
-          format.pdf { render(:pdf => "breakfast", :layout => false) }
+          format.html { render :layout => false }
+          format.pdf { render(:pdf => "generate_pdf", :layout => false, :wkhtmltopdf => '/usr/local/bin/wkhtmltopdf', :layout => "shared/pdf.html") }
         end
       end
 
@@ -18,7 +19,7 @@ module Spree
       def show 
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = ContainerTaxon.find(params[:id])
-        
+
         @qr = RQRCode::QRCode.new(@container_taxon.to_json, :size => 10, :level => :l)
         respond_with(:admin, @container_taxon) 
       end
