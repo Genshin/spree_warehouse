@@ -53,6 +53,7 @@ en:
   submit: "Submit"
   quantity: "Quantity"
   
+  stock_category: "Stock"
   stock: "Stock"
   restock: "Restock"
   restocking: "Restocking"
