@@ -6,12 +6,13 @@
   </tr>
 <% @container_taxonomies.each do |container_taxonomy| %>
   <tr id="<%= dom_id container_taxonomy %>" data-hook="container_taxonomies_row">
-    <td><%= container_taxonomy.name %></td>
+    <td><%= link_to container_taxonomy.name, admin_container_taxonomy_container_taxons_path(container_taxonomy) %></td>
     <td><%= container_taxonomy.container_taxons.count %></td>
     <td class="actions">
       <%= link_to_edit container_taxonomy.id, :class => 'edit' %>
       &nbsp;
       <%= link_to_delete container_taxonomy %>
+
     </td>
   </tr>
 <% end %>
