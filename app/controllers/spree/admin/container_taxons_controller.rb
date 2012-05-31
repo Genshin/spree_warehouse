@@ -11,6 +11,15 @@ module Spree
         end
       end
 
+      def index
+        @container_taxons = container_taxonomy.root.children
+      end
+
+      def show 
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
+        @container_taxon = ContainerTaxon.find(params[:id])
+      end
+
       def create
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = @container_taxonomy.container_taxons.build(params[:container_taxon])
@@ -107,6 +116,12 @@ module Spree
         @container_taxon = ContainerTaxon.find(params[:id])
         @container_taxon.destroy
         respond_with(@container_taxon) { |format| format.json { render :json => '' } }
+      end
+
+      private
+
+      def container_taxonomy
+        @container_taxonomy ||= ContainerTaxonomy.find(params[:container_taxonomy_id])
       end
       
       

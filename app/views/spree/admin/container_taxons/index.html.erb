@@ -1,0 +1,39 @@
+<%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+  </ul>
+  <br class="clear" />
+</div>
+
+<h1><%= t(:container_taxons) %></h1>
+
+<div id='list-container-taxons' data-hook>
+  <h2><%= @container_taxonomy.root.name %></td></h2>
+  <table class="index">
+    <thead>
+      <tr data-hook="container_taxons_header">
+        <th><%= t(:name) %></th>
+        <th><%= t(:path) %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @container_taxonomy.root.children.each_with_index do |container_taxon,i| %>
+        <tr id="<%= dom_id(container_taxon) %>" data-hook="container_taxons_row">
+          <td><%= link_to container_taxon.name, admin_container_taxonomy_container_taxon_path(@container_taxonomy, container_taxon) %></td>
+          <td class="actions"></td>
+        </tr>
+        <% container_taxon.children.each do |child| %>
+          <tr id="<%= dom_id(child) %>" data-hook="container_taxons_row">
+            <td><%= link_to child.name, admin_container_taxonomy_container_taxon_path(@container_taxonomy, child) %></td>
+            <td class="actions"></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% if @container_taxons.empty? %>
+     <tr data-hook="container_taxons_none"><td colspan="3"><%= t(:none) %>.</td></tr>
+    <% end %>
+    </tbody>
+
+  </table>
+</div>
