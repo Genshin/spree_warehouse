@@ -6,6 +6,8 @@ describe 'Warehouses' do
 
     @warehouse1 = Factory(:warehouse, :name => 'huge_warehouse_1')
     Factory(:warehouse, :name => 'huge_warehouse_2')
+    @container_taxonomy1 = Factory(:container_taxonomy, :name => "A1")
+    @container_taxonomy2 = Factory(:container_taxonomy, :name => "A2")
  
     visit spree.admin_path
     click_link "Warehouses"
@@ -39,9 +41,27 @@ describe 'Warehouses' do
       click_button "Create"
       page.should have_css('span.field_with_errors')
       page.should have_content("has already been taken")
-      
     end
   end
+
+  context "editing warehouse" do 
+    before :each do 
+      within('table.index tr:nth-child(2)') { click_link "Edit" }
+    end
+
+    it "should allow to edit a warehouse" do 
+      page.should have_content("Editing Warehouse")
+      fill_in "warehouse_name", :with => "Subaru"
+      fill_in "warehouse_code", :with => "12345"
+      fill_in "warehouse_location", :with => "Japan"
+      fill_in "warehouse_details", :with => "Details"
+      check "warehouse_container_taxonomy_ids_"
+      click_button "Update"
+      page.should have_content("successfully updated")
+    end
+
+  end
+
 
 end
 

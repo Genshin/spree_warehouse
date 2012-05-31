@@ -13,12 +13,16 @@
 
   <%= f.field_container 'container_taxonomies[]' do %>
     <%= f.label 'warehouse[container_taxonomy_ids][]', t(:container_taxonomies) %><br />
-    <% container_taxonomies.each_with_index do |ct, ct_i| %>
-      <% unless ct_i == 0 %> 
-        <br/>
+    <% if defined? container_taxonomies %>
+      <% container_taxonomies.each_with_index do |ct, ct_i| %>
+        <% unless ct_i == 0 %> 
+          <br/>
+        <% end %>
+        <%= check_box_tag "warehouse[container_taxonomy_ids[]]", ct.id %>
+        <%= ct.name.humanize %>
       <% end %>
-      <%= check_box_tag "warehouse[container_taxonomy_ids][]", {}, ct.id %>
-      <%= ct.name.humanize %> 
+    <% else %>
+      <%= t(:no_container_taxonomies) %>
     <% end %>
   <% end %>
 
