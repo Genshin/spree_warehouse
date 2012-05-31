@@ -5,6 +5,6 @@ module Spree
 
     has_many :container_taxonomies
 
-    attr_accessible :name, :code, :location, :details
+    attr_accessible :name, :code, :location, :details, :container_taxonomy_ids
   end
 end

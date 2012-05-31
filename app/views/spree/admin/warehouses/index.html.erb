@@ -17,6 +17,7 @@
   <tr>
 	<th><%= t('warehouse.name') %></th>
 	<th><%= t('warehouse.code') %></th>
+  <th><%= t('warehouse.container_taxonomies_count') %></th>
 	<th><%= t('warehouse.location') %></th>
 	<th><%= t('warehouse.details') %></th>
   <th></th>
@@ -26,6 +27,13 @@
     <tr>
       <td><%= wh.name %></td>
       <td><%= wh.code %></td>
+      <td>
+        <% if wh.container_taxonomies.any? %>
+          <%= wh.container_taxonomies.count %>
+        <% else %>
+          <%= t(:no_container_taxonomies) %>
+        <% end %>
+      </td>
       <td><%= wh.location %></td>
       <td><%= wh.details %></td>
       <td class="actions">
