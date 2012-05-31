@@ -55,11 +55,16 @@ describe 'Warehouses' do
       fill_in "warehouse_code", :with => "12345"
       fill_in "warehouse_location", :with => "Japan"
       fill_in "warehouse_details", :with => "Details"
+
+      checkbox = find('#warehouse_container_taxonomy_ids_')
+      checkbox.should_not be_checked
       check "warehouse_container_taxonomy_ids_"
+
       click_button "Update"
       page.should have_content("successfully updated")
       page.should have_content("A1")
-
+       
+      #TODO Check for unique checkbox id
       click_link "Edit"
       checkbox = find('#warehouse_container_taxonomy_ids_')
       checkbox.should be_checked
