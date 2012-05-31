@@ -1,9 +1,12 @@
 <%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
-
 <%= render :partial => 'variants', :locals => { :container_taxon => @container_taxon } %>
 
 <%= @container_taxon.to_json %>
 
 <%= render :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr } %>
 
-<p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :generate_pdf, :format => :pdf }, :icon => 'pdf' %></p
+<p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :generate_pdf, :format => :pdf }, :icon => 'pdf' %></p>
+<br class="clear" />
+
+<p><%= button_link_to t(:back), admin_container_taxonomy_container_taxons_path(@container_taxonomy) %></p>
+<br class="clear" />
