@@ -15,6 +15,18 @@
       <%= @warehouse.code %>
     </td>
   </tr>
+
+  <tr data-hook="container_taxonomies">
+    <th><%= t(:container_taxonomies) %></th>
+    <td>
+      <% if @warehouse.container_taxonomies.any? %>
+        <% @warehouse.container_taxonomies.each do |ct| %>
+          <%= ct.name %> | 
+        <% end %>
+      <% end %>
+    </td>
+  </tr>
+
   <tr data-hook="location">
     <th><%= t(:location) %></th>
     <td>
@@ -29,6 +41,8 @@
     </td>
   </tr>
 </table>
+
+
 
 <p>
   <%= link_to_edit @warehouse, :class => 'edit_user' %> <%= t(:or) %>

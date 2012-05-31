@@ -24,6 +24,7 @@ en:
     code: "Code"
     location: "Location"
     details: "Details"
+    container_taxonomies_count: "Container Taxonomies Count"
   
   package: "Package"  
   new_package: "New Package"
@@ -39,6 +40,7 @@ en:
   new_container_taxonomy: "New Container Taxonomy"
   container_taxonomy_tree_error: "Container Taxonomy tree error"
   no_taxons: "No Taxons"
+  no_container_taxonomies: "No Container Taxonomies"
    
   first_create_the_shipment: "Create the shipment first to have the ability to create a new package"
   
