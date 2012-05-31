@@ -58,10 +58,12 @@ describe 'Warehouses' do
       check "warehouse_container_taxonomy_ids_"
       click_button "Update"
       page.should have_content("successfully updated")
-    end
+      page.should have_content("A1")
 
+      click_link "Edit"
+      checkbox = find('#warehouse_container_taxonomy_ids_')
+      checkbox.should be_checked
+    end
   end
 
-
 end
-
