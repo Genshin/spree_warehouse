@@ -11,6 +11,17 @@
     <%= error_message_on :warehouse, :code %>
   <% end %>
 
+  <%= f.field_container 'container_taxonomies[]' do %>
+    <%= f.label 'warehouse[container_taxonomy_ids][]', t(:container_taxonomies) %><br />
+    <% container_taxonomies.each_with_index do |ct, ct_i| %>
+      <% unless ct_i == 0 %> 
+        <br/>
+      <% end %>
+      <%= check_box_tag "warehouse[container_taxonomy_ids][]", {}, ct.id %>
+      <%= ct.name.humanize %> 
+    <% end %>
+  <% end %>
+
   <%= f.field_container :location do %>
     <%= f.label :location, t("warehouse.location") %><br />
     <%= f.text_area :location %>
