@@ -18,7 +18,7 @@
         <% unless ct_i == 0 %> 
           <br/>
         <% end %>
-        <%= check_box_tag "warehouse[container_taxonomy_ids[]]", ct.id %>
+        <%= check_box_tag "warehouse[container_taxonomy_ids][]", ct.id %>
         <%= ct.name.humanize %>
       <% end %>
     <% else %>
