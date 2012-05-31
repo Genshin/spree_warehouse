@@ -13,6 +13,7 @@ ja:
     singular: "ビジュアルコード"
     new: "コード登録"
     edit: "コード編集"
+  visual_code_types: "ビジュアルコード類"
   visual_code_type:
     name: "VC類名"
     handler: "ハンドル"
@@ -30,7 +31,8 @@ ja:
 
   product_name: "商品名"
   
-  containers: "コンテナ"   
+  containers: "コンテナ"
+  container_taxonomies: "コンテナ構成"
   no_containers_assigned: "コンテナが指定されていない"
   container_taxonomy_edit: "コンテナ構成を編集"
   container_taxon: "コンテナ"
@@ -42,29 +44,49 @@ ja:
   
   pick: "ピック"
   picked: "ビック済み"
-  unit_picked: "Unit Picked"
-  shipment_is_picked: "Shipment is Picked"
+  unit_picked: "品がピック済み"
+  shipment_is_picked: "注文がピッキング済み"
   
   picking_list: "ピッキングリスト"
   picking_list_for_order: "この注文のピッキングリスト: "
   
   submit: "確定"
   quantity: "個数"
-  
+ 
+  stock_category: "在庫" 
+  stock: "入荷"
   restock: "再入荷"
   restocking: "再入荷"
+  restocked_items: "再入荷された品"
+  restocked_items_list: "再入荷された品一覧"
   successfully_restocked: "再入荷処理が完了しました"
   restocked_at: "再入荷時刻"
   restocked_before: "前の再入荷時刻"
   destock: "在庫状況変更"
   destocking: "在庫状況の管理"
+  destocked_items: "在庫状況が変更された品"
+  destocked_items_list: "在庫状況が変更された品一覧"
   successfully_destocked: "在庫状況が変更されました"
   destocked_at: "在庫状況の変更時刻"
   destocked_before: "前の在庫状況変更"
   new_stock: "[再]入荷"
+
+  reassign: "在庫の再割当"
+  reassigning: "再割当"
+  reassign_stock: "在庫再割当"
   
+  destocking_reasons: "在庫状況変更理由"
   new_destocking_reason: "新規在庫状況変更理由"
   destocking_reasons_list: "在庫状況変更の理由"
   editing_destocking_reason: "在庫状況変更理由の編集"
   destocking_reasons_description: "在庫状況変更理由の管理"
-    
+
+  generate_qr_code: "QRコードを作成"
+  generate_api_key_first: "QRコードを作成するのにAPI鍵が必要です。"
+
+  generate_pdf: "PDFを作成する"
+
+  errors:
+    messages:
+      could_not_restock_no_variant_selected: "品類が選択されていなかった為再入荷することが出来ませんでした。"
+      could_not_destock_no_variant_selected: "品類が選択されていなかった為在庫状況を変更することが出来ませんでした。"
