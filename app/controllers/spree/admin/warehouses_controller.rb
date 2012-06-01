@@ -13,16 +13,13 @@ module Spree
 
       def destroy
         @warehouse = Warehouse.find(params[:id])
-        @warehouse.deleted_at = Time.now
+        @warehouse.update_attribute(:deleted_at, Time.now)
 
-        respond_to do |format|
-          if @warehouse.save
-            format.html { redirect_to admin_warehouses_url, :notice => 'Warehouse was successfully deleted.' }
-            format.json { head :ok }
-          else
-            format.html { render :action => "edit" }
-            format.json { render :json => [:admin, @warehouse.errors], :status => :unprocessable_entity }
-          end
+        flash.notice = I18n.t('notice_messages.warehouse_deleted')
+
+        respond_with(@warehouse) do |format|
+          format.html { redirect_to collection_url }
+          format.js  { render_js_for_destroy }
         end
       end
 

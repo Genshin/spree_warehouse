@@ -13,4 +13,15 @@ describe Spree::Admin::WarehousesController do
     end
   end 
 
+  context "destroying a warehouse" do
+    let(:warehouse) do
+      warehouse = create(:warehouse)
+    end
+
+    it "marks at deleted the warehouse" do
+      spree_delete :destroy, :id => warehouse
+      warehouse.reload.deleted_at.should_not be_nil
+    end
+  end
+
 end
