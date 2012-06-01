@@ -27,13 +27,15 @@ module Spree
                                           :name => @container_taxon.name, 
                                           :permalink => @container_taxon.permalink,
                                           :updated_at => @container_taxon.updated_at,
-                                          :container_taxonomy => { 
-                                                                     :id =>    @container_taxonomy.id,
-                                                                     :name =>  @container_taxonomy.name }, 
+                                          :container_taxonomy => {  :id =>    @container_taxonomy.id,
+                                                                    :name =>  @container_taxonomy.name 
+                                                                  }, 
 
-                                          :warehouse =>          {   :id =>    @container_taxonomy.warehouse.id,
-                                                                     :name =>  @container_taxonomy.warehouse.name },
-                                      } }
+                                          :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
+                                                                    :name => @container_taxonomy.warehouses.map(&:name).join(' ')
+                                                                 } 
+                                      } 
+                }
 
         
 
