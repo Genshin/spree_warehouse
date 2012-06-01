@@ -20,7 +20,26 @@ module Spree
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = ContainerTaxon.find(params[:id])
 
-        @qr = RQRCode::QRCode.new(@container_taxon.to_json, :size => 10, :level => :l)
+        #puts @container_taxon.to_json
+        #puts @container_taxonomy.to_json
+
+        @code = { :container_taxon => { 
+                                          :name => @container_taxon.name, 
+                                          :permalink => @container_taxon.permalink,
+                                          :updated_at => @container_taxon.updated_at,
+                                          :container_taxonomy => {  :id =>    @container_taxonomy.id,
+                                                                    :name =>  @container_taxonomy.name 
+                                                                  }, 
+
+                                          :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
+                                                                    :name => @container_taxonomy.warehouses.map(&:name).join(' ')
+                                                                 } 
+                                      } 
+                }
+
+        
+
+        @qr = RQRCode::QRCode.new(@code.to_json, :size => 10, :level => :l)
         respond_with(:admin, @container_taxon) 
       end
 
