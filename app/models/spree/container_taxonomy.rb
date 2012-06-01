@@ -7,7 +7,7 @@ module Spree
     belongs_to :warehouse
     
     accepts_nested_attributes_for :warehouse
-    attr_accessible :name
+    attr_accessible :name, :warehouse, :warehouse_id
 
     after_save :set_name
     after_destroy :destroy_root_taxon
