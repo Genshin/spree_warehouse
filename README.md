@@ -10,7 +10,7 @@ We support only Spree  >= 1.0.0
 
 This branch is for version 1.1.x, for details check the Versionfile.
 
-Install spree 1.1 
+Install spree ~> 1.1.1 
 
 Include in your Gemfile: 
 
@@ -31,7 +31,7 @@ Testing
 Run `rake test_app` to generate the test_app.
 Then run`rake` for the features and spec tests.
 
-If you have problems try prefixing things with 'bundle exec '.
+If you have problems try prefixing things with `bundle exec`.
 
 
 Support
