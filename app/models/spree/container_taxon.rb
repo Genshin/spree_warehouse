@@ -7,6 +7,8 @@ module Spree
     has_many :packages
     has_many :variant_container_taxons
     has_many :variants, :through => :variant_container_taxons
+
+    accepts_nested_attributes_for :container_taxonomy
      
     before_create :set_permalink
 
