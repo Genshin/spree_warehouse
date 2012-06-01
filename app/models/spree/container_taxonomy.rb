@@ -4,10 +4,10 @@ module Spree
 
     has_many :container_taxons
     has_one :root, :conditions => { :parent_id => nil }, :class_name => 'Spree::ContainerTaxon'
-    belongs_to :warehouse
+    has_and_belongs_to_many :warehouses, :join_table => 'spree_container_taxonomies_warehouses'
     
-    accepts_nested_attributes_for :warehouse
-    attr_accessible :name, :warehouse, :warehouse_id
+    accepts_nested_attributes_for :warehouses
+    attr_accessible :name
 
     after_save :set_name
     after_destroy :destroy_root_taxon
