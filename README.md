@@ -34,5 +34,11 @@ Then run`rake` for the features and spec tests.
 If you have problems try prefixing things with 'bundle exec '.
 
 
+Support
+=======
+
+    :irc => { :server => 'irc.freenode.org', :port => 6667, :channel => 'spree_warehouse' }
+
+
 
 Copyright (c) 2012 Genshin Souzou Kabushiki Kaisha, released under the GNU GPL version 3
