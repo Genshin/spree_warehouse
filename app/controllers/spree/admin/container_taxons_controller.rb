@@ -39,7 +39,7 @@ module Spree
 
         
 
-        @qr = RQRCode::QRCode.new(@code.to_json, :size => 10, :level => :l)
+        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
         respond_with(:admin, @container_taxon) 
       end
 
