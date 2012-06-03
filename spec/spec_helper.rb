@@ -7,6 +7,7 @@ require 'rspec/rails'
 require 'active_record/fixtures'
 require 'database_cleaner'
 require 'spree/core/url_helpers'
+require 'spree/core/testing_support/controller_requests'
 require 'spree/core/testing_support/factories'
 require 'spree/core/testing_support/env'
 require 'spree/api/testing_support/helpers'
@@ -45,12 +46,13 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   
   config.include Spree::Core::UrlHelpers
+  config.include Spree::Core::TestingSupport::ControllerRequests, :type => :controller
   config.include Spree::Api::TestingSupport::Helpers, :type => :controller
-  config.extend Spree::Api::TestingSupport::Setup, :type => :controller
-
   config.include Devise::TestHelpers, :type => :controller
   config.include SpreeWarehouse::Engine.routes.url_helpers
   config.include Rack::Test::Methods, :type => :requests
+
+  config.extend Spree::Api::TestingSupport::Setup, :type => :controller
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
