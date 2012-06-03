@@ -6,5 +6,8 @@ module Spree
     has_and_belongs_to_many :container_taxonomies, :join_table => 'spree_container_taxonomies_warehouses'
 
     attr_accessible :name, :code, :location, :details, :container_taxonomy_ids
+
+    scope :active, where('deleted_at IS NULL')
+
   end
 end

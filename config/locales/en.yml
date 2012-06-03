@@ -92,3 +92,6 @@ en:
     messages:
       could_not_restock_no_variant_selected: "Could not restock, no variant selected"
       could_not_destock_no_variant_selected: "Could not destock, no variant selected"
+
+  notice_messages:
+    warehouse_deleted: "Warehouse successfully deleted"
