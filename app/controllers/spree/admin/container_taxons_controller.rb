@@ -20,9 +20,6 @@ module Spree
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = ContainerTaxon.find(params[:id])
 
-        #puts @container_taxon.to_json
-        #puts @container_taxonomy.to_json
-
         @code = { :container_taxon => { 
                                           :name => @container_taxon.name, 
                                           :permalink => @container_taxon.permalink,
@@ -37,9 +34,7 @@ module Spree
                                       } 
                 }
 
-        
-
-        @qr = RQRCode::QRCode.new(@code.to_json, :size => 10, :level => :l)
+        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
         respond_with(:admin, @container_taxon) 
       end
 
