@@ -2,9 +2,7 @@ source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.1' 
 
-group :development, :test do 
-  gem "sass", :require => 'sass' 
-end
+gem "sass", :require => 'sass' 
 
 group :test do
   gem 'rspec-rails', '~> 2.9.0'
