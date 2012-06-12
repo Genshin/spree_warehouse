@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.1' 
+gem 'capistrano'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
