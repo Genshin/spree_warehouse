@@ -4,9 +4,6 @@ gem 'spree', '~> 1.1.1'
 
 gem 'wisepdf'
 
-gem 'capistrano'
-gem 'capistrano_colors'
-
 group :development, :test do 
   gem "sass", :require => 'sass' 
 end
