@@ -1,3 +1,4 @@
+=begin
 require 'wisepdf'
 
 Wisepdf::Configuration.configure do |c|
@@ -16,3 +17,4 @@ Wisepdf::Configuration.configure do |c|
   }
 
 end
+=end
