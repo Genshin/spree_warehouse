@@ -2,6 +2,8 @@ source 'http://rubygems.org'
 
 gem 'spree', '~> 1.1.1' 
 
+gem 'wisepdf'
+
 gem 'capistrano'
 gem 'capistrano_colors'
 
