@@ -96,3 +96,8 @@ en:
 
   notice_messages:
     warehouse_deleted: "Warehouse successfully deleted"
+
+
+  supplier:
+    new: "New Supplier"
+    edit: "Edit Supplier"

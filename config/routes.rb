@@ -82,6 +82,8 @@ Spree::Core::Engine.routes.prepend do
       end
     end
 
+    resources :suppliers
+
     resources :destocking_reasons
     
     resources :orders do

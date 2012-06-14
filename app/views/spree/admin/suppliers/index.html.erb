@@ -1,0 +1,28 @@
+<div class="toolbar" data-hook="toolbar">
+  <ul class="actions">
+    <li id='new_shipment_section'>
+      <%= button_link_to t('supplier.new'), new_admin_supplier_url, :icon => 'add' %>
+    </li>
+  </ul>
+  <br class="clear" />
+</div>
+
+<table class="index">
+  <tr data-hook="admin_suppliers_index_headers">
+    <th><%= t(:name) %></th>
+    <th><%= t(:company) %></th>
+    <th data-hook="admin_shipments_index_header_actions">
+      <%= t(:action) %>
+    </th>
+  </tr>
+  <% @suppliers.each do |supplier| %>
+    <tr id="<%= spree_dom_id supplier %>" data-hook="admin_suppliers_index_rows">
+      <td><%= supplier.name %></td>
+      <td><%= supplier.company %></td>
+      <td class="actions" data-hook="admin_suppliers_index_row_actions">
+        <%= link_to_with_icon 'edit', t(:edit), edit_admin_supplier_url(supplier) %>
+        <%= link_to_delete supplier, :url => admin_supplier_url(supplier) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
