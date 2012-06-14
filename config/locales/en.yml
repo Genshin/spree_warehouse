@@ -32,6 +32,7 @@ en:
   product_name: "Product Name"
   
   containers: "Containers"   
+  container: "Container"
   no_containers_assigned: "No containers assigned"
   container_taxonomies: "Container Taxonomies"
   container_taxonomy_edit: "Edit Container Taxonomy"
@@ -55,7 +56,7 @@ en:
   submit: "Submit"
   quantity: "Quantity"
   count: "Count"
-  order_number: "Order Number"
+  order_number: "Order#"
   
   stock_category: "Stock"
   stock: "Stock"

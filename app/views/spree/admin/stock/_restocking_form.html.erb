@@ -6,7 +6,7 @@
     <%= f.label :order_number, t(:order_number) %>
     <%= f.text_field :order_number, :class => 'small' %>
     
-    <%= f.label :container_taxon_id, t(:container_taxon) %>
+    <%= f.label :container_taxon_id, t(:container) %>
     <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) if @container_taxon_id %>
 
     <%= f.label :supplier_id, t(:supplier) %>
