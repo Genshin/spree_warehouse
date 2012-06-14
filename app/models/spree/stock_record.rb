@@ -3,6 +3,7 @@ module Spree
     belongs_to :variant
     belongs_to :container_taxon
     belongs_to :destocking_reason
+    belongs_to :supplier
 
     attr_accessible :quantity, :order_number, :direction, :variant_id, :container_taxon_id, :destocking_reason_id
 
