@@ -102,3 +102,4 @@ en:
   supplier:
     new: "New Supplier"
     edit: "Edit Supplier"
+    name: "Supplier"
