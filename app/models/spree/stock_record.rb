@@ -5,7 +5,7 @@ module Spree
     belongs_to :destocking_reason
     belongs_to :supplier
 
-    attr_accessible :quantity, :order_number, :direction, :variant_id, :container_taxon_id, :destocking_reason_id
+    attr_accessible :quantity, :order_number, :direction, :variant_id, :container_taxon_id, :destocking_reason_id, :supplier_id
 
     validates :quantity, :numericality => { :greater_than_or_equal_to => 0 }, :presence => true
     

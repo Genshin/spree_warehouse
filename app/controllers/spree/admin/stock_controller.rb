@@ -56,6 +56,8 @@ module Spree
       def restocking
         @container_taxons = ContainerTaxon.all
         @container_taxon_id = params[:container_taxon_id].nil? ? 'nil' : params[:container_taxon_id]
+        @suppliers = Supplier.all
+        @supplier_id = params[:supplier_id].nil? ? 'nil' : params[:supplier_id]
       end
       
       def restock
