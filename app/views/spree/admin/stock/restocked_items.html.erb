@@ -8,6 +8,7 @@
   <tr>
     <th><%= sort_link @search, :container_taxon_name, t(:container_taxon), { :default_order => "asc" }, { :title => 'admin_restocked_items_container_taxon' } %></th>
     <th><%= sort_link @search, :quantity, t(:quantity), { :default_order => "asc" }, { :title => 'admin_restocked_items_quantity' } %></th>
+    <th><%= t(:order_number)%></th>
     <th><%= sort_link @search, :variant_sku, t(:sku), { :default_order => "asc" }, { :title => 'admin_restocked_items_sku' } %></th>
     <th><%= sort_link @search, :variant_product_name, t(:product), { :default_order => "asc" }, { :title => 'admin_restocked_items_product_name' } %></th>
     <th><%= t(:variant)%></th>
@@ -27,6 +28,7 @@
           <% end %>
         </td>
         <td><%= ri.quantity %></td>
+        <td><%= ri.order_number %></td>
         <td><%= ri.variant.sku %></td>
         <td><%= ri.variant.product.name %></td>
         <td><%= ri.variant.name %></td>
