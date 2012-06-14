@@ -8,6 +8,7 @@ module Spree
       
       def new
         @container_taxons = ContainerTaxon.all
+        @suppliers = Supplier.all
       end
 
       def products
