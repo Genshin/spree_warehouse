@@ -55,6 +55,7 @@ en:
   submit: "Submit"
   quantity: "Quantity"
   count: "Count"
+  order_number: "Order Number"
   
   stock_category: "Stock"
   stock: "Stock"

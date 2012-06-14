@@ -2,6 +2,9 @@
   <%= form_for :stock_record, :url => admin_restock_path, :html => { :id => "restocking_form" } do |f| %>
     <%= f.label :quantity, t(:qty) %>
     <%= f.number_field :quantity, :min => 0, :class => 'small' %>
+
+    <%= f.label :order_number, t(:order_number) %>
+    <%= f.text_field :order_number, :class => 'small' %>
     
     <%= f.label :container_taxon_id, t(:container_taxon) %>
     <%= f.select :container_taxon_id, options_from_collection_for_select(@container_taxons, "id", "name", @container_taxon_id) if @container_taxon_id %>
