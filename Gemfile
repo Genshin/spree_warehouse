@@ -1,8 +1,10 @@
 source 'http://rubygems.org'
 
+gemspec
+
 gem 'spree', '~> 1.1.1' 
 
-gem 'wisepdf'
+gem 'pdfkit'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
@@ -34,4 +36,3 @@ unless ENV["CI"]
   end
 end
 
-gemspec
