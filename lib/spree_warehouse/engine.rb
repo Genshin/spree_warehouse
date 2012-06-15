@@ -5,6 +5,7 @@ module SpreeWarehouse
     config.after_initialize do
       require 'rainbow'
       Sickill::Rainbow.enabled = true
+      config.middleware.use "PDFKit::Middleware", :print_media_type => true  
     end
 
     config.autoload_paths += %W(#{config.root}/lib)
