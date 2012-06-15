@@ -32,6 +32,7 @@ en:
   product_name: "Product Name"
   
   containers: "Containers"   
+  container: "Container"
   no_containers_assigned: "No containers assigned"
   container_taxonomies: "Container Taxonomies"
   container_taxonomy_edit: "Edit Container Taxonomy"
@@ -55,6 +56,7 @@ en:
   submit: "Submit"
   quantity: "Quantity"
   count: "Count"
+  order_number: "Order#"
   
   stock_category: "Stock"
   stock: "Stock"
@@ -96,3 +98,10 @@ en:
 
   notice_messages:
     warehouse_deleted: "Warehouse successfully deleted"
+
+
+  supplier:
+    new: "New Supplier"
+    edit: "Edit Supplier"
+    name: "Supplier"
+    address: "Supplier's Address"
