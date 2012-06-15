@@ -21,6 +21,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'rainbow'
   s.add_dependency 'rqrcode'
   s.add_dependency 'mini_magick'
-  s.add_dependency 'wicked_pdf'
   s.add_development_dependency 'sqlite3'
 end

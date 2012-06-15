@@ -24,6 +24,12 @@ module Spree
         json_response.first['container_taxonomy']['root']['container_taxons'].count.should eq 1
       end
 
+      it "can search for container taxonomies" do
+        api_get :search, :q => { :name_cont => container_taxonomy.name }
+        json_response.first['container_taxonomy']['name'].should eq container_taxonomy.name
+        json_response.first['container_taxonomy']['root']['container_taxons'].count.should eq 1
+      end
+      
       it "gets a single container_taxonomy" do
         api_get :show, :id => container_taxonomy.id
 

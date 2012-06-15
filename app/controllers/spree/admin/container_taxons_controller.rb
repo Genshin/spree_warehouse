@@ -8,7 +8,10 @@ module Spree
       def generate_pdf
         respond_to do |format|
           format.html { render :layout => false }
-          format.pdf { render(:pdf => "container_taxon_pdf", :wkhtmltopdf => '/usr/local/bin/wkhtmltopdf', :layout => "pdf_layout") }
+          #format.pdf { render(:pdf => "container_taxon_pdf", :wkhtmltopdf => '/usr/local/bin/wkhtmltopdf', :layout => "pdf_layout") }
+          format.pdf do
+            render :pdf => "generate_pdf"
+          end
         end
       end
 

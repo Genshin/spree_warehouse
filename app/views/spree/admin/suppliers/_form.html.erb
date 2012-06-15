@@ -1,0 +1,19 @@
+<fieldset id="supplier" data-hook>
+
+  <legend><%= t('supplier.name') %></legend>
+
+  <%= f.field_container :name do %>
+    <%= f.label :name, t(:name) %><br />
+    <%= f.text_field :name %>
+    <%= error_message_on :supplier, :name %>
+  <% end %>
+
+  <%= f.field_container :company do %>
+    <%= f.label :company, t(:company) %><br />
+    <%= f.text_field :company %>
+    <%= error_message_on :supplier, :company %>
+  <% end %>
+  
+</fieldset>
+
+<%= render :partial => "address", :locals => { :f => f } %>
