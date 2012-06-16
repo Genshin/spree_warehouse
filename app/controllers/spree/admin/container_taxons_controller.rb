@@ -9,7 +9,7 @@ module Spree
       def generate_qr
         @container_taxon = ContainerTaxon.find(params[:id])
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
-        
+
         @qr = RQRCode::QRCode.new(qr_code(@container_taxon).to_json, :size => 12, :level => :l)
         render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
       end
@@ -30,10 +30,20 @@ module Spree
         render_to_string :partial => 'spree/admin/shared/qrs', :locals => { :qrs => @qrs }
       end
 
-      def generate_pdf
+      def qr_pdf
         respond_to do |format|
           format.html { render :text => generate_qr.to_s }
           format.pdf  { render :text => PDFKit.new(generate_qr).to_pdf } 
+        end
+      end
+
+      def qrs_pdf
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
+        @container_taxons = @container_taxonomy.container_taxons
+        
+        respond_to do |format|
+          format.html { render :text => generate_qrs(@container_taxons).to_s }
+          format.pdf  { render :text => PDFKit.new(generate_qrs(@container_taxons)).to_pdf } 
         end
       end
 
