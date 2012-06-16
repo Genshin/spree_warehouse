@@ -4,6 +4,7 @@ module SpreeWarehouse
 
     config.after_initialize do
       require 'rainbow'
+      require 'pdfkit'
       Sickill::Rainbow.enabled = true
       config.middleware.use "PDFKit::Middleware", :print_media_type => true  
     end

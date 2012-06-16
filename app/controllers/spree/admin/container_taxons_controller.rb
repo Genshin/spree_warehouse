@@ -29,7 +29,7 @@ module Spree
       def generate_pdf
         respond_to do |format|
           format.html { render :text => generate_qr.to_s }
-          format.pdf { render :text => PDFKit.new(generate_qr).to_pdf } 
+          format.pdf  { render :text => PDFKit.new(generate_qr).to_pdf } 
         end
       end
 
