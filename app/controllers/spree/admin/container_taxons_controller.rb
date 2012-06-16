@@ -7,8 +7,27 @@ module Spree
       respond_to :html, :json, :js
      
       def generate_qr
-        @qr = RQRCode::QRCode.new(qr_code.to_json, :size => 12, :level => :l)
+        @container_taxon = ContainerTaxon.find(params[:id])
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
+        
+        @qr = RQRCode::QRCode.new(qr_code(@container_taxon).to_json, :size => 12, :level => :l)
         render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
+      end
+
+      def generate_qrs(container_taxons) 
+        @qrs = []
+        container_taxons.each do |ct|
+          @qrs << { 
+                    :code =>  RQRCode::QRCode.new(qr_code(ct).to_json, :size => 12, :level => :l), 
+                    :name => ct.name,
+                    :container_taxonomy => ct.container_taxonomy.name, 
+
+                    #FIXME Change the whole model
+                    :warehouse => ct.container_taxonomy.warehouses.first.name    
+                  }
+        end
+  
+        render_to_string :partial => 'spree/admin/shared/qrs', :locals => { :qrs => @qrs }
       end
 
       def generate_pdf
@@ -20,6 +39,7 @@ module Spree
 
       def index
         @container_taxons = container_taxonomy.root.children
+        generate_qrs(@container_taxons)
       end
 
       def show 
