@@ -2,27 +2,12 @@ module Spree
   module Admin
     class ContainerTaxonsController < BaseController
 
+      include QrHelper
+
       respond_to :html, :json, :js
      
       def generate_qr
-        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
-        @container_taxon = ContainerTaxon.find(params[:id])
-
-        @code = { :container_taxon => { 
-                      :name => @container_taxon.name, 
-                      :permalink => @container_taxon.permalink,
-                      :updated_at => @container_taxon.updated_at,
-                      :container_taxonomy => {  :id =>    @container_taxonomy.id,
-                                                :name =>  @container_taxonomy.name 
-                                              }, 
-
-                      :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
-                                                :name => @container_taxonomy.warehouses.map(&:name).join(' ')
-                                             } 
-                  } 
-                }
-
-        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
+        @qr = RQRCode::QRCode.new(qr_code.to_json, :size => 12, :level => :l)
         render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
       end
 
