@@ -58,6 +58,7 @@ module Spree
       def index
         #@container_taxons = container_taxonomy.root.children
         @container_taxons = container_taxonomy.container_taxons
+        #TODO Clean this call, so call it only when we need it
         generate_qrs(@container_taxons)
       end
 
