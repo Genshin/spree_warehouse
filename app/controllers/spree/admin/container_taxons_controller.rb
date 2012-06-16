@@ -3,12 +3,33 @@ module Spree
     class ContainerTaxonsController < BaseController
 
       respond_to :html, :json, :js
+     
+      def generate_qr
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
+        @container_taxon = ContainerTaxon.find(params[:id])
 
+        @code = { :container_taxon => { 
+                      :name => @container_taxon.name, 
+                      :permalink => @container_taxon.permalink,
+                      :updated_at => @container_taxon.updated_at,
+                      :container_taxonomy => {  :id =>    @container_taxonomy.id,
+                                                :name =>  @container_taxonomy.name 
+                                              }, 
+
+                      :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
+                                                :name => @container_taxonomy.warehouses.map(&:name).join(' ')
+                                             } 
+                  } 
+                }
+
+        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
+        render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
+      end
 
       def generate_pdf
         respond_to do |format|
-          format.html { render :layout => false }
-          format.pdf { render(:pdf => "container_taxon_pdf", :wkhtmltopdf => '/usr/local/bin/wkhtmltopdf', :layout => "pdf_layout") }
+          format.html { render :text => generate_qr.to_s }
+          format.pdf { render :text => PDFKit.new(generate_qr).to_pdf } 
         end
       end
 
@@ -17,24 +38,7 @@ module Spree
       end
 
       def show 
-        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
-        @container_taxon = ContainerTaxon.find(params[:id])
-
-        @code = { :container_taxon => { 
-                                          :name => @container_taxon.name, 
-                                          :permalink => @container_taxon.permalink,
-                                          :updated_at => @container_taxon.updated_at,
-                                          :container_taxonomy => {  :id =>    @container_taxonomy.id,
-                                                                    :name =>  @container_taxonomy.name 
-                                                                  }, 
-
-                                          :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
-                                                                    :name => @container_taxonomy.warehouses.map(&:name).join(' ')
-                                                                 } 
-                                      } 
-                }
-
-        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
+        generate_qr
         respond_with(:admin, @container_taxon) 
       end
 

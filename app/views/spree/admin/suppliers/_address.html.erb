@@ -1,0 +1,52 @@
+<fieldset id="address" data-hook>
+
+  <legend><%= t('supplier.address') %></legend>
+
+  <%= f.field_container :address1 do %>
+    <%= f.label :address1, t(:address1) %><br />
+    <%= f.text_field :address1 %>
+    <%= error_message_on :supplier, :address1 %>
+  <% end %>
+
+  <%= f.field_container :address2 do %>
+    <%= f.label :address2, t(:address2) %><br />
+    <%= f.text_field :address2 %>
+    <%= error_message_on :supplier, :address2 %>
+  <% end %>
+
+  <%= f.field_container :city do %>
+    <%= f.label :city, t(:city) %><br />
+    <%= f.text_field :city %>
+    <%= error_message_on :supplier, :city %>
+  <% end %>
+
+  <%= f.field_container :zipcode do %>
+    <%= f.label :zipcode, t(:zipcode) %><br />
+    <%= f.text_field :zipcode %>
+    <%= error_message_on :supplier, :zipcode %>
+  <% end %>
+
+  <%= f.field_container :phone_number do %>
+    <%= f.label :phone_number, t(:phone_number) %><br />
+    <%= f.phone_field :phone_number %>
+    <%= error_message_on :supplier, :phone_number %>
+  <% end %>
+
+  <%= f.field_container :mobile_number do %>
+    <%= f.label :mobile_number, t(:mobile_number) %><br />
+    <%= f.phone_field :mobile_number %>
+    <%= error_message_on :supplier, :mobile_number %>
+  <% end %>
+
+  <%= f.field_container :email do %>
+    <%= f.label :email, t(:email) %><br />
+    <%= f.email_field :email %>
+    <%= error_message_on :supplier, :email %>
+  <% end %>
+
+  <%= f.field_container :website do %>
+    <%= f.label :website, t(:website) %><br />
+    <%= f.text_field :website %>
+    <%= error_message_on :supplier, :website %>
+  <% end %>
+</fieldset>

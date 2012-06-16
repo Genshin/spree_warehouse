@@ -1,0 +1,14 @@
+<div data-hook="admin_suppliers_new_form_header">
+  <h1><%= t('supplier.new') %></h1>
+</div>
+
+<%= render 'spree/shared/error_messages', :target => @supplier %>
+
+<div data-hook="admin_supplier_new_form" id="admin_supplier_new_form" >
+  <%= form_for(:supplier, :url => admin_suppliers_url(params[:supplier])) do |f| %>
+    <%= render :partial => "form", :locals => { :f => f } %>
+    <div data-hook="admin_supplier_new_form_buttons">
+      <%= render :partial => "spree/admin/shared/new_resource_links" %>
+    </div>
+  <% end %>
+</div>
