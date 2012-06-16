@@ -40,7 +40,7 @@ module Spree
       def qrs_pdf
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxons = @container_taxonomy.container_taxons
-        
+
         respond_to do |format|
           format.html { render :text => generate_qrs(@container_taxons).to_s }
           format.pdf  { render :text => PDFKit.new(generate_qrs(@container_taxons)).to_pdf } 
@@ -48,7 +48,8 @@ module Spree
       end
 
       def index
-        @container_taxons = container_taxonomy.root.children
+        #@container_taxons = container_taxonomy.root.children
+        @container_taxons = container_taxonomy.container_taxons
         generate_qrs(@container_taxons)
       end
 
