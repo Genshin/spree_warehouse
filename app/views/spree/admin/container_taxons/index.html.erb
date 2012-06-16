@@ -13,7 +13,7 @@
   <p>container_taxons.count : <%= @container_taxons.count %></p>
 </div>
 
-<p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :qrs_pdf, :format => :pdf, :type => 'application/pdf' }, :icon => 'pdf' %></p>
+<p><%= button_link_to t(:generate_pdf_for_all_container_taxons), {:controller => :container_taxons, :action => :qrs_pdf, :format => :pdf, :type => 'application/pdf' }, :icon => 'pdf' %></p>
 <br class="clear" />
 
 <div id='list-container-taxons' data-hook>

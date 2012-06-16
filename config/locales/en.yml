@@ -90,6 +90,7 @@ en:
   generate_api_key_first: "To generate QR code you need to generate API key first"
 
   generate_pdf: "Generate PDF"
+  generate_pdf_for_all_container_taxons: "Generate PDF for all Container Taxons"
 
   errors:
     messages:
