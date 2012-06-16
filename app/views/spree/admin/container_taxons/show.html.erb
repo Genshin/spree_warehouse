@@ -7,7 +7,7 @@
 <p>code.length : <%= @code.to_s.length %> symbols</p>
 <p>QR.length : <%= @qr.to_s.length %> symbols</p>
 </div>
-<%= render :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr } %>
+<%= render :partial => 'qr_single', :locals => { :qr => @qr } %>
 
 <p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :qr_pdf, :format => :pdf, :type => 'application/pdf' }, :icon => 'pdf' %></p>
 <br class="clear" />

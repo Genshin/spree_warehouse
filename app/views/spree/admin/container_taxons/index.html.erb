@@ -17,7 +17,7 @@
 <p><%= button_link_to t(:generate_pdf), {:controller => :container_taxons, :action => :qrs_pdf, :format => :pdf, :type => 'application/pdf' }, :icon => 'pdf' %></p>
 <br class="clear" />
 
-<%= render :partial => 'spree/admin/shared/qrs', :locals => { :qrs => @qrs } %>
+<%= render :partial => 'qr_multiple', :locals => { :qrs => @qrs } %>
 
 <div id='list-container-taxons' data-hook>
   <h2><%= @container_taxonomy.root.name %></td></h2>

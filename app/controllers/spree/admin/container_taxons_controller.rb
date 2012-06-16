@@ -10,8 +10,16 @@ module Spree
         @container_taxon = ContainerTaxon.find(params[:id])
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
 
-        @qr = RQRCode::QRCode.new(qr_code(@container_taxon).to_json, :size => 12, :level => :l)
-        render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
+        @qr = {
+                :code =>  RQRCode::QRCode.new(qr_code(@container_taxon).to_json, :size => 12, :level => :l),
+                :name => @container_taxon.name,
+                :container_taxonomy => @container_taxonomy.name,
+
+                #FIXME Change the whole model
+                :warehouse => @container_taxonomy.warehouses.first.name
+              }
+
+        render_to_string :partial => 'qr_single', :locals => { :qr => @qr }
       end
 
       def generate_qrs(container_taxons) 
@@ -27,7 +35,7 @@ module Spree
                   }
         end
   
-        render_to_string :partial => 'spree/admin/shared/qrs', :locals => { :qrs => @qrs }
+        render_to_string :partial => 'qr_multiple', :locals => { :qrs => @qrs }
       end
 
       def qr_pdf
