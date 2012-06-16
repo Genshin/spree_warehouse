@@ -49,6 +49,8 @@ module Spree
         @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxons = @container_taxonomy.container_taxons
 
+        generate_qrs(@container_taxons)
+
         respond_to do |format|
           format.html { render :text => generate_qrs(@container_taxons).to_s }
           format.pdf  { render :text => PDFKit.new(generate_qrs(@container_taxons)).to_pdf } 
@@ -56,10 +58,9 @@ module Spree
       end
 
       def index
+        #TODO Delete this after the DEBUG info is deleted
         #@container_taxons = container_taxonomy.root.children
-        @container_taxons = container_taxonomy.container_taxons
-        #TODO Clean this call, so call it only when we need it
-        generate_qrs(@container_taxons)
+        @container_taxons = container_taxonomy.container_taxons     
       end
 
       def show 
