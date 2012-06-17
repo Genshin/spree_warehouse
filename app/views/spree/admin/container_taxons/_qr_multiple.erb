@@ -1,0 +1,72 @@
+<style type="text/css">
+  table.qrcode {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    width: auto;
+  }
+
+  table.qrcode td {
+    border-width: 0;
+    border-style: none;
+    border-color: #0000ff;
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+    width: 5px;
+    height: 5px;
+  }
+
+  td.black { background-color: #000; }
+  td.white { background-color: #fff; }
+
+  td.qrcode { 
+    width: 400px; 
+    margin-bottom: 200px;
+  }
+
+  td.qrcode_info { margin-bottom: 200px;}
+
+  table.qrcodes {    
+    border-collapse:separate;
+    border-spacing:0 100px;
+  } 
+
+  ul.qrcode {list-style: none;}
+
+</style>
+ 
+<br /><br />
+
+<table class="qrcodes">
+  <% @qrs.each do |qr| %>
+    <tr>
+      <td class="qrcode">
+        <table class="qrcode">
+          <% qr[:code].modules.each_index do |x| -%>
+            <tr>
+              <% qr[:code].modules.each_index do |y| -%>
+                <% if qr[:code].dark?(x,y) -%>
+                  <td class="black"/>
+                <% else -%>
+                  <td class="white"/>
+                <% end -%>
+              <% end -%>
+            </tr>
+          <% end -%>
+        </table>
+      </td>
+
+      <td class="qrcode_info">
+        <ul class="qrcode">
+          <li><h1>name : <%= qr[:name] %></h1></li>
+          <li><h1>container_taxonomy : <%= qr[:container_taxonomy] %></h1></li>
+          <li><h1>warehouse : <%= qr[:warehouse] %></h1></li>
+        </ul>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br /><br />

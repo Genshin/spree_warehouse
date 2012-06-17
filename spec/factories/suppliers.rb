@@ -1,8 +1,7 @@
 FactoryGirl.define do
-  sequence(:company) { "#{Faker::Name.name} Ltd." }
-  
+
   factory :supplier , :class => Spree::Supplier do 
-    company
+    company "Fuji Heavy Industries Ltd."
+    name "Subaru"
   end
 end
-

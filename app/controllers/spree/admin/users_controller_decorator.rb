@@ -7,7 +7,7 @@ module Spree
       def qr
         user = User.find(params[:id])
         code = { :profile => { :name => user.email, :server => request.host, :port => request.port, :key => user.api_key } }
-        @qr = RQRCode::QRCode.new(code.to_json, :size => 10, :level => :l)
+        @qr = RQRCode::QRCode.new(code.to_json, :size => 12, :level => :l)
 
         respond_with { |format| format.html }
       end

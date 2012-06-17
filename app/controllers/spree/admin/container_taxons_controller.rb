@@ -2,39 +2,65 @@ module Spree
   module Admin
     class ContainerTaxonsController < BaseController
 
+      include QrHelper
+
       respond_to :html, :json, :js
      
       def generate_qr
-        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
         @container_taxon = ContainerTaxon.find(params[:id])
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
 
-        @code = { :container_taxon => { 
-                      :name => @container_taxon.name, 
-                      :permalink => @container_taxon.permalink,
-                      :updated_at => @container_taxon.updated_at,
-                      :container_taxonomy => {  :id =>    @container_taxonomy.id,
-                                                :name =>  @container_taxonomy.name 
-                                              }, 
+        @qr = {
+                :code =>  RQRCode::QRCode.new(qr_code(@container_taxon).to_json, :size => 12, :level => :l),
+                :name => @container_taxon.name,
+                :container_taxonomy => @container_taxonomy.name,
 
-                      :warehouses =>         {  :id => @container_taxonomy.warehouses.map(&:id).join(' '),
-                                                :name => @container_taxonomy.warehouses.map(&:name).join(' ')
-                                             } 
-                  } 
-                }
+                #FIXME Change the whole model
+                :warehouse => @container_taxonomy.warehouses.first.name
+              }
 
-        @qr = RQRCode::QRCode.new(@code.to_json, :size => 12, :level => :l)
-        render_to_string :partial => 'spree/admin/shared/qr', :locals => { :qr => @qr }
+        render_to_string :partial => 'qr_single', :locals => { :qr => @qr }
       end
 
-      def generate_pdf
+      def generate_qrs(container_taxons) 
+        @qrs = []
+        container_taxons.each do |ct|
+          @qrs << { 
+                    :code =>  RQRCode::QRCode.new(qr_code(ct).to_json, :size => 12, :level => :l), 
+                    :name => ct.name,
+                    :container_taxonomy => ct.container_taxonomy.name, 
+
+                    #FIXME Change the whole model
+                    :warehouse => ct.container_taxonomy.warehouses.first.name    
+                  }
+        end
+  
+        render_to_string :partial => 'qr_multiple', :locals => { :qrs => @qrs }
+      end
+
+      def qr_pdf
         respond_to do |format|
           format.html { render :text => generate_qr.to_s }
-          format.pdf { render :text => PDFKit.new(generate_qr).to_pdf } 
+          format.pdf  { render :text => PDFKit.new(generate_qr).to_pdf } 
+        end
+      end
+
+      def qrs_pdf
+        @container_taxonomy = ContainerTaxonomy.find(params[:container_taxonomy_id])
+        @container_taxons = @container_taxonomy.container_taxons
+
+        generate_qrs(@container_taxons)
+
+        respond_to do |format|
+          format.html { render :text => generate_qrs(@container_taxons).to_s }
+          format.pdf  { render :text => PDFKit.new(generate_qrs(@container_taxons)).to_pdf } 
         end
       end
 
       def index
-        @container_taxons = container_taxonomy.root.children
+        #TODO Delete this after the DEBUG info is deleted
+        #@container_taxons = container_taxonomy.root.children
+        @container_taxons = container_taxonomy.container_taxons     
       end
 
       def show 
