@@ -1,0 +1,39 @@
+<style type="text/css">
+ table.qrcode {
+  border-width: 0;
+  border-style: none;
+  border-color: #0000ff;
+  border-collapse: collapse;
+  width: auto;
+ }
+ table.qrcode td {
+   border-width: 0;
+   border-style: none;
+   border-color: #0000ff;
+   border-collapse: collapse;
+   padding: 0;
+   margin: 0;
+   width: 5px;
+   height: 5px;
+ }
+ td.black { background-color: #000; }
+ td.white { background-color: #fff; }
+</style>
+ 
+<br />
+<br />
+<table class="qrcode">
+ <% @qr.modules.each_index do |x| -%>
+   <tr>
+   <% @qr.modules.each_index do |y| -%>
+    <% if @qr.dark?(x,y) -%>
+    <td class="black"/>
+    <% else -%>
+    <td class="white"/>
+    <% end -%>
+   <% end -%>
+   </tr>
+ <% end -%>
+</table>
+<br />
+<br />

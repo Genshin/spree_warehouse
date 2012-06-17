@@ -1,4 +1,5 @@
 <%= render :partial => 'spree/admin/shared/warehouse_sub_menu' %>
+
 <div class="toolbar" data-hook="toolbar">
   <ul class="actions">
   </ul>
@@ -6,6 +7,14 @@
 </div>
 
 <h1><%= t(:container_taxons) %></h1>
+
+<div style="border:1px solid black; padding:5px;">
+  <h3>Debug</h3>
+  <p>container_taxons.count : <%= @container_taxons.count %></p>
+</div>
+
+<p><%= button_link_to t(:generate_pdf_for_all_container_taxons), {:controller => :container_taxons, :action => :qrs_pdf, :format => :pdf, :type => 'application/pdf' }, :icon => 'pdf' %></p>
+<br class="clear" />
 
 <div id='list-container-taxons' data-hook>
   <h2><%= @container_taxonomy.root.name %></td></h2>

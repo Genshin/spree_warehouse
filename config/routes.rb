@@ -41,7 +41,10 @@ Spree::Core::Engine.routes.prepend do
     resources :container_taxonomies do
       resources :container_taxons do 
         member do
-          get :generate_pdf 
+          get :qr_pdf 
+        end
+        collection do 
+          get :qrs_pdf
         end
       end
 
