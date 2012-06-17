@@ -13,15 +13,16 @@
 
 
 <h1><%= t(:picking_list) %></h1>
-<table id="picking_list" class="index picking_list">
-  <tr data-hook="admin_picking_list_headers">
-    <th><%= t(:name) %></th>
-    <th><%= t(:sku) %></th>
-    <th><%= t(:containers) %></th>
-    <th><%= t(:shipment) %></th>
-  </tr>
+
+<% @shipments.each do |shipment| %>
+  <h2><%= shipment.number %></h2>
+  <table id="picking_list" class="index picking_list">
+    <tr data-hook="admin_picking_list_headers">
+      <th><%= t(:name) %></th>
+      <th><%= t(:sku) %></th>
+      <th><%= t(:containers) %></th>
+    </tr>
   
-  <% @shipments.each do |shipment| %>
     <% shipment.inventory_units.each do |iu| %>
       <tr>
       	<td><%= iu.variant.name %></td>
@@ -35,7 +36,6 @@
       	<% else %>
       	  <td><%= t(:no_containers_assigned) %></td>
       	<% end %>
-      	<td><%= iu.shipment.number %></td>
       </tr>
     <% end %>
   <% end %>
