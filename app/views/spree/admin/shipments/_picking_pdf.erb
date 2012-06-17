@@ -1,0 +1,42 @@
+<style type="text/css">
+  table.picking_list {
+    border:  1px solid black;
+    width: auto;
+    margin: 10px 10px 10px 10px;
+  }
+
+  table.picking_list td {
+    padding: 20px;
+    margin: 20px;
+  }
+</style>
+
+
+<h1><%= t(:picking_list) %></h1>
+<table id="picking_list" class="index picking_list">
+  <tr data-hook="admin_picking_list_headers">
+    <th><%= t(:name) %></th>
+    <th><%= t(:sku) %></th>
+    <th><%= t(:containers) %></th>
+    <th><%= t(:shipment) %></th>
+  </tr>
+  
+  <% @shipments.each do |shipment| %>
+    <% shipment.inventory_units.each do |iu| %>
+      <tr>
+      	<td><%= iu.variant.name %></td>
+      	<td><%= iu.variant.sku %></td>
+      	<% unless iu.variant.variant_container_taxons.empty? %>
+          <td>
+      	    <% iu.variant.variant_container_taxons.each do |vct| %>
+              <%= vct.container_taxon.name %>(<%= vct.quantity %>)
+            <% end %>
+          </td> 
+      	<% else %>
+      	  <td><%= t(:no_containers_assigned) %></td>
+      	<% end %>
+      	<td><%= iu.shipment.number %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
