@@ -2,20 +2,25 @@
   table.picking_list {
     border:  1px solid black;
     width: auto;
-    margin: 10px 10px 10px 10px;
   }
 
   table.picking_list td {
     padding: 20px;
     margin: 20px;
   }
+
+  div.picking_list { 
+  }
+
+  .caption { 
+  }
 </style>
 
-
-<h1><%= t(:picking_list) %></h1>
+<div class="picking_list">
+<h1 class="caption"><%= t(:picking_list) %></h1>
 
 <% @shipments.each do |shipment| %>
-  <h2><%= shipment.number %></h2>
+  <caption class="caption">Order : <%= @order.number %>, Shipment : <%= shipment.number %></caption>
   <table id="picking_list" class="index picking_list">
     <tr data-hook="admin_picking_list_headers">
       <th><%= t(:name) %></th>
@@ -40,3 +45,4 @@
     <% end %>
   <% end %>
 </table>
+</div>
