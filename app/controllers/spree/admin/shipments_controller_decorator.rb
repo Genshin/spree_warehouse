@@ -30,9 +30,15 @@ module Spree
         respond_with(@shipments)
       end
 
-      def picking
+      def generate_pdf
+        @shipments = @order.shipments
+        render_to_string :partial => 'picking_pdf', :locals => { :shipments => @shipments }
+      end
+
+      def picking_pdf
         respond_to do |format|
-          format.pdf { render(:pdf => "breakfast", :layout => false) }
+          format.html { render :text => generate_qr.to_s }
+          format.pdf  { render :text => PDFKit.new(generate_pdf).to_pdf } 
         end
       end
       
