@@ -16,6 +16,12 @@ module Spree
 
         def create
           authorize! :create, StockRecord
+
+          if params[:container_taxon]
+            ct = ContainerTaxon.find_by_permalink(params[:container_taxon][:permalink])
+            params[:stock_record][:container_taxon_id] = ct.id
+          end
+          
           @stock_record = StockRecord.new(params[:stock_record])
           if @stock_record.save
             render :show, :status => 201

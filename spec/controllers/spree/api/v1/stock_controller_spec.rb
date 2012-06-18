@@ -47,6 +47,20 @@ module Spree
         response.status.should == 201
       end
 
+      it "can create a new stock record by permalink" do
+        api_post :create, :stock_record => { :quantity => 7, :variant_id => product.master.id,
+           :direction => 'in', :destocking_reason_id => destocking_reason.id,
+           :order_number => "123"  }, :container_taxon => { :permalink => @ct_shelve.permalink }
+
+        json_response.should have_attributes(attributes)
+        json_response["stock_record"]["quantity"].should eql(7)
+        json_response["stock_record"]["variant_id"].should eql(product.master.id)
+        json_response["stock_record"]["container_taxon_id"].should eql(@ct_shelve.id)
+        json_response["stock_record"]["direction"].should eql("in")
+        json_response["stock_record"]["destocking_reason_id"].should eql(destocking_reason.id)
+        response.status.should == 201
+      end
+
     end
   
   end
