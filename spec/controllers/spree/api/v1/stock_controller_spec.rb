@@ -61,6 +61,21 @@ module Spree
         response.status.should == 201
       end
 
+
+      it "can not create a new stock record w/o a variant_id supplied" do
+        api_post :create, :stock_record => { :quantity => 7, 
+            :container_taxon_id => @ct_shelve.id, :direction => 'in', :destocking_reason_id => destocking_reason.id,
+            :order_number => "123"  }
+        response.status.should == 422
+      end
+
+      it "can not create a new stock record w/o a valid variant" do
+        api_post :create, :stock_record => { :quantity => 7, :variant_id => 555,
+            :container_taxon_id => @ct_shelve.id, :direction => 'in', :destocking_reason_id => destocking_reason.id,
+            :order_number => "123"  }
+        response.status.should == 422
+      end
+
     end
   
   end
