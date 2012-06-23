@@ -106,3 +106,7 @@ en:
     edit: "Edit Supplier"
     name: "Supplier"
     address: "Supplier's Address"
+
+  spree:
+    api:
+      please_supply_valid_variant: "Please supply a valid variant"
