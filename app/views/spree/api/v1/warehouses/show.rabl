@@ -1,0 +1,2 @@
+object @warehouse
+attributes *warehouse_attributes
