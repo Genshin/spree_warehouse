@@ -24,7 +24,7 @@ module Spree
       end
 
       def warehouse_attributes
-        [:id, :name]
+        [:id, :name, :code, :location, :details]
       end
 
     end

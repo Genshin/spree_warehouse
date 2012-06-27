@@ -5,7 +5,7 @@ module Spree
     render_views
 
     let(:warehouse)  { Factory(:warehouse, :name => 'Subaru Warehouse') }
-    let(:attributes) { [:id, :name] }
+    let(:attributes) { [:id, :name, :code, :location, :details] }
 
     before do
       stub_authentication!
