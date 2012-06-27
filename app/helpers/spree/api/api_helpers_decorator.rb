@@ -23,6 +23,10 @@ module Spree
         [:id, :name, :permalink, :position, :parent_id, :container_taxonomy_id]
       end
 
+      def warehouse_attributes
+        [:id, :name, :code, :location, :details]
+      end
+
     end
   end
 end

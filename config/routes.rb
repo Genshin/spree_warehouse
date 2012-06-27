@@ -3,6 +3,13 @@ Spree::Core::Engine.routes.prepend do
   #API
   namespace :api do
     scope :module => :v1 do
+      
+      resources :warehouses do 
+        collection do
+          get :search
+        end
+      end
+
       resources :stock 
 
       resources :container_taxonomies do
