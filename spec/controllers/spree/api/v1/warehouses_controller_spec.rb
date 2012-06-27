@@ -12,7 +12,7 @@ module Spree
     end
 
     context "as a normal user" do
-      it "gets all warehouses" do
+      pending "gets all warehouses" do
         api_get :index
 
         puts json_response.to_json
