@@ -7,6 +7,11 @@ module Spree
           @warehouses = Warehouse.all
         end
 
+        def search
+          @warehouses = Warehouse.search(params[:q]).result.page(params[:page])
+          render :index
+        end
+
         def show
           @warehouse = Warehouse.find(params[:id])
         end

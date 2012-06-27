@@ -4,7 +4,11 @@ Spree::Core::Engine.routes.prepend do
   namespace :api do
     scope :module => :v1 do
       
-      resources :warehouses
+      resources :warehouses do 
+        collection do
+          get :search
+        end
+      end
 
       resources :stock 
 
