@@ -22,5 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'rqrcode'
   s.add_dependency 'mini_magick'
   s.add_dependency 'pdfkit'
+  s.add_dependency 'wkhtmltopdf-binary'
   s.add_development_dependency 'sqlite3'
 end
