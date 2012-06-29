@@ -138,7 +138,7 @@ module Spree
         #check if we need to rename child container_taxons if parent name or permalink changes
         @update_children = true if params[:container_taxon][:name] != @container_taxon.name || params[:container_taxon][:permalink] != @container_taxon.permalink
 
-        if @container_taxon.update_attributes(params[:taxon])
+        if @container_taxon.update_attributes(params[:container_taxon])
           flash.notice = flash_message_for(@container_taxon, :successfully_updated)
         end
 
