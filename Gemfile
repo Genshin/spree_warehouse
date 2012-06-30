@@ -5,6 +5,7 @@ gemspec
 gem 'spree', '~> 1.1.1' 
 
 gem 'pdfkit'
+gem 'wkhtmltopdf-binary'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
