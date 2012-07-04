@@ -8,7 +8,7 @@ module Spree
         end
 
         def restocked_items 
-          @stock_records = StockRecord.restocked
+          @stock_records = StockRecord.restocked.page(params[:page])
         end
 
         def show
