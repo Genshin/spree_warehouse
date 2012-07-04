@@ -5,9 +5,14 @@ module Spree
     render_views
 
     let(:product) { Factory(:product, :name => 'Subaru Impreza') }
-    let!(:attributes) { [:id, :quantity, :container_taxon_id, :direction] }
-    let!(:stock_record) { Factory(:stock_record, :quantity => 7) }
     let(:destocking_reason) { Factory(:destocking_reason) }
+    
+    let!(:attributes) { [:id, :quantity, :container_taxon_id, :direction] }
+    let!(:restocked_items_attributes) { [:id, :quantity, :container_taxon_id, :variant_id, :direction, :order_number, :created_at] }
+    let!(:destocked_items_attributes) { [:id, :quantity, :container_taxon_id, :variant_id, :direction, :order_number, :destocking_reason_id,  :created_at] }
+    
+    let!(:restocked_item_record) { Factory(:stock_record, :quantity => 7, :direction => 'in') }
+    let!(:destocked_item_record) { Factory(:stock_record, :quantity => 77, :direction => 'out') }
 
     before do
       stub_authentication!
@@ -22,8 +27,20 @@ module Spree
         response.status.should == 200
       end
 
+      it "retrieves a list of restocked items" do
+        api_get :restocked_items
+        json_response.first.should have_attributes(restocked_items_attributes)
+        response.status.should == 200
+      end
+
+      it "retrieves a list of destocked items" do
+        api_get :destocked_items
+        json_response.first.should have_attributes(destocked_items_attributes)
+        response.status.should == 200
+      end
+
       it "gets a single stock record" do
-        api_get :show, :id => stock_record.to_param
+        api_get :show, :id => restocked_item_record.to_param
         json_response.should have_attributes(attributes)
         json_response["stock_record"]["quantity"].should eql(7)
       end
