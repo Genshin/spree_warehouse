@@ -11,6 +11,10 @@ module Spree
           @stock_records = StockRecord.restocked.page(params[:page])
         end
 
+        def destocked_items 
+          @stock_records = StockRecord.destocked.page(params[:page])
+        end
+
         def show
           @stock_record = StockRecord.find(params[:id])
         end

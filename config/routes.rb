@@ -12,7 +12,8 @@ Spree::Core::Engine.routes.prepend do
 
       resources :stock do 
         collection do
-          get :restocked_items 
+          get :restocked_items
+          get :destocked_items 
         end
       end
 

@@ -19,6 +19,10 @@ module Spree
         [:id, :quantity, :container_taxon_id, :variant_id, :direction, :order_number, :created_at]
       end
 
+      def destocked_items_attributes
+        [:id, :quantity, :container_taxon_id, :variant_id, :direction, :order_number, :destocking_reason_id, :created_at]
+      end
+
       def container_taxonomy_attributes
         [:id, :name]
       end
