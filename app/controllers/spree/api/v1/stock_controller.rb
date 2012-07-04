@@ -7,6 +7,10 @@ module Spree
           @stock_records = StockRecord.all
         end
 
+        def restocked_items 
+          @stock_records = StockRecord.restocked
+        end
+
         def show
           @stock_record = StockRecord.find(params[:id])
         end
