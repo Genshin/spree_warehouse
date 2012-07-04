@@ -34,7 +34,7 @@ module Spree
       def warehouse_attributes
         [:id, :name, :code, :location, :details]
       end
-
+      
     end
   end
 end

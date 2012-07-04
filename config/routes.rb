@@ -17,6 +17,14 @@ Spree::Core::Engine.routes.prepend do
         end
       end
 
+      resources :orders do 
+        resources :shipments do 
+          collection do
+            get :picking_list 
+          end
+        end
+      end
+
       resources :container_taxonomies do
         collection do
           get :search 
