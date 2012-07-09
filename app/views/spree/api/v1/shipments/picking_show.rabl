@@ -8,18 +8,5 @@ child :shipping_method => :shipping_method do
 end
 
 child :inventory_units => :inventory_units do 
-  attributes :state
-
-  child :variant => :variant do 
-    attributes :id, :name, :sku
-
-    child :variant_container_taxons => :variant_container_taxons do 
-      attributes :quantity
-
-      child :container_taxon => :container_taxon do 
-        attributes :name
-      end
-    end
-
-  end
+  extends "spree/api/v1/inventory_units/show"
 end

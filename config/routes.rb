@@ -25,6 +25,12 @@ Spree::Core::Engine.routes.prepend do
         end
       end
 
+      resources :inventory_units do
+        member do
+          put :pick
+        end
+      end
+
       resources :container_taxonomies do
         collection do
           get :search 
