@@ -6,7 +6,7 @@ module Spree
       	def picking_list
           @shipments = @order.shipments
         end
-
+        
       end
     end
   end
