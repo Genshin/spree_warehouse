@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'spree', '1.1.1' 
+gem 'spree', '1.1.2' 
 
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
