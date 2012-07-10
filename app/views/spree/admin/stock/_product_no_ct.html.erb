@@ -1,4 +1,4 @@
-<tr class="<%= odd_or_even?(product_i) %>">
+<tr>
 
   <% if product.images.any? %>
     <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>

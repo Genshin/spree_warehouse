@@ -1,5 +1,5 @@
 <% product.master.variant_container_taxons.active.each_with_index do |vct, vct_index| %>
-  <tr class="<%= odd_or_even?(product_i) %>">
+  <tr>
 
     <% if product.images.any? %>
       <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>
@@ -20,6 +20,6 @@
     <td id="destocking_<%= product.master.id %>_<%= vct.container_taxon_id %>">
       <%= button_link_to t(:destock), admin_destocking_path(product.master, :container_taxon_id => vct.container_taxon_id), { :id => product.master.id, :icon => 'switch', :remote => true } %>
     </td>
-    
+
   </tr>
 <% end %>

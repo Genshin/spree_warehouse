@@ -1,4 +1,4 @@
-<tr class="<%= odd_or_even?(product_i) %>">
+<tr>
 
   <% if variant.images.any? %>
     <td><%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.images.first.attachment.url(:product)%></td>
@@ -19,5 +19,5 @@
   <td id="destocking_<%= variant.id %>_nil">
     <%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
   </td>
-  
+
 </tr>
