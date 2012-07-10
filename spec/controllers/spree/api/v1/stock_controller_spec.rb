@@ -23,7 +23,15 @@ module Spree
     context "as a normal user" do
       it "retrieves a list of stock" do
         api_get :index
-        json_response.first.should have_attributes(attributes)
+        json_response["stock_records"].first.should have_attributes(attributes)
+        response.status.should == 200
+      end
+
+      it "can search stock" do 
+        Factory(:stock_record, :quantity => 3, :order_number => "X001", :direction => 'in') 
+        api_get :index , :q => { :order_number_cont => "X0" } 
+        json_response["stock_records"].first.should have_attributes(attributes)
+        json_response["count"].should == 1
         response.status.should == 200
       end
 
