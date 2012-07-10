@@ -11,6 +11,11 @@ group :development, :test do
   gem "sass", :require => 'sass' 
 end
 
+group :assets do
+  gem 'sass-rails', "~> 3.2"
+  gem 'coffee-rails', "~> 3.2"
+end
+
 group :test do
   gem 'rspec-rails', '~> 2.9.0'
   gem 'factory_girl_rails', '~> 1.7.0'
