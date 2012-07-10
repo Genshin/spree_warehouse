@@ -16,8 +16,6 @@
     <%= button_link_to t(:restock), admin_restocking_path(product.master),  { :id => product.master.id, :icon => 'switch', :remote => true } %>
   </td>
 
-  <td id="destocking_<%= product.master.id %>_nil">
-    <%= button_link_to t(:destock), admin_destocking_path(product.master), { :id => product.master.id, :icon => 'switch', :remote => true } %>
-  </td>
-  
+  <td></td>
+
 </tr>
