@@ -29,13 +29,29 @@ module Spree
 
       it "retrieves a list of restocked items" do
         api_get :restocked_items
-        json_response.first.should have_attributes(restocked_items_attributes)
+        json_response["stock_records"].first.should have_attributes(restocked_items_attributes)
+        response.status.should == 200
+      end
+
+      it "can search restocked items" do 
+        Factory(:stock_record, :quantity => 3, :order_number => "A001", :direction => 'in') 
+        api_get :restocked_items , :q => { :order_number_cont => "A0" }  
+        json_response["stock_records"].first.should have_attributes(restocked_items_attributes)
+        json_response["count"].should == 1
         response.status.should == 200
       end
 
       it "retrieves a list of destocked items" do
         api_get :destocked_items
-        json_response.first.should have_attributes(destocked_items_attributes)
+        json_response["stock_records"].first.should have_attributes(destocked_items_attributes)
+        response.status.should == 200
+      end
+
+      it "can search destocked items" do 
+        Factory(:stock_record, :quantity => 3, :order_number => "B001", :direction => 'out') 
+        api_get :destocked_items , :q => { :order_number_cont => "B0" } 
+        json_response["stock_records"].first.should have_attributes(destocked_items_attributes)
+        json_response["count"].should == 1
         response.status.should == 200
       end
 

@@ -1,5 +1,6 @@
-node(:count) { @stock_records.count }
+node(:count) { @destocked_items.count }
 node(:current_page) { params[:page] ? params[:page].to_i : 1 }
 
-collection @stock_records
-attributes *destocked_items_attributes
+child(@destocked_items) do
+  attributes *destocked_items_attributes
+end

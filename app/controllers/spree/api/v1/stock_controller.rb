@@ -8,11 +8,11 @@ module Spree
         end
 
         def restocked_items 
-          @stock_records = StockRecord.restocked.page(params[:page])
+          @restocked_items = StockRecord.restocked.search(params[:q]).result.page(params[:page])
         end
 
         def destocked_items 
-          @stock_records = StockRecord.destocked.page(params[:page])
+          @destocked_items = StockRecord.destocked.search(params[:q]).result.page(params[:page])
         end
 
         def show
