@@ -1,0 +1,23 @@
+<tr class="<%= odd_or_even?(product_i) %>">
+
+  <% if variant.images.any? %>
+    <td><%= link_to image_tag(variant.images.first.attachment.url(:mini)), variant.images.first.attachment.url(:product)%></td>
+  <% else %>
+    <td></td>
+  <% end %>
+
+  <td><%= t(:no_container_taxons) %></td>
+  <td><%= variant.sku %></td>
+  <td><%= variant.product.name %></td>
+  <td><%= variant.options_text %></td>
+  <td><%= variant.count_on_hand %></td>
+
+  <td id="restocking_<%= variant.id %>_nil">
+    <%= button_link_to t(:restock), admin_restocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
+  </td>
+
+  <td id="destocking_<%= variant.id %>_nil">
+    <%= button_link_to t(:destock), admin_destocking_path(variant),  { :id => variant.id, :icon => 'switch', :remote => true } %>
+  </td>
+  
+</tr>

@@ -3,30 +3,15 @@
 <div id="new_stock"  data-hook="toolbar">
   <%= button_link_to t(:new_stock), admin_new_stock_path, { :id => 'new_stock_link', :icon => 'add', :remote => true } %>
 </div>
+<br />
+<br />
 
-<table id="stock" class="index">
-  <caption><%= t(:stock) %> (<%= @products.count %> <%= t(:products)%>)</caption>
-  <tr>
-    <th><%= t(:image) %></th>
-    <th><%= t(:container_taxon) %></th>
-    <th><%= t(:sku) %></th>
-    <th><%= sort_link @search,:name, t(:product) %></th>
-    <th><%= t(:variant) %> </th>
-    <th><%= t(:quantity) %></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-</table>
-<div id="accordion">
+<div id="accordion" class="index">
   <% @products.each_with_index do |product, product_i| %>
-
-      <h3><%= product.sku %> | <%= product.name %></h3>
-      <div>Hello</div>
-
+    <h3><%= product.name %></h3>
+    <div><%= render :partial => 'variants', :locals => { :product => product, :product_i => product_i } %></div>
   <% end %>
-
-  </div>
+</div>
 
 <%= paginate @products %>
 
