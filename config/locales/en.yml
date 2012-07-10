@@ -110,3 +110,4 @@ en:
   spree:
     api:
       please_supply_valid_variant: "Please supply a valid variant"
+      inventory_unit_already_picked: "Inventory Unit already picked"

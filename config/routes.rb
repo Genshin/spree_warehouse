@@ -10,7 +10,26 @@ Spree::Core::Engine.routes.prepend do
         end
       end
 
-      resources :stock 
+      resources :stock do 
+        collection do
+          get :restocked_items
+          get :destocked_items 
+        end
+      end
+
+      resources :orders do 
+        resources :shipments do 
+          collection do
+            get :picking_list 
+          end
+        end
+      end
+
+      resources :inventory_units do
+        member do
+          put :pick
+        end
+      end
 
       resources :container_taxonomies do
         collection do

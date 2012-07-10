@@ -4,7 +4,15 @@ module Spree
       class StockController < Spree::Api::V1::BaseController
 
         def index
-          @stock_records = StockRecord.all
+          @stock_records = StockRecord.search(params[:q]).result.page(params[:page])
+        end
+
+        def restocked_items 
+          @restocked_items = StockRecord.restocked.search(params[:q]).result.page(params[:page])
+        end
+
+        def destocked_items 
+          @destocked_items = StockRecord.destocked.search(params[:q]).result.page(params[:page])
         end
 
         def show
