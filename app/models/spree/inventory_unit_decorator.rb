@@ -48,6 +48,10 @@ module Spree
     def not_packed?
       return true unless self.state == 'packed'
     end
+
+    def picked? 
+      return true if self.state == 'picked'
+    end
    
   end
 end
