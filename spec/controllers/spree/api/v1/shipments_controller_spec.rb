@@ -2,14 +2,21 @@ require 'spec_helper'
 
 module Spree
   describe Spree::Api::V1::ShipmentsController do
-    render_views
+    render_views 
 
-    let(:order) { mock_model Spree::Order, :backordered? => false }
-    let(:shipping_method) { mock_model Spree::ShippingMethod, :calculator => mock('calculator') }
-    let(:shipment) do
-      shipment = Spree::Shipment.new :order => order, :shipping_method => shipping_method
-      shipment.state = 'pending'
-      shipment
+    before do
+      #TODO Clean this
+      Spree::Zone.delete_all
+      Spree::ShippingMethod.delete_all
+
+      @order = Factory(:completed_order_with_totals, :number => "R100", :state => "complete")   
+      @shipping_method = Factory(:shipping_method, :zone => Factory(:zone, :name => 'North America'))
+      @shipment = Factory(:shipment, :order => @order, :shipping_method => @shipping_method, :inventory_units => @order.inventory_units )
+      @order.inventory_units.each do |iu|
+        iu.update_attribute_without_callbacks('state', 'sold')
+      end
+      @shipment.state = 'sold'
+
     end
 
     before do
@@ -18,19 +25,20 @@ module Spree
 
     context "as a normal user" do
       pending "gets picking_list" do
-        api_get :picking_list, :order_id => order.id
-
+        api_get :picking_list, :order_id => @order.id
         puts json_response.to_json
-        #json_response.should have_attributes(attributes)
         response.status.should == 200
       end
 
-      it "should mark shipment as picked if all inventory units are picked" do
-        shipment.state.should == 'pending'
-        order.inventory_units.each do |iu|
-          iu.update_attribute_without_callbacks('state', 'sold')
+      pending "should mark shipment as picked if all inventory units are picked" do
+        @shipment.state.should == 'sold'
+        @order.inventory_units.each do |iu|
+          iu.update_attribute('state', 'picked')
         end
-        shipment.state.should == 'picked'
+        @order.reload
+        puts @order.inventory_units.to_json
+        puts @shipment.to_json
+        @shipment.state.should == 'picked'
 
       end
     end
