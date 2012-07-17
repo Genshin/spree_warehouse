@@ -1,4 +1,4 @@
-<tr>
+<tr class="blue">
 
   <% if product.images.any? %>
     <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>

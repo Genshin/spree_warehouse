@@ -40,6 +40,21 @@
       </div>
     <% end %>
   </div>
+
+  <div class="box" data-hook="admin_stock_index_sort">
+    <h3><%= t(:sort) %></h3>
+      <p><%= sort_link @search,:name, t(:product) %></p>
+  </div>
+
+  <div class="box" data-hook="admin_stock_index_pagination">
+    <h3><%= t(:per_page) %></h3>
+    <p>
+      <%= link_to "10", admin_stock_path(:per_page => 10) %>
+      <%= link_to "25", admin_stock_path(:per_page => 25) %>
+      <%= link_to "50", admin_stock_path(:per_page => 50) %>
+      <%= link_to "100", admin_stock_path(:per_page => 100) %>
+    </p>  
+  </div>
 <% end %>
 
 <%= javascript_include_tag "admin/stock.js" %>
