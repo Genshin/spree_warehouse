@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gemspec
 
 gem 'spree', '1.1.2' 
+gem "therubyracer", :require => 'v8'
 
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
