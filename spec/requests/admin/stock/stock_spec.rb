@@ -20,7 +20,7 @@ describe "Stock" do
   context "listing stock" do
     pending "should list existing stock with correct sorting" do
       click_link "Stock"
-      save_and_open_page
+     
       within('table.index tr:nth-child(2)') { page.should have_content("apache baseball cap") }
       within('table.index tr:nth-child(3)') { page.should have_content("zomg shirt") }
 
@@ -37,7 +37,7 @@ describe "Stock" do
 
       fill_in "search_name_contains", :with => "ap"
       click_button "Search"
-      save_and_open_page
+
       page.should have_content("apache baseball cap")
       page.should have_content("apache baseball cap2")
       page.should_not have_content("zomg shirt")

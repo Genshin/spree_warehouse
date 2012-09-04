@@ -1,4 +1,4 @@
-<% if @user.api_key? %>
+<% if @user.spree_api_key? %>
   <%= button_link_to t(:generate_qr_code), qr_admin_user_path(@user.id), :icon => 'qr' %>
 <% else %> 
   <%= t(:generate_api_key_first) %>

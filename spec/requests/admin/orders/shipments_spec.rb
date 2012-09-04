@@ -39,7 +39,6 @@ describe "Shipments" do
       
       within('table.index tbody tr:nth-child(2) td:nth-child(7)') { click_link "Edit" }
       page.should have_content("Shipment ##{@order.shipment.number}")
-      #save_and_open_page
       #click_button "Update"
       #page.should have_content("successfully updated!")
       

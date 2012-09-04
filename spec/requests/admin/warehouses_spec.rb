@@ -60,10 +60,9 @@ describe 'Warehouses' do
       checkbox.should_not be_checked
       check "warehouse_container_taxonomy_ids_"
       
-      #save_and_open_page
+     
       click_button "Update"
       page.should have_content("successfully updated")
-      #save_and_open_page
       #TODO Make check
       #page.should have_content("A1")
        
