@@ -33,7 +33,12 @@ module Spree
       
       def index 
         @search = Product.search(params[:q])
-        @products = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        if params[:per_page].nil?
+          @products = @search.result.page(params[:page]).per(Spree::Config[:admin_products_per_page])
+        else
+          @products = @search.result.page(params[:page]).per(params[:per_page])
+        end
+        
         respond_with(@products) do |format|
           format.html
         end
