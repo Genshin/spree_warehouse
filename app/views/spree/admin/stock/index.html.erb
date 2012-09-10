@@ -43,7 +43,7 @@
 
   <div class="box" data-hook="admin_stock_index_sort">
     <h3><%= t(:sort) %></h3>
-      <p><%= sort_link @search,:name, t(:product) %></p>
+      <p><%= sort_link @search, :name, t(:product), {}, {:id => 'product_sort_link'} %></p>
   </div>
 
   <div class="box" data-hook="admin_stock_index_pagination">
