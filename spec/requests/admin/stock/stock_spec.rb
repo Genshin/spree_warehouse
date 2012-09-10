@@ -3,17 +3,39 @@ require 'spec_helper'
 describe "Stock" do
   before(:each) do
     @product1 = Factory(:product, :name => 'apache baseball cap', :available_on => '2011-01-01 01:01:01', :sku => "A100")
-    
     c_taxonomy = Factory(:container_taxonomy, :name => 'Rack#1') 
     @ct_shelve = Factory(:container_taxon, :container_taxonomy => c_taxonomy, :name => 'Shelve#1') 
     @ct_container = Factory(:container_taxon, :container_taxonomy => c_taxonomy, :name => 'Container#1', :parent_id => @ct_shelve)
-
     Factory(:variant_container_taxon, :quantity => 5, :variant => @product1.master, :container_taxon => @ct_shelve) 
-
     Factory(:destocking_reason, :name => 'destock')
 
     sign_in_as!(Factory(:admin_user))
     visit spree.admin_path
+  end
+
+  def ensure_listed_in_restocked_items
+    click_link 'Restocked Items'
+    within('table.index tr:nth-child(2)') do  
+      page.should have_content('Shelve#1')
+      page.should have_content('7') #restocked quantity
+      page.should have_content('12345') #order_number
+      page.should have_content('A100') #SKU
+      page.should have_content('apache baseball cap')
+      page.should have_content('1') #on_hand
+      page.should have_content('less than a minute')
+    end
+  end
+
+  def ensure_listed_in_destocked_items
+    click_link 'Destocked Items'
+    within('table.index tr:nth-child(2)') do
+      page.should have_content('Shelve#1')
+      page.should have_content('6') #restocked quantity
+      page.should have_content('A100') #SKU
+      page.should have_content('apache baseball cap')
+      page.should have_content('1') #on_hand
+      page.should have_content('less than a minute')
+    end
   end
 
   context "searching" do
@@ -21,7 +43,6 @@ describe "Stock" do
     before do 
       product2 = Factory(:product, :name => 'zomg shirt', :available_on => '2011-01-01 01:01:01', :sku => "Z100")
       product3 = Factory(:product, :name => 'apache baseball cap2', :available_on => '2011-01-01 01:01:01', :sku => "A100")
-
       Factory(:stock_record, :variant => @product1.master, :container_taxon => @ct_shelve, :quantity => 5, :direction => 'in')
       Factory(:stock_record, :variant => product2.master, :container_taxon => @ct_container, :quantity => 10, :direction => 'in')
       click_link "Stock"
@@ -76,8 +97,22 @@ describe "Stock" do
 
     it "should add new stock" , :js => true do
       click_link 'new_stock_link'
-      wait_until { page.find("#new_stock_form") }
-      #TODO Continue the spec
+      wait_until { page.find("#new_stock_form").visible? } 
+      fill_in 'add_product_name', :with => 'apach'
+      
+      wait_until { find("a:contains('apache')") }
+      page.execute_script %Q{ $('.ui-menu-item a:contains("apache")').trigger("mouseenter").click(); }
+      fill_in 'stock_record_quantity', :with => 7
+      fill_in 'stock_record_order_number', :with => '12345'
+      select 'Shelve#1', :from => 'stock_record_container_taxon_id'
+      click_button 'Restock'
+      
+      page.should have_content('successfully restocked')
+      page.should have_content('apache baseball cap')
+      page.should have_content('Shelve#1')
+      page.should have_content('7')
+
+      ensure_listed_in_restocked_items 
     end
 
     it 'should restock and destock product', :js => true do
@@ -107,28 +142,10 @@ describe "Stock" do
       page.should have_content('Shelve#1')
       page.should have_content('1')
 
-      click_link 'Restocked Items'
-      within('table.index tr:nth-child(2)') {  
-                                                page.should have_content('Shelve#1')
-                                                page.should have_content('7') #restocked quantity
-                                                page.should have_content('12345') #order_number
-                                                page.should have_content('A100') #SKU
-                                                page.should have_content('apache baseball cap')
-                                                page.should have_content('1') #on_hand
-                                                page.should have_content('less than a minute')
-                                            }
+      ensure_listed_in_restocked_items
 
-      click_link 'Destocked Items'
-      within('table.index tr:nth-child(2)') { 
-                                                page.should have_content('Shelve#1')
-                                                page.should have_content('6') #restocked quantity
-                                                page.should have_content('A100') #SKU
-                                                page.should have_content('apache baseball cap')
-                                                page.should have_content('1') #on_hand
-                                                page.should have_content('less than a minute')
-                                            }
-    end
+      ensure_listed_in_destocked_items                                      
+    end 
   end
-
 
 end
