@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 
 gemspec
 
-#gem 'spree', '1.1.2' 
-gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-1-stable'
+gem 'spree', '1.1.2' 
+#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-1-stable'
 
 gem "therubyracer", :require => 'v8'
 

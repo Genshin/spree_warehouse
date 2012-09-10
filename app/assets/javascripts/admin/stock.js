@@ -1,0 +1,1 @@
+$("#accordion").accordion({ autoHeight: false });
