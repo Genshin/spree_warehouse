@@ -1,0 +1,34 @@
+<table id="stock" class="index">
+  <tr>
+    <th><%= t(:image) %></th>
+    <th><%= t(:container_taxon) %></th>
+    <th><%= t(:sku) %></th>
+    <th><%= t(:product) %></th>
+    <th><%= t(:variant) %> </th>
+    <th><%= t(:quantity) %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% if product.has_variants? %>
+    <% product.variants.each_with_index do |variant, variant_index| %>
+
+      <% if variant.variant_container_taxons.active.any? %>
+        <div><%= render :partial => 'variant_ct', :locals => { :variant => variant, :product_i => product_i } %></div>
+      <% else %>
+        <div><%= render :partial => 'variant_no_ct', :locals => { :variant => variant, :product_i => product_i } %></div>
+      <% end %>
+
+    <% end %>
+
+  <% else %>
+
+    <% if product.master.variant_container_taxons.active.any? %>
+      <div><%= render :partial => 'product_ct', :locals => { :product => product, :product_i => product_i } %></div>
+    <% else %>
+      <div><%= render :partial => 'product_no_ct', :locals => { :product => product, :product_i => product_i } %></div>
+    <% end %>
+    
+  <% end %>
+
+</table>

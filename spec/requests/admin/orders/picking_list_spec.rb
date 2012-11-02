@@ -38,6 +38,7 @@ describe "Picking List" do
     find('table.index tbody tr:nth-child(2) td:nth-child(5)').text.should == "Pending"
     
     click_link "Picking List"
+    sleep 10
     within('table.index tbody tr:nth-child(2)') { click_button "Pick" }
     page.should have_content("Unit Picked")
     within('table.index tbody tr:nth-child(2)') { page.should have_content "Picked" }

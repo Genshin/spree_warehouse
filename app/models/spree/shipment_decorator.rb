@@ -7,6 +7,8 @@ module Spree
     
     scope :picked, where(:state => 'picked')
     scope :packed, where(:state => 'packed')
+
+    attr_accessible :state
     
     StateMachine::Machine.ignore_method_conflicts = true 
     state_machines.clear

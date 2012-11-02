@@ -2,13 +2,21 @@ source 'http://rubygems.org'
 
 gemspec
 
-gem 'spree', '1.1.1' 
+gem 'spree', '1.1.2' 
+#gem 'spree', :git => 'git://github.com/spree/spree.git', :branch => '1-1-stable'
+
+gem "therubyracer", :require => 'v8'
 
 gem 'pdfkit'
 gem 'wkhtmltopdf-binary'
 
 group :development, :test do 
   gem "sass", :require => 'sass' 
+end
+
+group :assets do
+  gem 'sass-rails', "~> 3.2"
+  gem 'coffee-rails', "~> 3.2"
 end
 
 group :test do
@@ -24,6 +32,7 @@ group :test do
   gem 'guard'
   gem 'guard-rspec', '~> 0.6.0'
   gem 'guard-bundler'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 
 unless ENV["CI"]

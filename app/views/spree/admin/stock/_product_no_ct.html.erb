@@ -1,0 +1,21 @@
+<tr class="blue">
+
+  <% if product.images.any? %>
+    <td><%= link_to image_tag(product.images.first.attachment.url(:mini)), product.images.first.attachment.url(:product)%></td>
+  <% else %>
+    <td></td>
+  <% end %>
+
+  <td></td>
+  <td><%= product.sku %></td>
+  <td><%= product.name %></td>
+  <td></td>
+  <td></td>
+
+  <td id="restocking_<%= product.master.id %>_nil">
+    <%= button_link_to t(:restock), admin_restocking_path(product.master),  { :id => product.master.id, :icon => 'switch', :remote => true } %>
+  </td>
+
+  <td></td>
+
+</tr>
