@@ -9,3 +9,7 @@ tr.even td {
 tr.odd td {
   background: #E5ECF9;
 }
+
+tr.blue td {
+  background: blue;
+}
