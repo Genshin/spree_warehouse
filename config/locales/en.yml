@@ -109,5 +109,7 @@ en:
 
   spree:
     api:
+      clear_key: "Clear Key"
+      regenerate_key: "Regenerate Key"
       please_supply_valid_variant: "Please supply a valid variant"
       inventory_unit_already_picked: "Inventory Unit already picked"

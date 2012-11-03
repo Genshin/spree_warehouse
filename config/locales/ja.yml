@@ -90,3 +90,10 @@ ja:
     messages:
       could_not_restock_no_variant_selected: "品類が選択されていなかった為再入荷することが出来ませんでした。"
       could_not_destock_no_variant_selected: "品類が選択されていなかった為在庫状況を変更することが出来ませんでした。"
+
+  spree:
+    api:
+      clear_key: "API鍵を取り消し"
+      regenerate_key: "API鍵を再作成"
+      please_supply_valid_variant: "正確な種類を指定して下さい"
+      inventory_unit_already_picked: "在庫ユニットが既に選択されています"
