@@ -1,3 +1,1 @@
-$(document).ready(function(){
-  $('td#destocking_<%= @variant.id %>_<%= @container_taxon_id %>').html('<%= escape_javascript(render :partial => "destocking_form", :formats => [:html], :handlers => [:erb]) %>');
-});
+$('td#destocking_<%= @variant.id %>_<%= @container_taxon_id %>').html('<%= escape_javascript(render :partial => "destocking_form", :formats => [:html], :handlers => [:erb]) %>');
